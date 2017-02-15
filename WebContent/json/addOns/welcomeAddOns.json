@@ -1,0 +1,134 @@
+{
+	"widgets":{
+		
+		"bg": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1280,  
+                "h"         :  720,  
+                "zIndex"    :  -1,  
+                "draw"      : "drawMainBg",
+ 				"speed"     : 200,  
+                "defaultState": "exit",
+                "states": {
+                    "enter":  { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 255 },
+                    "medium": { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 80 },
+                    "exit":   { "x": 0, "y": 0, "w": 1280, "h": 720, "a":   0 }
+                }
+            }  
+        },
+		
+		"vodPlayerInfo": {  
+	        	"create": "CanvasWidget",  
+	            "param": {  
+	            	"w"         : 1280,
+	                "h"         : 720,  
+	                "zIndex"    : 0,  
+	                "speed"     : 200,  
+	                "draw"      : "welcomeAddOns.drawVodPlayerInfo",
+	                "defaultState"  : "exit",
+	                "states": {
+	                   	"enter": { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 255 },
+		              	"exit":  { "x": 0, "y": 20, "w": 1280, "h": 720, "a": 0 }
+	                }
+	            }  
+		},
+        "vodButtons": {
+            "create": "ScrollListWidget",
+            "param": {
+            	"itemInitFunc"  : "drawButtons",
+                "itemWidth": 122,
+                "itemHeight": 68,
+                "focusIndex":{"min": 0,"max": 1,"first": 0},
+                "nbItem": 2,
+                "zIndex": 3,
+                "defaultState": "exit",
+                "options": [ "noloop","nofirstfocus"],
+                "states": {
+                    "enter": {
+                        "speed": 200,
+                        "items": [
+                              { "x":  195, "y": 218, "w": 122, "h": 68, "a": 255},
+                              { "x":  195, "y": 290, "w": 122, "h": 68, "a": 255}
+                        ]
+                    },
+                    "exit": {
+                        "speed": 200,
+                        "items": [
+                        	  { "x":  195, "y": 238, "w": 122, "h": 68, "a": 0},
+                              { "x":  195, "y": 310, "w": 122, "h": 68, "a": 0}
+                        ]
+                    }
+                    
+                }
+            }
+        },
+        "vodPlayerfocus": {
+            "create": "CanvasWidget",	
+            "param": {
+                "w": 634,
+                "h": 356,
+                "zIndex": 3,
+                "speed": 200,
+                "draw"      : "welcomeAddOns.drawVodPlayerfocus",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 323, "y": 182, "w": 634, "h": 356, "a": 255 },
+                    "exit":   { "x": 323, "y": 182, "w": 634, "h": 356, "a": 0 }
+                }
+            }
+        },
+        "vodLoadChannels": {
+            "create": "CanvasWidget",	
+            "param": {
+                "w": 634,
+                "h": 356,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "welcomeAddOns.drawVodLoadChannels",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 323, "y": 182, "w": 634, "h": 356, "a": 255 },
+                    "exit":   { "x": 323, "y": 182, "w": 634, "h": 356, "a": 0 }
+                }
+            }
+        },
+       	"vodRecommendations": {
+            "create": "ScrollListWidget",
+            "param": {
+            	"itemInitFunc"  : "welcomeAddOns.drawVodRecommendations",
+                "itemWidth": 186,
+                "itemHeight": 104,
+                "focusIndex":{"min": 1,"max": 3, "first": 1},
+                "nbItem": 5,
+                "zIndex": 3,
+                "defaultState": "exit",
+                "options": [ "noloop","nofirstfocus"],
+                "states": {
+                    "enter": {
+                        "speed": 200,
+                        "items": [
+                        	  { "x": 963, "y": 218, "w": 186, "h": 104, "a": 0},
+                              { "x": 963, "y": 218, "w": 186, "h": 104, "a": 255},
+                              { "x": 963, "y": 326, "w": 186, "h": 104, "a": 255},
+                              { "x": 963, "y": 434, "w": 186, "h": 104, "a": 255},                                                            
+                              { "x": 963, "y": 434, "w": 186, "h": 104, "a": 0}
+                        ]
+                    },
+                    "exit": {
+                        "speed": 200,
+                        "items": [
+                              { "x": 963, "y": 228, "w": 186, "h": 104, "a": 0},
+                              { "x": 963, "y": 228, "w": 186, "h": 104, "a": 0},
+                              { "x": 963, "y": 346, "w": 186, "h": 104, "a": 0},
+                              { "x": 963, "y": 454, "w": 186, "h": 104, "a": 0},                                                          
+                              { "x": 963, "y": 454, "w": 186, "h": 104, "a": 0}
+                        ]
+                    }
+                }
+            }
+        }
+        
+        
+	}
+}

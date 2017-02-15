@@ -1,0 +1,19 @@
+{
+	"widgets":{
+		"errorPanel": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 1280,
+                "h": 720,
+                "speed": 150,
+                "zIndex": 8,
+                "defaultState": "exit",
+                "states": {
+                    "enter" : { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 255 },
+                    "exit"  : { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 0 }
+                },
+                "draw": "error.messagesPanelDraw"
+            }
+        }
+	}
+}

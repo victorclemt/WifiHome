@@ -1,0 +1,163 @@
+{	
+    "widgets": {
+        "buttonsPanel": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1280,  
+                "h"         : 358,  
+                "zIndex"    : 1,  
+                "speed"     : 200,  
+                "draw"      : "genericPlayer.drawButtonsPanel",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  	{ "x": 0, "y": 642, "w": 1280, "h": 358, "a": 255 },
+                    "exit":   	{ "x": 0, "y": 662, "w": 1280, "h": 358, "a": 0 }
+                }
+            }  
+        },	
+        "progressBarVod": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1280,  
+                "h"         : 358,  
+                "zIndex"    : 2,  
+                "speed"     : 200,  
+                "draw"      : "genericPlayer.drawProgressBarVod",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  	{ "x": 0, "y": 643, "w": 1280, "h": 358, "a": 255 },
+                    "exit":   	{ "x": 0, "y": 663, "w": 1280, "h": 358, "a": 0 }
+                }
+            }  
+        },	
+        "buttons": {
+            "create": "ScrollListWidget",
+            "param": {
+            	"itemInitFunc"  : "genericPlayer.drawButtons",
+            	"onFocus"       : "genericPlayer.onFocusButtons",
+                "itemWidth": 58,
+                "itemHeight": 32,
+                "focusIndex":{"min": 0,"max": 6,"first": 2},
+                "nbItem": 6,
+                "zIndex": 2,
+                "defaultState": "exit",
+                "options": [ "noloop"],
+                "states": {
+                    "enter": {
+                        "speed": 200,
+                        "items": [
+                              { "x":  451, "y": 650, "w": 58, "h": 32, "a": 255},
+                              { "x":  515, "y": 650, "w": 58, "h": 32, "a": 255},
+                              { "x":  579, "y": 650, "w": 58, "h": 32, "a": 255},
+                              { "x":  643, "y": 650, "w": 58, "h": 32, "a": 255},
+                              { "x":  707, "y": 650, "w": 58, "h": 32, "a": 255},
+                              { "x":  771, "y": 650, "w": 58, "h": 32, "a": 255}
+                        ]
+                    },
+                    "exit": {
+                        "speed": 200,
+                        "items": [
+                        	  { "x":  451, "y": 650, "w": 58, "h": 32, "a": 0},
+                              { "x":  515, "y": 650, "w": 58, "h": 32, "a": 0},
+                              { "x":  579, "y": 650, "w": 58, "h": 32, "a": 0},
+                              { "x":  643, "y": 650, "w": 58, "h": 32, "a": 0},
+                              { "x":  707, "y": 650, "w": 58, "h": 32, "a": 0},
+                              { "x":  771, "y": 650, "w": 58, "h": 32, "a": 0}
+                        ]
+                    }
+                    
+                }
+            }
+        },
+         "vodControls": {  
+	        	"create": "CanvasWidget",  
+	            "param": {  
+	            	"w"         : 250,
+	                "h"         : 176,  
+	                "zIndex"    : 3,  
+	                "speed"     : 200,  
+	                "draw"      : "genericPlayer.drawVodControls",
+	                "defaultState"  : "exit",
+	                "states": {
+	                   	"enter": { "x": 514, "y": 290, "w": 250, "h": 176, "a": 255 },
+		              	"exit":  { "x": 514, "y": 310, "w": 250, "h": 176, "a": 0 }
+	                }
+	            }  
+	       },
+	       "bgControls": {  
+	        	"create": "CanvasWidget",  
+	            "param": {  
+	            	"w"         : 1280,
+	                "h"         : 540,  
+	                "zIndex"    : 2,  
+	                "speed"     : 0,  
+	                "draw"      : "genericPlayer.drawBgControls",
+	                "defaultState"  : "exit",
+	                "states": {
+	                   	"enter": { "x": 0, "y": 106, "w": 1280, "h": 540, "a": 255 },
+		              	"exit":  { "x": 0, "y": 106, "w": 1280, "h": 540, "a": 0 }
+	                }
+	            }  
+	       },
+        "buttonsHeader": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1280,  
+                "h"         : 64,  
+                "zIndex"    : 3,  
+                "speed"     : 200,  
+                "draw"      : "genericPlayer.drawButtonsHeader",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  	{ "x": 0, "y": 574, "w": 1280, "h": 64, "a": 255 },
+                    "exit":   	{ "x": 0, "y": 594, "w": 1280, "h": 64, "a": 0 }
+                }
+            }  
+        },
+    	"optionsBookmark": {
+            "create": "ScrollListWidget",
+            "param": {
+            	"itemInitFunc"  : "genericPlayer.drawOptionsBookmark",
+                "itemWidth": 314,
+                "itemHeight": 140,
+                "focusIndex":{"min": 0,"max": 1,"first": 0},
+                "nbItem": 2,
+                "zIndex": 3,
+                "defaultState": "exit",
+                "options": [ "noloop"],
+                "states": {
+                    "enter": {
+                        "speed": 200,
+                        "items": [
+                              { "x":  323, "y": 290, "w": 314, "h": 140, "a": 255},
+                              { "x":  643, "y": 290, "w": 314, "h": 140, "a": 255}
+                        ]
+                    },
+                    "exit": {
+                        "speed": 200,
+                        "items": [
+                        	  { "x":  323, "y": 310, "w": 314, "h": 140, "a": 0},
+                              { "x":  643, "y": 310, "w": 314, "h": 140, "a": 0}
+                        ]
+                    }
+                    
+                }
+            }
+        },
+        "optionsBg": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1280,  
+                "h"         :  720,  
+                "zIndex"    :    2,  
+                "speed"     :  300,  
+                "bounds"    : {"x":0, "y":0}, 
+                "draw"      : "genericPlayer.drawOptionsBg",
+                "states": {
+                    "enter":  { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 255 },
+                    "exit":   { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 0 }
+                }
+            }  
+        }
+	}
+}

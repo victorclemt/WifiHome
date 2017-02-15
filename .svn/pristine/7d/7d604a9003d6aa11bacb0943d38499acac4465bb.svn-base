@@ -1,0 +1,402 @@
+{
+	"widgets":{	
+	
+	    	"back": {  
+        	"create": "CanvasWidget",  
+            "param": {  
+            	"w"         : 1280,  
+                "h"         : 720,  
+                "zIndex"    : 5,  
+                "speed"     : 200,  
+                "draw"      : "vodAZ.drawBackX",
+                "defaultState"  : "exit",
+                "states": {
+                   	"enter": { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 255 },
+	              	"exit":  { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 0 }
+                }
+            }  
+        },
+		
+		"counter": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1146,  
+                "h"         : 32,  
+                "zIndex"    :    3,  
+                "speed"     :  200,  
+                "draw"      : "vodAZ.drawCounter",
+                "defaultState": "exit",
+                "states": {
+                    "enter":  { "x": 67, "y": 146, "w": 1146, "h": 32, "a": 255 },
+                    "exit":   { "x": 67, "y": 166, "w": 1146, "h": 32, "a": 0 }
+                }
+            }  
+        },
+        
+        "bgPages": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 378,  
+                "h"         : 32,  
+                "zIndex"    :    3,  
+                "speed"     :  200,  
+                "draw"      : "vodAZ.drawBgPages",
+                "defaultState": "exit",
+                "states": {
+                    "enter":  { "x": 451, "y": 146, "w": 378, "h": 32, "a": 255 },
+                    "exit":   { "x": 451, "y": 166, "w": 378, "h": 32, "a": 0 }
+                }
+            }  
+        },
+	
+	
+		"containerA": {  
+            "create": "WidgetContainer",  
+            "param": {  
+                "zIndex": 1,  
+                "speed": 300,  
+                "defaultState": "exit",  
+                "states": {
+					 "exit":  {"x" : 0, "y" : 0, "w" : 1280, "h" : 720, "a" : 0},
+		             "enter": {"x" : 0, "y" : 0, "w" : 1280, "h" : 720, "a" : 255}
+				}
+             }  
+         },  
+         
+         "containerB": {  
+            "create": "WidgetContainer",  
+            "param": {  
+                "zIndex": 1,  
+                "speed": 300,  
+                "defaultState": "exit",  
+                "states": {
+					 "exit":  {"x" : 0, "y" : 0, "w" : 1280, "h" : 720, "a" : 0},
+		             "enter": {"x" : 0, "y" : 0, "w" : 1280, "h" : 720, "a" : 255}
+				}
+             }  
+         },   
+         
+         "containerC": {  
+            "create": "WidgetContainer",  
+            "param": {  
+                "zIndex": 1,  
+                "speed": 300,  
+                "defaultState": "exit",  
+                "states": {
+					 "exit":  {"x" : 0, "y" : 0, "w" : 1280, "h" : 720, "a" : 0},
+		             "enter": {"x" : 0, "y" : 0, "w" : 1280, "h" : 720, "a" : 255}
+				}
+             }  
+         },   
+		
+		  "listA": {
+            "create": "ScrollListWidget",
+            "param": {
+            	"wcontainer": "containerA",  
+            	"itemInitFunc"  : "vodAZ.drawMovie",
+            	"onFocus"       : "vodAZ.onFocusListA",
+                "itemWidth": 260,
+                "itemHeight": 150,
+                "focusIndex":{"min": 0,"max": 12 ,"first": 0},
+                "nbItem": 5,
+                "zIndex": 3,
+                "defaultState": "exit",
+                "options": [ "noloop", "nofirstfocus"],
+                "states": {
+                    "enter": {
+                        "speed": 100,
+                        "items": [
+                              
+                              { "x":  126, "y": 213, "w": 260, "h": 150, "a": 255},
+                              { "x":  126, "y": 357, "w": 260, "h": 150, "a": 255},
+                              { "x":  126, "y": 501, "w": 260, "h": 150, "a": 255},
+                              
+                              { "x":   382, "y": 213, "w": 260, "h": 150, "a": 255},
+                              { "x":   382, "y": 357, "w": 260, "h": 150, "a": 255},
+                              { "x":   382, "y": 501, "w": 260, "h": 150, "a": 255},
+                              
+                              { "x":   638, "y": 213, "w": 260, "h": 150, "a": 255},
+                              { "x":   638, "y": 357, "w": 260, "h": 150, "a": 255},
+                              { "x":   638, "y": 501, "w": 260, "h": 150, "a": 255},
+                              
+                              { "x":   894, "y": 213, "w": 260, "h": 150, "a": 255},
+                              { "x":   894, "y": 357, "w": 260, "h": 150, "a": 255},
+                              { "x":   894, "y": 501, "w": 260, "h": 150, "a": 255},
+                              
+                              { "x":   1150, "y": 213, "w": 260, "h": 150, "a": 255},
+                              { "x":   1150, "y": 357, "w": 260, "h": 150, "a": 255},
+                              { "x":   1150, "y": 501, "w": 260, "h": 150, "a": 255}                              
+                 
+                        ]
+                    },
+                    "exit": {
+                        "speed": 100,
+                        "items": [
+
+                              { "x":  126, "y": 213, "w": 260, "h": 150, "a": 0},
+                              { "x":  126, "y": 357, "w": 260, "h": 150, "a": 0},
+                              { "x":  126, "y": 501, "w": 260, "h": 150, "a": 0},
+                              
+                              { "x":  382, "y": 213, "w": 260, "h": 150, "a": 0},
+                              { "x":  382, "y": 357, "w": 260, "h": 150, "a": 0},
+                              { "x":  382, "y": 501, "w": 260, "h": 150, "a": 0},
+                              
+                              { "x":  638, "y": 213, "w": 260, "h": 150, "a": 0},
+                              { "x":  638, "y": 357, "w": 260, "h": 150, "a": 0},
+                              { "x":  638, "y": 501, "w": 260, "h": 150, "a": 0},
+                              
+                              { "x":  894, "y": 213, "w": 260, "h": 150, "a": 0},
+                              { "x":  894, "y": 357, "w": 260, "h": 150, "a": 0},
+                              { "x":  894, "y": 501, "w": 260, "h": 150, "a": 0},
+                              
+                              { "x":  1150, "y": 213, "w": 260, "h": 150, "a": 0},
+                              { "x":  1150, "y": 357, "w": 260, "h": 150, "a": 0},
+                              { "x":  1150, "y": 501, "w": 260, "h": 150, "a": 0}                              
+
+                 	    ]
+                    }
+                    
+                }
+            }
+        },
+        
+        "listB": {
+            "create": "ScrollListWidget",
+            "param": {
+            	"wcontainer": "containerB",  
+            	"itemInitFunc"  : "vodAZ.drawMovie",
+            	"onFocus"       : "vodAZ.onFocusListB",
+                "itemWidth": 260,
+                "itemHeight": 150,
+                "focusIndex":{"min": 0,"max": 12,"first": 0},
+                "nbItem": 5,
+                "zIndex": 3,
+                "defaultState": "exit",
+                "options": [ "noloop", "nofirstfocus"],
+                "states": {
+                    "enter": {
+                        "speed": 100,
+                        "items": [
+                              { "x":  126, "y": 213, "w": 260, "h": 150, "a": 255},
+                              { "x":  126, "y": 357, "w": 260, "h": 150, "a": 255},
+                              { "x":  126, "y": 501, "w": 260, "h": 150, "a": 255},
+                              
+                              { "x":   382, "y": 213, "w": 260, "h": 150, "a": 255},
+                              { "x":   382, "y": 357, "w": 260, "h": 150, "a": 255},
+                              { "x":   382, "y": 501, "w": 260, "h": 150, "a": 255},
+                              
+                              { "x":   638, "y": 213, "w": 260, "h": 150, "a": 255},
+                              { "x":   638, "y": 357, "w": 260, "h": 150, "a": 255},
+                              { "x":   638, "y": 501, "w": 260, "h": 150, "a": 255},
+                              
+                              { "x":   894, "y": 213, "w": 260, "h": 150, "a": 255},
+                              { "x":   894, "y": 357, "w": 260, "h": 150, "a": 255},
+                              { "x":   894, "y": 501, "w": 260, "h": 150, "a": 255},
+                              
+                              { "x":   1150, "y": 213, "w": 260, "h": 150, "a": 255},
+                              { "x":   1150, "y": 357, "w": 260, "h": 150, "a": 255},
+                              { "x":   1150, "y": 501, "w": 260, "h": 150, "a": 255}                              
+                              
+                        ]
+                    },
+                    "exit": {
+                        "speed": 100,
+                        "items": [
+                              { "x":  126, "y": 213, "w": 260, "h": 150, "a": 0},
+                              { "x":  126, "y": 357, "w": 260, "h": 150, "a": 0},
+                              { "x":  126, "y": 501, "w": 260, "h": 150, "a": 0},
+                              
+                              { "x":   382, "y": 213, "w": 260, "h": 150, "a": 0},
+                              { "x":   382, "y": 357, "w": 260, "h": 150, "a": 0},
+                              { "x":   382, "y": 501, "w": 260, "h": 150, "a": 0},
+                              
+                              { "x":   638, "y": 213, "w": 260, "h": 150, "a": 0},
+                              { "x":   638, "y": 357, "w": 260, "h": 150, "a": 0},
+                              { "x":   638, "y": 501, "w": 260, "h": 150, "a": 0},
+                              
+                              { "x":   894, "y": 213, "w": 260, "h": 150, "a": 0},
+                              { "x":   894, "y": 357, "w": 260, "h": 150, "a": 0},
+                              { "x":   894, "y": 501, "w": 260, "h": 150, "a": 0},
+                              
+                              { "x":   1150, "y": 213, "w": 260, "h": 150, "a": 0},
+                              { "x":   1150, "y": 357, "w": 260, "h": 150, "a": 0},
+                              { "x":   1150, "y": 501, "w": 260, "h": 150, "a": 0}                        
+
+                        ]
+                    }
+                    
+                }
+            }
+        },
+        
+        
+        "listC": {
+            "create": "ScrollListWidget",
+            "param": {
+            	"wcontainer": "containerC",  
+            	"itemInitFunc"  : "vodAZ.drawMovie",
+            	"onFocus"       : "vodAZ.onFocusListC",
+                "itemWidth": 260,
+                "itemHeight": 150,
+                "focusIndex":{"min": 0,"max": 12,"first": 0},
+                "nbItem": 5,
+                "zIndex": 3,
+                "defaultState": "exit",
+                "options": [ "noloop", "nofirstfocus"],
+                "states": {
+                    "enter": {
+                        "speed": 100,
+                        "items": [
+                              { "x":  126, "y": 213, "w": 260, "h": 150, "a": 255},
+                              { "x":  126, "y": 357, "w": 260, "h": 150, "a": 255},
+                              { "x":  126, "y": 501, "w": 260, "h": 150, "a": 255},
+                              
+                              { "x":   382, "y": 213, "w": 260, "h": 150, "a": 255},
+                              { "x":   382, "y": 357, "w": 260, "h": 150, "a": 255},
+                              { "x":   382, "y": 501, "w": 260, "h": 150, "a": 255},
+                              
+                              { "x":   638, "y": 213, "w": 260, "h": 150, "a": 255},
+                              { "x":   638, "y": 357, "w": 260, "h": 150, "a": 255},
+                              { "x":   638, "y": 501, "w": 260, "h": 150, "a": 255},
+                              
+                              { "x":   894, "y": 213, "w": 260, "h": 150, "a": 255},
+                              { "x":   894, "y": 357, "w": 260, "h": 150, "a": 255},
+                              { "x":   894, "y": 501, "w": 260, "h": 150, "a": 255},
+                              
+                              { "x":   1150, "y": 213, "w": 260, "h": 150, "a": 255},
+                              { "x":   1150, "y": 357, "w": 260, "h": 150, "a": 255},
+                              { "x":   1150, "y": 501, "w": 260, "h": 150, "a": 255}                              
+                             
+                        ]
+                    },
+                    "exit": {
+                        "speed": 100,
+                        "items": [
+
+                              { "x":  126, "y": 213, "w": 260, "h": 150, "a": 0},
+                              { "x":  126, "y": 357, "w": 260, "h": 150, "a": 0},
+                              { "x":  126, "y": 501, "w": 260, "h": 150, "a": 0},
+                              
+                              { "x":   382, "y": 213, "w": 260, "h": 150, "a": 0},
+                              { "x":   382, "y": 357, "w": 260, "h": 150, "a": 0},
+                              { "x":   382, "y": 501, "w": 260, "h": 150, "a": 0},
+                              
+                              { "x":   638, "y": 213, "w": 260, "h": 150, "a": 0},
+                              { "x":   638, "y": 357, "w": 260, "h": 150, "a": 0},
+                              { "x":   638, "y": 501, "w": 260, "h": 150, "a": 0},
+                              
+                              { "x":   894, "y": 213, "w": 260, "h": 150, "a": 0},
+                              { "x":   894, "y": 357, "w": 260, "h": 150, "a": 0},
+                              { "x":   894, "y": 501, "w": 260, "h": 150, "a": 0},
+                              
+                              { "x":   1150, "y": 213, "w": 260, "h": 150, "a": 0},
+                              { "x":   1150, "y": 357, "w": 260, "h": 150, "a": 0},
+                              { "x":   1150, "y": 501, "w": 260, "h": 150, "a": 0}                        
+
+                        ]
+                    }
+                    
+                }
+            }
+        },
+        
+         "counterxxx": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 58,  
+                "h"         : 32,  
+                "zIndex"    :    3,  
+                "speed"     :  200,  
+                "draw"      : "vodWizzard.drawCounter",
+                "defaultState": "exit",
+                "states": {
+                    "enter":  { "x": 1155, "y":218, "w": 58, "h": 32, "a": 255 },
+                    "exit":   { "x": 1155, "y":238, "w": 58, "h": 32, "a": 0 }
+                }
+            }  
+        },
+        
+		"myLoadingIndicator": {  
+            "create": "LoadingIndicator",  
+            "param": {  
+                // Size of the area of the widget (optional if using a "bounds"  
+                // param specifying "w" and "h" values)  
+                "w"         : 80,  
+                "h"         : 80,  
+     
+                // Duration of the state change animation  
+                "speed"     : 100,  
+     
+                // Depth of the widget in the graphical hierarchy  
+                "zIndex"    : 10,  
+     
+                // Style of the widget to choose between predefined styles  
+                // ("spinner", "bubbles", ...)  
+                "style"     : "dots",  
+     
+                // Options of the widget  
+                // - hideonstop: hide widget when stopping loading animation  
+                "options"   : ["hideonstop"],  
+     
+                // Default animation state  
+                "defaultState": "exit",  
+     
+                // Position and size of the widget (size is optional if "w" and  
+                // "h" are defined at the "param" top level)  
+                "bounds"    : { "x": 600, "y": 480 }  
+            }  
+        },
+
+       "notFound": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 1280,
+                "h": 212,
+                "speed": 150,
+                "zIndex": 2,
+                "defaultState": "exit",
+                "states": {
+                    "enter" : { "x": 0, "y": 218, "w": 1280, "h": 212, "a": 255 },
+                    "exit"  : { "x": 0, "y": 218, "w": 1280, "h": 212, "a": 0 }
+                },
+                "draw": "vodHome.drawNotFound"
+            }
+        },
+
+       	"leftArrowAZ": {  
+        	"create": "CanvasWidget",  
+            	"param": {  
+               		"w"         :  35,  
+                	"h"         :  104,  
+                	"zIndex"    :   4,  
+                	"speed"     : 	280,  
+                	"draw"      : "vodAZ.drawArrowVodAZ",
+                	"defaultState"  : "exit",
+                	"states": {
+                    	"enter": { "x": 110,  "y": 380, "w": 35, "h": 104, "a": 255 },
+                   		"exit":  { "x": 110,  "y": 380, "w": 35, "h": 104, "a": 0 }                 
+                	}
+            	}  
+        },
+        
+
+        "rightArrowAZ": {  
+        	"create": "CanvasWidget",  
+            	"param": {  
+               		"w"         :  35, 
+                	"h"         :  104,  
+                	"zIndex"    :   4, 
+                	"speed"     : 	280,  
+                	"draw"      : "vodAZ.drawArrowVodAZ",
+                	"defaultState"  : "exit",
+                	"states": {
+                    	"enter": { "x": 1132, "y": 380, "w": 35, "h": 104, "a": 255},                   	                    	
+                    	 "exit": { "x": 1132, "y": 380, "w": 35, "h": 104, "a": 0}
+                	}
+            	}  
+        }
+
+                          
+        
+	}
+}

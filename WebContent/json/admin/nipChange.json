@@ -1,0 +1,222 @@
+{
+	"widgets":{
+		     
+		"nipBackground": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 1280,
+                "h": 720,
+                "zIndex": 0,
+                "speed": 200,
+                "draw"      : "nipChange.drawNipBackground",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 255 },
+                    "exit":   { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 0 }
+                }
+            }
+        },   
+        
+        "buttonsNipChange": {
+            "create": "ScrollListWidget",
+            "param": {
+            	"itemInitFunc"  : "nipChange.drawButtonsNipChange",
+                "itemWidth": 122,
+                "itemHeight": 68,
+               "focusIndex":	{"min": 1,"max": 2,"first": 1},
+               "onFocus": "nipChange.onFocusButtonBack",
+                "nbItem": 1,
+                "zIndex": 2,
+                "defaultState": "exit",
+                "options": [ "noloop","nofirstfocus"],
+                "states": {
+                    "enter": {
+                        "speed": 0,				
+                        "items": [
+                        	  { "x":  67, "y": 398, "w": 122, "h": 68, "a":   0 },
+                        	  { "x":  67, "y": 398, "w": 122, "h": 68, "a": 255 },
+                        	  { "x":  194, "y": 398, "w": 122, "h": 68, "a": 255 },
+                        	  { "x":  194, "y": 398, "w": 122, "h": 68, "a": 0 }
+
+                        ]
+                    },
+                    "exit": {
+                        "speed": 0,
+                        "items": [
+                        	  { "x":  67, "y": 418, "w": 122, "h": 68, "a": 0 },
+                        	  { "x":  67, "y": 418, "w": 122, "h": 68, "a": 0 },
+                        	  { "x":  194, "y": 418, "w": 122, "h": 68, "a": 0 },
+                        	  { "x":  194, "y": 418, "w": 122, "h": 68, "a": 0 }
+                        ]
+                    }
+                }
+            }
+        },
+        
+        "buttonsNipChange": {
+            "create": "ScrollListWidget",
+            "param": {
+            	"itemInitFunc"  : "nipChange.drawButtonsNipChange",
+                "itemWidth": 122,
+                "itemHeight": 84,
+               "focusIndex":	{"min": 1,"max": 2,"first": 1},
+               "onFocus": "nipChange.onFocusButtonBack",
+                "nbItem": 1,
+                "zIndex": 2,
+                "defaultState": "enter",
+                "options": [ "noloop","nofirstfocus"],
+                "states": {
+                    "enter": {
+                        "speed": 0,				
+                        "items": [
+                        	  { "x":  67, "y": 398, "w": 122, "h": 84, "a":   0 },
+                        	  { "x":  67, "y": 398, "w": 122, "h": 84, "a": 255 },
+                        	  { "x":  194, "y": 398, "w": 122, "h": 84, "a": 255 },
+                        	  { "x":  194, "y": 398, "w": 122, "h": 84, "a": 0 }
+
+                        ]
+                    },
+                    "exit": {
+                        "speed": 0,
+                        "items": [
+                        	  { "x":  67, "y": 398, "w": 122, "h": 84, "a": 0 },
+                        	  { "x":  67, "y": 398, "w": 122, "h": 84, "a": 0 },
+                        	  { "x":  194, "y": 398, "w": 122, "h": 84, "a": 0 },
+                        	  { "x":  194, "y": 398, "w": 122, "h": 84, "a": 0 }
+                        ]
+                    }
+                }
+            }
+        },
+        
+        "tooltip": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 122,
+                "h": 32,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "nipValidator.drawTooltip",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 67, "y": 465, "w": 122, "h": 32, "a": 255 },
+                    "exit":   { "x": 67, "y": 445, "w": 122, "h": 32, "a": 0 }
+                }
+            }
+        },
+        
+		"nipChangeInput_1": {
+            "create": "InputWidget",
+            "param": {
+                "w": 61,
+                "h": 68,
+                "speed": 100,
+                "zIndex": 2,
+                "bounds": { "x": 515, "y": 398 },
+                "maxLength": 1,
+                "delay": 1000,
+                "key": ["num", "delete"],
+                "hidden": true,
+                "scrollList": [6, 100, 50, 150]
+            }
+        },
+        
+        "nipChangeInput_2": {
+            "create": "InputWidget",
+            "param": {
+                "w": 61,
+                "h": 68,
+                "speed": 100,
+                "zIndex": 2,
+                "bounds": { "x": 579, "y": 398 },
+                "maxLength": 1,
+                "delay": 1000,
+                "key": ["num", "delete"],
+                "hidden": true,
+                "scrollList": [6, 100, 50, 150]
+            }
+        },
+        "nipChangeInput_3": {
+            "create": "InputWidget",
+            "param": {
+                "w": 61,
+                "h": 68,
+                "speed": 100,
+                "zIndex": 2,
+                "bounds": { "x": 643, "y": 398 },
+                "maxLength": 1,
+                "delay": 1000,
+                "key": ["num", "delete"],
+                "hidden": true,
+                "scrollList": [6, 100, 50, 150]
+            }
+        },
+        
+       "nipChangeInput_4": {
+            "create": "InputWidget",
+            "param": {
+                "w": 61,
+                "h": 68,
+                "speed": 100,
+                "zIndex": 2,
+                "bounds": { "x": 707, "y": 398 },
+                "maxLength": 1,
+                "delay": 1000,
+                "key": ["num", "delete"],
+                "hidden": true,
+                "scrollList": [6, 100, 50, 150]
+            }
+        },
+        
+        "messageNipError": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 378,
+                "h": 32,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "nipChange.drawMessageNipChange",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 450, "y": 322, "w": 378, "h": 32, "a": 255 },
+                    "exit":   { "x": 450, "y": 322, "w": 378, "h": 32, "a": 0 }
+                }
+            }
+        },
+        
+       
+        
+        "mainMessage": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 1145,
+                "h": 70,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "nipChange.drawMainMessage",
+                "defaultState"  : "enter",
+                "states": {
+                    "enter":  { "x": 67, "y": 254, "w": 1145, "h": 70, "a": 255 },
+                    "exit":   { "x": 67, "y": 254, "w": 1145, "h": 70, "a": 0 }
+                }
+            }
+        },
+        "showInfo": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 890,
+                "h": 176,
+                "zIndex": 2,
+                "speed": 300,
+                "draw"      : "nipChange.drawShowInfo",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 195, "y": 506, "w": 890, "h": 176, "a": 255 },
+                    "exit":   { "x": 195, "y": 526, "w": 890, "h": 176, "a": 0 }
+                }
+            }
+        }
+        
+
+	}
+}

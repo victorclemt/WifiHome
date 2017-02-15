@@ -1,0 +1,202 @@
+{
+	"widgets":{
+		"bgDate": {
+            "create": "CanvasWidget",
+            "param": {
+                "w"         : 762,
+                "h"         : 40,
+                "zIndex"    : 0,
+                "speed"     : 200,
+                "draw"      : "timeline.drawBgDate",
+                "defaultState"  : "exit",
+                "states":{
+                	"enter":  { "x": 451, "y": 538, "w": 762, "h": 40, "a": 255 },
+                 	"exit":   { "x": 431, "y": 538, "w": 762, "h": 40, "a":   0 }
+                 }
+            }
+		 },
+        "channelNumberBar": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1280,  
+                "h"         : 112,  
+                "zIndex"    : 1,  
+                "speed"     : 200,  
+                "draw"      : "timeline.drawChannelNumberBar",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 0, "y": 312, "w": 1280, "h": 112, "a": 255 },
+                    "exit":   { "x": 0, "y": 312, "w": 1280, "h": 112, "a": 0 }
+                }
+            }  
+        },
+        "arrowTimeline": {
+            "create": "CanvasWidget",
+            "param": {
+                "w"         : 410,
+                "h"         : 32,
+                "zIndex"    : 5,
+                "speed"     : 200,
+                "draw"      : "timeline.drawArrowTimeline",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 435, "y": 614, "w": 410, "h": 32, "a": 255 },
+                    "opaque":  { "x": 435, "y": 614, "w": 410, "h": 32, "a": 100 },
+                    "exit":   { "x": 435, "y": 614, "w": 410, "h": 32, "a": 0 }
+                }
+            }  
+        },
+        "arrowDate": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 186,
+                "h"         : 32,  
+                "zIndex"    : 5,  
+                "speed"     : 200,  
+                "draw"      : "timeline.drawArrowDate",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 637, "y": 542, "w": 186, "h": 32, "a": 255 },
+                    "exit":   { "x": 637, "y": 542, "w": 186, "h": 32, "a": 0 }
+                }
+            }  
+        },
+		"channelList": {
+            "create": "ScrollListWidget",
+            "param": {
+            	"itemInitFunc"  : "timeline.drawChannelList",
+            	"onFocus"       : "timeline.onFocusChannelList",
+                "itemWidth"     : 186,
+                "itemHeight"    : 40,
+				"options" 		: ["noloop"],
+                "focusIndex"    : 1,
+                "nbItem"        : 1,
+                "zIndex"        : 1,
+                "defaultState"  : "exit",
+                "states": {
+                    "enter": {
+                        "speed": 200,
+                        "items": [
+                            { "x": 451, "y": 518, "w": 186, "h": 40, "a": 0},
+                            { "x": 451, "y": 538, "w": 186, "h": 40, "a": 255},
+                            { "x": 451, "y": 558, "w": 186, "h": 40, "a": 0}
+                        ]
+                    },
+                    "opaque":{
+                        "speed": 200,
+                        "items": [
+							{ "x": 445, "y": 518, "w": 186, "h": 40, "a": 0},
+                            { "x": 445, "y": 538, "w": 186, "h": 40, "a": 0},
+                            { "x": 445, "y": 558, "w": 186, "h": 40, "a": 0}
+                        ]                    	
+                    },
+                    "exit": {
+                        "speed": 200,
+                        "items": [
+							{ "x": 405, "y": 518, "w": 186, "h": 40, "a": 0},
+                            { "x": 425, "y": 538, "w": 186, "h": 40, "a": 0},
+                            { "x": 445, "y": 558, "w": 186, "h": 40, "a": 0}
+                        ]
+                    }
+                }
+            }
+        },
+        
+		"programList": {
+            "create": "ScrollListWidget",
+            "param": { 
+            	"itemInitFunc"  : "timeline.drawProgramList",
+            	"onFocus"       : "timeline.onFocusProgramList",
+                "itemWidth"     : 378,
+                "itemHeight"    : 142,
+				"options" 		: ["noloop"],
+                "focusIndex"    : 3,
+                "nbItem"        : 7,
+                "zIndex"        : 2,
+                "defaultState"  : "exit",
+                "states": {
+                    "enter": {
+                        "speed": 150,
+                        "items": [
+                            { "x": -701, "y": 578, "w": 378, "h": 142, "a": 0},
+                            { "x": -317, "y": 578, "w": 378, "h": 142, "a": 255},
+                            { "x":   67, "y": 578, "w": 378, "h": 142, "a": 255},
+                            { "x":  451, "y": 578, "w": 378, "h": 142, "a": 255},
+                            { "x":  835, "y": 578, "w": 378, "h": 142, "a": 255},
+                            { "x": 1219, "y": 578, "w": 378, "h": 142, "a": 255},
+                            { "x": 1603, "y": 578, "w": 378, "h": 142, "a": 0}
+                        ]
+                    },
+                    "opaque":{
+                        "speed": 150,
+                        "items": [
+							{ "x": -701, "y": 578, "w": 378, "h": 142, "a": 100},
+                            { "x": -317, "y": 578, "w": 378, "h": 142, "a": 100},
+                            { "x":   67, "y": 578, "w": 378, "h": 142, "a": 100},
+                            { "x":  451, "y": 578, "w": 378, "h": 142, "a": 100},
+                            { "x":  835, "y": 578, "w": 378, "h": 142, "a": 100},
+                            { "x": 1219, "y": 578, "w": 378, "h": 142, "a": 100},
+                            { "x": 1603, "y": 578, "w": 378, "h": 142, "a": 100}
+                        ]                    	
+                    },
+                    "exit": {
+                        "speed": 150,
+                        "items": [
+							{ "x": -746, "y": 578, "w": 390, "h": 142, "a": 0},
+                            { "x": -356, "y": 578, "w": 390, "h": 142, "a": 0},
+                            { "x":   34, "y": 578, "w": 390, "h": 142, "a": 0},
+                            { "x":  424, "y": 578, "w": 390, "h": 142, "a": 0},
+                            { "x":  814, "y": 578, "w": 390, "h": 142, "a": 0},
+                            { "x": 1204, "y": 578, "w": 390, "h": 142, "a": 0},
+                            { "x": 1594, "y": 578, "w": 390, "h": 142, "a": 0}
+                        ]
+                    }
+                }
+            }
+        },
+        "dateList": {
+            "create": "ScrollListWidget",
+            "param": { 
+            	"itemInitFunc"  : "timeline.drawDateList",
+            	"onFocus"       : "timeline.onFocusDateList",
+                "itemWidth"     : 192,
+                "itemHeight"    :  40,
+				"options" 		: ["noloop", "nofirstfocus"],
+                "focusIndex"    : 1,
+                "nbItem"        : 3,
+                "zIndex"        : 1,
+                "defaultState"  : "exit",
+                "states": {
+                    "enter": {
+                        "speed": 200,
+                        "items": [
+                            { "x": 617, "y": 538, "w": 192, "h": 40, "a": 0},
+                            { "x": 637, "y": 538, "w": 192, "h": 40, "a": 255},
+                            { "x": 657, "y": 538, "w": 192, "h": 40, "a": 0}
+                        ]
+                    },
+                    "opaque":{
+                        "speed": 200,
+                        "items": [
+							{ "x": 617, "y": 538, "w": 192, "h": 40, "a": 0},
+                            { "x": 637, "y": 538, "w": 192, "h": 40, "a": 0},
+                            { "x": 657, "y": 538, "w": 192, "h": 40, "a": 0}
+                        ]                    	
+                    },
+                    "exit": {
+                        "speed": 200,
+                        "items": [
+							{ "x": 617, "y": 538, "w": 192, "h": 40, "a": 0},
+                            { "x": 637, "y": 538, "w": 192, "h": 40, "a": 0},
+                            { "x": 657, "y": 538, "w": 192, "h": 40, "a": 0}
+                        ]
+                    }
+                }
+            }
+        }
+        
+        
+        
+        
+	}
+}

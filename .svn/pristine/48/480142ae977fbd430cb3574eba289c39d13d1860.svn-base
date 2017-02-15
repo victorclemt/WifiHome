@@ -1,0 +1,165 @@
+{
+	"widgets":{
+
+		"pip": {
+        	"create": "PlayerWidget",
+            "param": {
+            	"zIndex": 2,
+                "speed": 0,
+                "defaultState": "bottom_right_exit",    
+                "states": {
+                	"top_left"           : { "x":  75, "y":  46, "w": 320, "h": 180, "a": 255 },
+                    "top_left_exit"      : { "x":  75, "y":  46, "w": 0, "h": 0, "a": 0 },
+                    "top_right"          : { "x": 886, "y":  46, "w": 320, "h": 180, "a": 255 },
+                    "top_right_exit"     : { "x": 886, "y":  46, "w": 0, "h": 0, "a": 0 },
+                    "bottom_left"        : { "x":  75, "y": 494, "w": 320, "h": 180, "a": 255 },
+                    "bottom_left_exit"   : { "x":  75, "y": 494, "w": 0, "h": 0, "a": 0 },
+                    "bottom_right"       : { "x": 886, "y": 494, "w": 320, "h": 180, "a": 255 },
+                    "bottom_right_exit"  : { "x": 886, "y": 494, "w": 0, "h": 0, "a": 0 }
+             	},
+             	"event": {
+             	 	"*": "onStreamEvent"
+             	}
+         	}
+     	},
+     	
+     	"pipBg": {
+	            "create": "CanvasWidget",
+	            "param": {
+	                "w": 378,
+	                "h": 212,
+	                "zIndex": 1,
+	                "defaultState": "bottom_right_exit",
+	                "speed": 200,
+	                "draw"      : "pipForm.pipBg",
+	                "states": {
+	                               
+	                    "top_left"   		: { "x":  67, "y":  38, "w": 378, "h": 212, "a": 255 },
+	                    "top_left_exit"   	: { "x":  67, "y":  38, "w": 378, "h": 212, "a": 0 },
+	                    
+	                    "top_right" 		: { "x": 835, "y":  38, "w": 378, "h": 212, "a": 255 },
+	                    "top_right_exit"	: { "x": 835, "y":  38, "w": 378, "h": 212, "a": 0 },
+	                    
+	                    "bottom_left"		: { "x":  67, "y": 470, "w": 378, "h": 212, "a": 255 },
+	                    "bottom_left_exit"	: { "x":  67, "y": 470, "w": 378, "h": 212, "a": 0 },
+	                    
+	                    "bottom_right"		: { "x": 855, "y": 470, "w": 378, "h": 212, "a": 255 },
+	                    "bottom_right_exit"	: { "x": 855, "y": 470, "w": 378, "h": 212, "a": 0 }
+	                   	
+	                }
+	            }
+	    	},
+	    	
+     	
+    
+  		"channelNumberBar": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1280,  
+                "h"         : 112,  
+                "zIndex"    : 1,  
+                "speed"     : 200,  
+                "draw"      : "pipForm.drawChannelNumberBar",
+                "states": {
+                    "enter":  { "x": 0, "y": 312, "w": 1280, "h": 112, "a": 255 },
+                    "exit":   { "x": 0, "y": 312, "w": 1280, "h": 112, "a": 0 }
+                }
+            }  
+        },
+        
+        "pipChannels": {
+	            "create": "ScrollListWidget",
+	            "param": {
+	                "itemWidth": 378,
+	                "itemHeight": 68,
+	                "focusIndex": {"min": 1,"max": 1,"first": 1},
+	                "nbItem": 1,
+	                "zIndex": 3,
+	                "defaultState": "bottom_right_exit",
+	                "options": [ "loop" ],
+	                "states": {
+	                    "top_left": {
+	                        "speed": 100,
+	                        "items": [
+	                        	  { "x": 67, "y": 182, "w": 378, "h": 68, "a": 0},
+	                        	  { "x": 67, "y": 182, "w": 378, "h": 68, "a": 255},
+	                              { "x": 67, "y": 182, "w": 378, "h": 68, "a": 0}
+	                        ]
+	                    },
+	                    "top_left_exit": {
+	                        "speed": 100,
+	                        "items": [
+	                        	  { "x": 67, "y": 182, "w": 378, "h": 68, "a": 0},
+	                        	  { "x": 67, "y": 182, "w": 378, "h": 68, "a": 0},
+	                              { "x": 67, "y": 182, "w": 378, "h": 68, "a": 0}
+	                        ]
+	                    },
+	                    
+	                    
+	                    "top_right": {
+	                        "speed": 100,
+	                        "items": [
+	                        	  { "x": 881, "y": 179, "w": 378, "h": 68, "a": 0},
+	                        	  { "x": 881, "y": 179, "w": 378, "h": 68, "a": 255},
+	                              { "x": 881, "y": 179, "w": 378, "h": 68, "a": 0}
+	                        ]
+	                    },
+	                     "top_right_exit": {
+	                        "speed": 100,
+	                        "items": [
+	                        	  { "x": 881, "y": 179, "w": 378, "h": 68, "a": 0},
+	                        	  { "x": 881, "y": 179, "w": 378, "h": 68, "a": 0},
+	                              { "x": 881, "y": 179, "w": 378, "h": 68, "a": 0}
+	                        ]
+	                    },
+	                    
+	                    
+	                    "bottom_left": {
+	                        "speed": 100,
+	                        "items": [
+	                        	  { "x": 70, "y": 627, "w": 378, "h": 68, "a": 0},
+	                        	  { "x": 70, "y": 627, "w": 378, "h": 68, "a": 255},
+	                              { "x": 70, "y": 627, "w": 378, "h": 68, "a": 0}
+	                        ]
+	                    },
+	                    "bottom_left_exit": {
+	                        "speed": 100,
+	                        "items": [
+	                        	  { "x": 70, "y": 627, "w": 378, "h": 68, "a": 0},
+	                        	  { "x": 70, "y": 627, "w": 378, "h": 68, "a": 0},
+	                              { "x": 70, "y": 627, "w": 378, "h": 68, "a": 0}
+	                        ]
+	                    },
+	                    
+	                    
+	                    "bottom_right": {
+	                        "speed": 100,
+	                        "items": [
+	                        	  { "x": 851, "y": 627, "w": 378, "h": 68, "a": 0},
+	                        	  { "x": 851, "y": 627, "w": 378, "h": 68, "a": 255},
+	                              { "x": 851, "y": 627, "w": 378, "h": 68, "a": 0}
+	                        ]
+	                    },
+	                    "bottom_right_exit": {
+	                        "speed": 100,
+	                        "items": [
+	                        	  { "x": 881, "y": 627, "w": 378, "h": 68, "a": 0},
+	                        	  { "x": 881, "y": 627, "w": 378, "h": 68, "a": 0},
+	                              { "x": 881, "y": 627, "w": 378, "h": 68, "a": 0}
+	                        ]
+	                    },	                    
+	                    "exit": {
+	                        "speed": 100,
+	                        "items": [
+	                              { "x": 70, "y": 179, "w": 378, "h": 68, "a": 0},
+	                        	  { "x": 70, "y": 179, "w": 378, "h": 68, "a": 0},
+	                              { "x": 70, "y": 179, "w": 378, "h": 68, "a": 0}
+	                        ]
+	                    }
+	                }
+	            }
+	        }
+	  
+	    	
+	}
+}

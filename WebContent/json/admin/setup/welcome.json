@@ -1,0 +1,53 @@
+{
+	"widgets":{
+        "clientdata": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 314,
+                "h": 68,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "welcome.drawClientData",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 259, "y": 326, "w": 314, "h": 68, "a": 255 },
+                    "exit":   { "x": 259, "y": 326, "w": 314, "h": 68, "a": 0 }
+                }
+            }
+        },
+        "buttons": {
+		            "create": "ScrollListWidget",
+		            "param":{ 
+			                "itemWidth"     : 186,
+			                "itemHeight"    : 32,
+			                "itemInitFunc"  : "welcome.drawButtonList",
+			                //"onFocus"		: "welcome.onFocusButtons",
+			                "options"		:["noloop"],
+			                "focusIndex"    : {"max":1, "min":0, "first":0},
+			                "nbItem"        : 3,
+			                "zIndex"        : 3,
+			                "defaultState"  : "exit",
+			                "states": {
+			                    "enter": {
+			                        "speed": 200,
+			                        "items": [
+										{ "x": 643, "y": 542, "w": 186, "h": 32, "a": 255 },
+										{ "x": 835, "y": 542, "w": 186, "h": 32, "a": 255 }
+			                        ]
+			                    },
+			            
+			                   "exit": {
+			                        "speed": 200,
+			                        "items": [
+										{ "x": 643, "y": 542, "w": 186, "h": 32, "a": 0 },
+										{ "x": 835, "y": 542, "w": 186, "h": 32, "a": 0 }
+			                        ]
+			                    }
+		                	}
+			                
+		            	}
+		        	}
+        
+
+	}
+}

@@ -1,0 +1,91 @@
+{
+	"widgets":{
+        
+        
+        "message": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 506,
+                "h": 252,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "defaulting.drawMessage",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 67, "y": 260, "w": 506, "h": 252, "a": 255 },
+                    "exit":   { "x": 67, "y": 260, "w": 506, "h": 252, "a": 0 }
+                }
+            }
+        },
+        
+         "references": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 570,
+                "h": 392,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "defaulting.drawReferences",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 643, "y": 260, "w": 570, "h": 422, "a": 255 },
+                    "exit":   { "x": 643, "y": 260, "w": 570, "h": 422, "a": 0 }
+                }
+            }
+        },
+        
+        
+        "line": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 1,
+                "h": 248,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "setup.drawLine",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  	{ "x": 603, "y": 260, "w": 1, "h": 248, "a": 255 },
+                    "exit":   	{ "x": 603, "y": 260, "w": 1, "h": 248, "a": 0 },
+                    "exit_l":   { "x": 573, "y": 260, "w": 1, "h": 248, "a": 0 },
+                    "exit_r":   { "x": 633, "y": 260, "w": 1, "h": 248, "a": 0 }
+                }
+            }
+        },
+        
+        
+        "headers": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 570,
+                "h": 104,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "defaulting.drawHeaders",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 707, "y": 146, "w": 570, "h": 104, "a": 255 },
+                    "exit":   { "x": 707, "y": 146, "w": 570, "h": 104, "a": 0 }
+                }
+            }
+        },
+		
+        "clientdata": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 570,
+                "h": 104,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "defaulting.drawClientData",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 67, "y": 146, "w": 570, "h": 104, "a": 255 },
+                    "exit":   { "x": 67, "y": 146, "w": 570, "h": 104, "a": 0 }
+                }
+            }
+        }
+        
+
+	}
+}

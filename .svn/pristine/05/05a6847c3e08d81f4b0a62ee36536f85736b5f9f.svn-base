@@ -1,0 +1,220 @@
+{	
+    "widgets": {
+   	
+    	"title": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 570,  
+                "h"         :  68,  
+                "zIndex"    :   1,  
+                "speed"     : 300,  
+                "bounds"    : {"x":0, "y":0}, 
+                "draw"      : "checklist.drawMessage",
+                "bounds"    : { "x": 386, "y": 146 } 
+            }  
+        },
+        
+        "ico": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 58,  
+                "h"         : 58,  
+                "zIndex"    :   1,  
+                "speed"     : 300,  
+                "bounds"    : {"x":0, "y":0}, 
+                "draw"      : "checklist.drawIco",
+                "bounds"    : { "x": 376, "y": 150 } 
+            }  
+        },
+    	
+    	"message": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 378,  
+                "h"         :  36,  
+                "zIndex"    :   1,  
+                "speed"     : 300,  
+                "bounds"    : {"x":0, "y":0}, 
+                "draw"      : "checklist.drawMessage",
+                "bounds"    : { "x": 450, "y": 650 } 
+            }  
+        },
+        
+        "dots": {  
+            "create": "LoadingIndicator",  
+            "param": {  
+                // Size of the area of the widget (optional if using a "bounds"  
+                // param specifying "w" and "h" values)  
+                "w"         : 80,  
+                "h"         : 80,  
+                "speed"     : 300,  
+                "zIndex"    : 1,  
+     
+                // Style of the widget to choose between predefined styles  
+                // ("spinner", "bubbles", ...)  
+                "style"     : "dots",  
+     
+                // Options of the widget  
+                // - hideonstop: hide widget when stopping loading animation  
+                "options"   : ["hideonstop"],  
+     
+                // Default animation state  
+                "defaultState": "enter",  
+     
+                // Position and size of the widget (size is optional if "w" and  
+                // "h" are defined at the "param" top level)  
+                "bounds"    : { "x": 580, "y": 578 }  
+            }  
+        },
+        
+        "pings": {
+		            "create": "ScrollListWidget",
+		            "param":{ 
+			                "itemWidth"     : 592,
+			                "itemHeight"    : 54,
+			                "itemInitFunc"  : "checklist.drawPings",
+			                
+			                "options"		:["noloop", "simplefocus"],
+			                "focusIndex"    :{"min": 0,"max": 8,"first": 0},
+			                "nbItem"        : 8,
+			                "zIndex"        : 1,
+			                "defaultState"  : "enter",
+			                "states": {
+			                    "enter": {
+			                        "speed": 300,
+			                        "items": [
+										{ "x":  380, "y": 218, "a": 255}, //le quite -18 px
+										{ "x":  380, "y": 290, "a": 255},										
+										{ "x":  380, "y": 326, "a": 255},
+										{ "x":  380, "y": 362, "a": 255},
+										{ "x":  380, "y": 398, "a": 255},
+										{ "x":  380, "y": 434, "a": 255},
+										{ "x":  380, "y": 470, "a": 255},
+										{ "x":  380, "y": 506, "a": 255},
+										{ "x":  380, "y": 542, "a": 255},
+										{ "x":  380, "y": 578, "a": 255},
+										{ "x":  380, "y": 614, "a": 0}
+										
+			                        ]
+			                    },
+			
+			                    "exit": {
+			                        "speed": 100,
+			                        "items": [
+										{ "x":  380, "y": 218, "a": 0},
+										{ "x":  380, "y": 290, "a": 0},										
+										{ "x":  380, "y": 326, "a": 0},
+										{ "x":  380, "y": 362, "a": 0},
+										{ "x":  380, "y": 398, "a": 0},
+										{ "x":  380, "y": 434, "a": 0},
+										{ "x":  380, "y": 470, "a": 0},
+										{ "x":  380, "y": 506, "a": 0},
+										{ "x":  380, "y": 542, "a": 0},
+										{ "x":  380, "y": 578, "a": 0},
+										{ "x":  380, "y": 614, "a": 0}
+										
+			                     	]
+		                    	}
+		                	}
+			                
+		            	}
+		        	},
+		"player": {
+            "create": "PlayerWidget",
+            "param": {
+                "zIndex": 3,
+                "speed":  300,
+                "defaultState": "exit",
+                "states": {
+                    "enter" : 		{ "x":    0, "y":   0, "w": 1280, "h": 720, "a": 255 },
+                    "exit":   		{ "x":  258, "y": 326, "w":  250, "h": 140, "a":    0},
+                    "preview_0":   	{ "x":  258, "y": 326, "w":  250, "h": 140, "a": 255} ,
+                    "preview_1":   	{ "x":  514, "y": 326, "w":  250, "h": 140, "a": 255},
+                    "preview_2":   	{ "x":  770, "y": 326, "w":  250, "h": 140, "a": 255}                                    
+                            
+                },
+                "event": {
+                    "*": "onStreamEvent"
+		                }
+		            }
+		    },  	
+		        	
+		      "videos": {
+		            "create": "ScrollListWidget",
+		            "param":{ 
+			                "itemWidth"     : 250,
+			                "itemHeight"    : 176,
+			                "itemInitFunc"  : "checklist.drawVideo",			                
+			                "options"		:["noloop", "simplefocus"],
+			                "focusIndex"    :{"first": 0},
+			                "nbItem"        : 3,
+			                "zIndex"        : 1,
+			                "defaultState"  : "enter",
+			                "states": {
+			                    "enter": {
+			                        "speed": 300,
+			                        "items": [
+										{ "x":  258, "y": 290, "a": 255},
+										{ "x":  514, "y": 290, "a": 255},										
+										{ "x":  770, "y": 290, "a": 255}										
+			                        ]
+			                    },
+			
+			                    "exit": {
+			                        "speed": 100,
+			                        "items": [
+										{ "x":  258, "y": 290, "a": 0},
+										{ "x":  514, "y": 290, "a": 0},										
+										{ "x":  770, "y": 290, "a": 0}	
+										
+			                     	]
+		                    	}
+		                	}
+			                
+		            	}
+		        	},
+		        	
+		 "v_results": {
+		            "create": "ScrollListWidget",
+		            "param":{ 
+			                "itemWidth"     : 250,
+			                "itemHeight"    : 54,
+			                "itemInitFunc"  : "checklist.drawVResults",
+			                
+			                "options"		:["noloop", "simplefocus"],
+			                "focusIndex"    :{"min": 0,"max": 8,"first": 0},
+			                "nbItem"        : 4,
+			                "zIndex"        : 1,
+			                "defaultState"  : "exit",
+			                "states": {
+			                    "enter": {
+			                        "speed": 300,
+			                        "items": [
+										{ "x":  770, "y": 218, "a": 255}, //le quite -18 px
+										{ "x":  770, "y": 290, "a": 255},										
+										{ "x":  770, "y": 326, "a": 255},
+										{ "x":  770, "y": 362, "a": 255}
+										
+										
+			                        ]
+			                    },
+			
+			                    "exit": {
+			                        "speed": 300,
+			                        "items": [
+										{ "x":  1070, "y": 218, "a": 0},
+										{ "x":  1070, "y": 290, "a": 0},										
+										{ "x":  1070, "y": 326, "a": 0},
+										{ "x":  1070, "y": 362, "a": 0}
+										
+										
+			                     	]
+		                    	}
+		                	}
+			                
+		            	}
+		        	}
+
+
+	}
+}

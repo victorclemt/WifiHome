@@ -1,0 +1,200 @@
+{
+	"widgets":{
+        "mainBackgroundChannel": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 1280,
+                "h": 720,
+                "zIndex": 1,
+                "speed": 0,
+                "draw"      : "nipValidator.drawMainBackground",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 255 },
+                    "exit":   { "x": 0, "y": 20, "w": 1280, "h": 720, "a": 0 }
+                }
+            }
+        },   
+        
+		"passwordInput_1": {
+            "create": "InputWidget",
+            "param": {
+                "w": 61,
+                "h": 68,
+                "speed": 100,
+                "zIndex": 2,
+                "bounds": { "x": 515, "y": 398 },
+                "maxLength": 1,
+                "delay": 1000,
+                "key": ["num", "delete"],
+                "hidden": true,
+                "scrollList": [6, 100, 50, 150]
+            }
+        },
+        
+        "passwordInput_2": {
+            "create": "InputWidget",
+            "param": {
+                "w": 61,
+                "h": 68,
+                "speed": 100,
+                "zIndex": 2,
+                "bounds": { "x": 579, "y": 398 },
+                "maxLength": 1,
+                "delay": 1000,
+                "key": ["num", "delete"],
+                "hidden": true,
+                "scrollList": [6, 100, 50, 150]
+            }
+        },
+        "passwordInput_3": {
+            "create": "InputWidget",
+            "param": {
+                "w": 61,
+                "h": 68,
+                "speed": 100,
+                "zIndex": 2,
+                "bounds": { "x": 643, "y": 398 },
+                "maxLength": 1,
+                "delay": 1000,
+                "key": ["num", "delete"],
+                "hidden": true,
+                "scrollList": [6, 100, 50, 150]
+            }
+        },
+        
+       "passwordInput_4": {
+            "create": "InputWidget",
+            "param": {
+                "w": 61,
+                "h": 68,
+                "speed": 100,
+                "zIndex": 2,
+                "bounds": { "x": 707, "y": 398 },
+                "maxLength": 1,
+                "delay": 1000,
+                "key": ["num", "delete"],
+                "hidden": true,
+                "scrollList": [6, 100, 50, 150]
+            }
+        },
+        
+        "buttonsNipValidator": {
+            "create": "ScrollListWidget",
+            "param": {
+            	"itemInitFunc"  : "drawButton_back",
+                "itemWidth": 122,
+                "itemHeight": 84,
+               "focusIndex":	{"min": 1,"max": 2,"first": 1},
+               "onFocus": "nipValidator.onFocusButtonBack",
+                "nbItem": 1,
+                "zIndex": 2,
+                "defaultState": "exit",
+                "options": [ "noloop","nofirstfocus"],
+                "states": {
+                    "enter": {
+                        "speed": 0,				
+                        "items": [
+                        	  { "x":  67, "y": 382, "w": 122, "h": 84, "a":   0 },
+                        	  { "x":  67, "y": 382, "w": 122, "h": 84, "a": 255 },
+                        	  { "x":  194, "y": 382, "w": 122, "h": 84, "a": 255 },
+                        	  { "x":  194, "y": 382, "w": 122, "h": 84, "a": 0 }
+
+                        ]
+                    },
+                    "exit": {
+                        "speed": 0,
+                        "items": [
+                        	  { "x":  67, "y": 390, "w": 122, "h": 84, "a": 0 },
+                        	  { "x":  67, "y": 390, "w": 122, "h": 84, "a": 0 },
+                        	  { "x":  194, "y": 390, "w": 122, "h": 84, "a": 0 },
+                        	  { "x":  194, "y": 390, "w": 122, "h": 84, "a": 0 }
+                        ]
+                    }
+                }
+            }
+        },
+        
+        "messageAliasError": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 378,
+                "h": 32,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "nipValidator.drawMessage",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 450, "y": 322, "w": 378, "h": 32, "a": 255 },
+                    "exit":   { "x": 450, "y": 342, "w": 378, "h": 32, "a": 0 }
+                }
+            }
+        },
+        
+        "tooltip": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 122,
+                "h": 32,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "nipValidator.drawTooltip",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 67, "y": 460, "w": 122, "h": 32, "a": 255 },
+                    "exit":   { "x": 67, "y": 445, "w": 122, "h": 32, "a": 0 }
+                }
+            }
+        },
+        
+        "showInfo": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 890,
+                "h": 176,
+                "zIndex": 2,
+                "speed": 300,
+                "draw"      : "nipValidator.drawShowInfo",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 195, "y": 506, "w": 890, "h": 176, "a": 255 },
+                    "exit":   { "x": 195, "y": 526, "w": 890, "h": 176, "a": 0 }
+                }
+            }
+        },
+        
+        "mainMessage": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 1145,
+                "h": 234,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "nipValidator.drawMainMessage",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 67, "y":  90, "w": 1145, "h": 234, "a": 255 },
+                    "exit":   { "x": 67, "y": 110, "w": 1145, "h": 234, "a": 0 }
+                }
+            }
+        },
+        "footerList": {
+            "create": "CanvasWidget",
+            "param": {
+                "w"         :1018,
+                "h"         :  68,
+                "zIndex"    :  10,
+                "speed"     : 200,
+                "draw"      : "drawFooterList",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 130, "y": 614, "w": 1018, "h": 68, "a": 255 },
+                    "exit":   { "x": 130, "y": 722, "w": 1018, "h": 68, "a": 0 }
+                }
+            }
+        }
+        
+        
+
+	}
+}

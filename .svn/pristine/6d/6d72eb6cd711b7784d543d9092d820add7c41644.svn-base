@@ -1,0 +1,293 @@
+{	
+	"widgets": {
+    
+		"panelPromotions": {  
+        	"create": "CanvasWidget",  
+            "param": {  
+            	"w"         : 1280,  
+                "h"         : 322,  
+                "zIndex"    : 1,  
+                "speed"     : 200,  
+                "draw"      : "promotions.drawGeneralPanel",
+                "defaultState"  : "exit",
+                "states": {
+                   	"enter": { "x": 0, "y": 398, "w": 1280, "h": 322, "a": 255 },
+	              	"exit":  { "x": 0, "y": 418, "w": 1280, "h": 322, "a": 0 }
+                }
+            }  
+        },
+        
+    	"back": {  
+        	"create": "CanvasWidget",  
+            "param": {  
+            	"w"         : 1280,  
+                "h"         : 720,  
+                "zIndex"    : 5,  
+                "speed"     : 200,  
+                "draw"      : "promotions.drawBack",
+                "defaultState"  : "exit",
+                "states": {
+                   	"enter": { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 255 },
+	              	"exit":  { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 0 }
+                }
+            }  
+        },
+
+       "listPromotions": {
+            "create": "ScrollListWidget",
+            "param": {
+            	"itemInitFunc": "promotions.drawListPromotions",
+            	"onFocus": "promotions.onFocusPromotions",            	
+                "itemWidth": 186,
+                "itemHeight": 104,
+                "focusIndex":{"min": 1,"max": 6,"first": 1},            
+                "nbItem": 7,
+                "zIndex": 2,
+                "speed": 0,
+                "defaultState": "exit",
+                "options": [ "noloop"],
+                "states": {
+                    "enter": {
+                        "speed": 200,
+                        "items": [
+                        	  { "x":  -199, "y": 578, "w": 186, "h": 104, "a": 0},
+                        	  { "x":  67,   "y": 578, "w": 186, "h": 104, "a": 255},
+                              { "x":  259,  "y": 578, "w": 186, "h": 104, "a": 255},
+                              { "x":  451,  "y": 578, "w": 186, "h": 104, "a": 255},
+                              { "x":  643,  "y": 578, "w": 186, "h": 104, "a": 255},
+                              { "x":  835,  "y": 578, "w": 186, "h": 104, "a": 255},
+                              { "x":  1027, "y": 578, "w": 186, "h": 104, "a": 255},
+                              { "x":  1219, "y": 578, "w": 186, "h": 104, "a": 255},
+                              { "x":  1405, "y": 578, "w": 186, "h": 104, "a": 0}
+                        ]
+                    },
+                    "exit": {
+                        "speed": 200,
+                        "items": [
+                        	  { "x":  -199, "y": 598, "w": 186, "h": 104, "a": 0},
+                        	  { "x":  67,   "y": 598, "w": 186, "h": 104, "a": 0},
+                              { "x":  259,  "y": 598, "w": 186, "h": 104, "a": 0},
+                              { "x":  451,  "y": 598, "w": 186, "h": 104, "a": 0},
+                              { "x":  643,  "y": 598, "w": 186, "h": 104, "a": 0},
+                              { "x":  835,  "y": 598, "w": 186, "h": 104, "a": 0},
+                              { "x":  1027, "y": 598, "w": 186, "h": 104, "a": 0},
+                              { "x":  1219, "y": 598, "w": 186, "h": 104, "a": 0},
+                              { "x":  1405, "y": 598, "w": 186, "h": 104, "a": 0}
+                        ]
+                    }
+                }
+            }
+        },
+        
+      "listDates": {
+            "create": "ScrollListWidget",
+            "param": {
+            	"itemInitFunc"  : "promotions.drawListDates",
+               	"onFocus": "promotions.onFocuslistDates",
+                "itemWidth": 58,
+                "itemHeight": 68,
+                "focusIndex":{"min": 1,"max": 18,"first": 1},             
+                "nbItem": 7,
+                "zIndex": 2,
+                "defaultState": "exit",
+                "options": [ "noloop"],
+                "states": {
+                    "enter": {
+                        "speed": 200,
+                        "items": [
+                        	  { "x":  3, "y": 506, "w": 58, "h": 68, "a": 0},
+                        	  { "x":  67,   "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  131,  "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  194,  "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  259,  "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  323,  "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  387,  "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  451,  "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  515,  "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  579,  "y": 506, "w": 58, "h": 68, "a": 255},                              
+                              { "x":  643,  "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  707,  "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  771,  "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  835,  "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  899,  "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  963,  "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  1027, "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  1091, "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  1155,  "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  1219,  "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  1283,  "y": 506, "w": 58, "h": 68, "a": 255},
+                              { "x":  1283,  "y": 506, "w": 58, "h": 68, "a": 255}
+                        ]
+                    },
+                    "exit": {
+                        "speed": 200,
+                        "items": [
+                         	  { "x":  3,    "y": 526, "w": 58, "h": 68, "a": 0},
+                        	  { "x":  67,   "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  131,  "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  194,  "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  259,  "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  323,  "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  387,  "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  451,  "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  515,  "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  579,  "y": 526, "w": 58, "h": 68, "a": 0},                              
+                              { "x":  643,  "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  707,  "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  771,  "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  835,  "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  899,  "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  963,  "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  1027, "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  1091, "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  1155,  "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  1219,  "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  1283,  "y": 526, "w": 58, "h": 68, "a": 0},
+                              { "x":  1283,  "y": 526, "w": 58, "h": 68, "a": 0}    
+                          ]
+                    }
+                }
+            }
+        },
+        
+        "linePromotions": {  
+        	"create": "CanvasWidget",  
+            	"param": {  
+               		"w"         :  1170,  
+                	"h"         :  104,  
+                	"zIndex"    :   2,  
+                	"speed"     : 	0,  
+                	"draw"      : "promotions.drawLinePromotions",
+                	"defaultState"  : "exit",
+                	"states": {
+                    	"enter":  { "x": 60, "y": 578, "w": 1170, "h": 104, "a": 255 },
+                    	"exit":   { "x": 60, "y": 598, "w": 1170, "h": 104, "a": 0 }
+                	}
+            	}  
+        },
+
+        "lineButtons": {  
+        	"create": "CanvasWidget",  
+            	"param": {  
+               		"w"         :  1170,  
+                	"h"         :  104,  
+                	"zIndex"    :   4,  
+                	"speed"     : 	200,  
+                	"draw"      : "promotions.drawLinePromotions",
+                	"defaultState"  : "exit",
+                	"states": {
+                    	"enter":  { "x": 60, "y": 578, "w": 1170, "h": 104, "a": 255 },
+                    	"exit":   { "x": 60, "y": 598, "w": 1170, "h": 104, "a": 0 }
+                	}
+            	}  
+        }, 
+        
+       	"panelButtons": {  
+        	"create": "CanvasWidget",  
+            "param": {  
+            	"w"         : 1280,  
+                "h"         : 218,  
+                "zIndex"    : 3,  
+                "speed"     : 200,  
+                "draw"      : "promotions.drawGeneralPanelButtons",
+                "defaultState"  : "exit",
+                "states": {
+                   	"enter": { "x": 0, "y": 502, "w": 1280, "h": 218, "a": 255 },
+	              	"exit":  { "x": 0, "y": 522, "w": 1280, "h": 218, "a": 0 }
+                }
+            }  
+        }, 
+           
+       "buttons_promotions": {
+            "create": "ScrollListWidget",
+            "param": {
+            	"itemInitFunc"  : "promotions.drawButtonsPromotions",
+                "itemWidth": 186,
+                "itemHeight": 104,
+                "focusIndex":{"min": 1,"max": 3,"first": 1},             
+                "nbItem": 7,
+                "zIndex": 4,
+                "speed": 200,
+                "defaultState": "exit",
+                "options": [ "noloop"],
+                "states": {
+                    "enter": {
+                        "speed": 200,
+                        "items": [
+                        	  { "x":  67,   "y": 578, "w": 186, "h": 104, "a": 0},
+                        	  { "x":  67,   "y": 578, "w": 186, "h": 104, "a": 255},
+                              { "x":  259,  "y": 578, "w": 186, "h": 104, "a": 255},
+                              { "x":  451,  "y": 578, "w": 186, "h": 104, "a": 255},	
+                              { "x":  451,  "y": 578, "w": 186, "h": 104, "a": 0}
+                  ]
+                    },
+                    "exit": {
+                        "speed": 200,
+                        "items": [
+                        	  { "x":  67,   "y": 598, "w": 186, "h": 104, "a": 0},
+                        	  { "x":  67,   "y": 598, "w": 186, "h": 104, "a": 0},
+                              { "x":  259,  "y": 598, "w": 186, "h": 104, "a": 0},
+                              { "x":  451,  "y": 598, "w": 186, "h": 104, "a": 0},
+                              { "x":  451,  "y": 598, "w": 186, "h": 104, "a": 0}
+                          ]
+                    }
+                }
+            }
+        },
+    
+      	"lineDates": {  
+        	"create": "CanvasWidget",  
+            	"param": {  
+               		"w"         :  1170,  
+                	"h"         :  104,  
+                	"zIndex"    :   2,  
+                	"speed"     : 	0,  
+                	"draw"      : "promotions.drawLineDates",
+                	"defaultState"  : "exit",
+                	"states": {
+                    	"enter":  { "x": 60, "y": 506, "w": 1170, "h": 68, "a": 255 },
+                    	"exit":   { "x": 60, "y": 526, "w": 1170, "h": 68, "a": 0 }
+                	}
+            	}  
+        },
+
+        "leftArrowBottomPromotions": {  
+        	"create": "CanvasWidget",  
+            	"param": {  
+               		"w"         :  35,  
+                	"h"         :  104,  
+                	"zIndex"    :   2,  
+                	"speed"     : 	0,  
+                	"draw"      : "promotions.drawArrowPromotions",
+                	"defaultState"  : "exit",
+                	"states": {
+                    	"enter": { "x": 50,  "y": 578, "w": 35, "h": 104, "a": 255 },
+                   		"exit":  { "x": 50,  "y": 598, "w": 35, "h": 104, "a": 0 }
+                	}
+            	}  
+        },
+        
+        "rightArrowBottomPromotions": {  
+        	"create": "CanvasWidget",  
+            	"param": {  
+               		"w"         :  35, 
+                	"h"         :  104,  
+                	"zIndex"    :   2, 
+                	"speed"     : 	0,  
+                	"draw"      : "promotions.drawArrowPromotions",
+                	"defaultState"  : "exit",
+                	"states": {
+                    	"enter": { "x": 1202, "y": 578, "w": 35, "h": 104, "a": 255},                   	                    	
+                    	 "exit": { "x": 1202, "y": 598, "w": 35, "h": 104, "a": 0}
+                	}
+            	}  
+        }                
+            
+                
+                       
+        
+        
+        
+//----------------         
+	}
+}

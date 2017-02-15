@@ -1,0 +1,19 @@
+{
+	"widgets":{
+		"messagePanel": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 1280,
+                "h": 248,
+                "speed": 150,
+                "zIndex": 8,
+                "defaultState": "exit",
+                "states": {
+                    "enter" : { "x": 0, "y": 218, "w": 1280, "h": 248, "a": 255 },
+                    "exit"  : { "x": 0, "y": 218, "w": 1280, "h": 248, "a": 0 }
+                },
+                "draw": "message.drawMessagePanel"
+            }
+        }
+	}
+}

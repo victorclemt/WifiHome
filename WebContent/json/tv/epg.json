@@ -1,0 +1,210 @@
+{
+	"event": {
+		"enter":   "onEnter",
+		"exit":    "onExit",
+		"refresh": null,
+		"key":     "onKeyPress",
+		"focus":   "onFocus",
+		"blur":    null,
+		"channel": null,
+		"destroy": null
+	},
+	
+	"widgets": {
+
+		"dateBg": {
+			"create": "CanvasWidget",
+			"param": {
+				"w": 1280,
+				"h": 35,
+				"speed": 300,
+				"zIndex": 1,
+				"draw": "epg.drawDateBg",
+				"states":{
+					"enter":  { "x":   0, "y": 110, "w": 1280, "h": 35, "a": 255 },
+					"exit":   { "x":   0, "y": 110, "w": 1280, "h": 35, "a":   0 }
+				}	
+			}
+		},
+
+		
+		"headerBg": {
+			"create": "CanvasWidget",
+			"param": {
+				"w": 1280,
+				"h": 38,
+				"speed": 300,
+				"zIndex": 2,
+				"draw": "epg.drawHeaderBg",
+				"states":{
+					"enter":  { "x":   0, "y": 145, "w": 1280, "h": 34, "a": 255 },
+					"exit":   { "x":   0, "y": 145, "w": 1280, "h": 34, "a":   0 }
+				}	
+			}
+		},
+		
+		"info": {
+			"create": "CanvasWidget",
+			"param": {
+				"w": 1280,
+				"h": 720,
+				// "w": 1000,
+				// "h": 447,
+				"speed": 300,
+				"zIndex": 7,
+				"defaultState": "exit",
+				"draw": "epg.drawInfo",
+				"states":{
+					"enter":  { "x":    0,   "y":   0, "a": 255 },
+					"off"  :  { "x":    0,   "y":   0, "a": 0 },
+					"exit":   { "x":   1380, "y": 190, "a": 0 }
+				}	
+			}
+		},
+	
+		"topLeft": {
+			"create": "CanvasWidget",
+			"param": {
+				"speed": 0,
+				"zIndex": 4,
+				"w": 250, //El ancho de colHeader,
+				"h": 32, //El alto de rowHeader
+				"defaultState": "exit",
+				"draw": "epg.drawTopLeft",
+				"states":{
+					"enter":  { "x": 0, "y": 146, "a": 255 },
+					"exit":   { "x": 0, "y": 146, "a": 0 }
+				}
+			}
+		},
+
+		//This widget draws the focus item for when the daysList is uhm... focused.
+		//We do this instead of redrawing the focused cell because it is wider.
+		"daysFocus": {
+			"create": "CanvasWidget",
+			"param": {
+				"speed": 100,
+				"zIndex": 7,
+				"bounds": {
+					"w": 1280,
+					"h": 42,  
+					"x": 0,
+					"y": 105
+				},
+				"defaultState": "exit",
+				"draw": "epg.drawDaysFocus",
+				"states":{
+					"enter":  { "a": 255 },
+					"exit":   { "a": 0 }
+				}
+			}
+		},
+		//This widget draws the focus item for when the hours are uhm... focused.
+		"hoursFocus": {
+			"create": "CanvasWidget",
+			"param": {
+				"speed": 100,
+				"zIndex": 4,
+				"bounds": {
+					"w": 260,
+					"h": 42,  
+					"x": 190,
+					"y": 141
+				},
+				"defaultState": "exit",
+				"draw": "epg.drawHoursFocus",
+				"states":{
+					"enter":  { "a": 255 },
+					"toDays": { "y": 100, "x": 500, "a": 0 },
+					"exit":   { "y": 200, "x": 250, "a": 0 }
+				}
+			}
+		},
+		"grid": {
+			"create": "HGridWidget",
+			"param": {
+				"speed": 0,
+				"zIndex": 3,
+				"w": 605, //por alguna raz�n est� al rev�s, w es h y h es w.
+				"h": 1280,
+				"colHeader": { //ancho de canales
+					"h" : 195 
+				},
+				"rowHeader": { // alto de header horas
+					"w" : 32,
+					"margin": 0
+				},
+				"column": { //num de canales
+					"number": 8,
+					"focus" : 1
+				},
+				// This ratio is apparently used to equate pixels to seconds...
+				// The original ratio which translates to ~3 hours on screen was:
+				 // "ratio": 0.09166666666,
+				// It is calculated by dividing the gridSize (1085) by the number of cells multiplied by the number of seconds in each cell (1800 for half an hour)
+				//  e.g. For 4 cells: 1085 / (4 * 1800) 
+				//   "ratio": 0.142638889, 
+
+				"ratio": 0.1418, //This translates to 4.35 30 minutes cells.
+				"verticalScrollStep": "165",
+				"longPressVScrollStep": 165,
+				"scrollToTheEdge": 1,
+				"focusTop": 0,
+				"events" : {
+					"onCellFocus" : "EPG.onCellFocusCB",
+					"onCellBlur"  : "EPG.onCellBlurCB",
+					"onScroll"    : "epg.onScroll" //We override this on epg.onEnter
+				},
+				"draw": {
+					"colHeader"   : "EPG.drawColHeaderCB",
+					"rowHeader"   : "EPG.drawRowHeaderCB",
+					"cell"        : "EPG.drawCellCB"
+				},
+				"defaultState": "exit",
+				"states": {
+						"enter"  : {"x": 0, "y": 146, "w": 1280, "h": 605, "a": 255 },
+						"exit"   : {"x": 0, "y": 146, "w": 1280, "h": 605, "a": 0 }
+				}
+			}
+		},
+		
+
+		"channelBar": {
+			"create": "CanvasWidget",  
+			"param": {  
+				"bounds": {
+					"w":      1280,  
+					"h":      112, 
+					"x":      0,
+					"y":      322
+				},
+				"zIndex": 9,  
+				"speed":  300,  
+				"draw":   "drawChannelNumberBar",
+				"states": {
+					"enter":  {"a": 255 },
+					"exit":   {"a": 0 }
+				}
+			}
+		},
+
+			
+		"base": {  
+			"create": "CanvasWidget",  
+			"param": {  
+				"w"         : 1280,  
+				"h"         :  720,  
+				"zIndex"    :  100,  
+				"speed"     :  100,  
+				"bounds"    : {"x":0, "y":0}, 
+				"draw"      : "epg.drawOnion",
+				"defaultState": "exit",
+				"states": {
+					"enter":  { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 255 },
+					"exit":   { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 0 }
+				}
+			}  
+		}
+
+	}
+}

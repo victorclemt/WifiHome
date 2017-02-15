@@ -1,0 +1,245 @@
+{
+	"widgets":{
+	
+		"programs": {
+            "create": "ScrollListWidget",
+            "param": {
+                "itemInitFunc"  : "miniGuide.drawPrograms",
+                "onFocus" :"onMiniguideFocus",
+                "itemWidth": 1280,
+                "itemHeight": 68,
+                "focusIndex": {"min": 1,"max": 3,"first": 1},
+                "nbItem": 4,
+                "zIndex": 1,
+                "defaultState": "exit",
+                "options": ["noloop","nofirstfocus","simplefocus"],
+                "states": {
+                    "enter": {
+                        "speed": 200,
+                        "items": [
+                        	  { "x": 0, "y": 470, "w": 1280, "h": 68, "a": 0 },
+                        	  { "x": 0, "y": 470, "w": 1280, "h": 68, "a": 255 },
+                              { "x": 0, "y": 542, "w": 1280, "h": 68, "a": 255 },
+                              { "x": 0, "y": 614, "w": 1280, "h": 68, "a": 255 },
+                              { "x": 0, "y": 686, "w": 1280, "h": 68, "a": 255 },
+                              { "x": 0, "y": 758, "w": 1280, "h": 68, "a": 0 }
+                        ]
+                    },
+                    "exit": {
+                        "speed": 200,
+                        "items": [
+                        	  { "x": 0, "y": 490, "w": 1280, "h": 68, "a": 0 },
+                        	  { "x": 0, "y": 490, "w": 1280, "h": 68, "a": 0 },
+                              { "x": 0, "y": 562, "w": 1280, "h": 68, "a": 0 },
+                              { "x": 0, "y": 634, "w": 1280, "h": 68, "a": 0 },
+                              { "x": 0, "y": 706, "w": 1280, "h": 68, "a": 0 },
+                              { "x": 0, "y": 778, "w": 1280, "h": 68, "a": 0 }
+                        ]
+                    },
+                    "exitOff": {
+                        "speed": 200,
+                        "items": [
+                        	  { "x": 0, "y": 470, "w": 1280, "h": 68, "a": 0 },
+                        	  { "x": 0, "y": 470, "w": 1280, "h": 68, "a": 0 },
+                              { "x": 0, "y": 542, "w": 1280, "h": 68, "a": 0 },
+                              { "x": 0, "y": 614, "w": 1280, "h": 68, "a": 0 },
+                              { "x": 0, "y": 686, "w": 1280, "h": 68, "a": 0 },
+                              { "x": 0, "y": 758, "w": 1280, "h": 68, "a": 0 }
+                        ]
+                    }
+                }
+            }
+        },
+        "scrollDate": {
+            "create": "ScrollListWidget",
+            "param":{ 
+        		"itemWidth"     : 262,
+                "itemHeight"    : 40,
+                "itemInitFunc"  : "miniGuide.drawScrollDate",
+                "onFocus" :"onScrollDateFocus",
+                "options"		:["noloop","nofirstfocus"],
+                "focusIndex": {"min": 1,"max": 1,"first": 1},
+                "nbItem"        : 3,
+                "zIndex"        : 1,
+                "defaultState"  : "exit",
+                "states": {
+                    "enter": {
+                        "speed": 200,
+                        "items": [
+							{ "x": 493, "y": 430, "w": 262, "h": 40, "a": 0},
+							{ "x":  509, "y": 430, "w": 262, "h": 40, "a": 255},
+							{ "x": 543, "y": 430, "w": 262, "h": 40, "a": 0}
+                        ]
+                    },
+                    "exit": {
+                        "speed": 200,
+                        "items": [
+							{ "x": 493, "y": 450, "w": 262, "h": 40, "a": 0},
+							{ "x":  509, "y": 450, "w": 262, "h": 40, "a": 0},
+							{ "x":  543, "y": 450, "w": 262, "h": 40, "a": 0}
+                      	]
+                	}
+            	}  
+        	}
+    	},
+        "blackBg":{
+        	"create" :"CanvasWidget",
+        	"param" :{
+        		"w" :1280,
+        		"h" :260,
+        		"zIndex" :0,
+        		"speed" :200,
+        		"draw" :"miniGuide.drawBlackBg",
+        		"defaultState"  : "exit",   
+        		"states": {
+                    "enter":  { "x": 0, "y": 470, "w": 1280, "h": 260, "a": 255 },
+                    "exit":   { "x": 0, "y": 490, "w": 1280, "h": 260, "a": 0 }
+                }   		        		
+        	}        	
+        },
+         "timeLineBg":{
+        	"create" :"CanvasWidget",
+        	"param" :{
+        		"w" :1280,
+        		"h" :248,
+        		"zIndex" :1,
+        		"speed" :200,
+        		"draw" :"miniGuide.drawTimeLineBg",
+        		"defaultState"  : "exit",   
+        		"states": {
+                   "enter":  { "x": 0, "y": 470, "w": 1280, "h": 248, "a": 255 },
+                    "exit":   { "x": 0, "y": 470, "w": 1280, "h": 248, "a": 0 }
+                }   		        		
+        	}        	
+        },
+         "dateBg":{
+        	"create" :"CanvasWidget",
+        	"param" :{
+        		"w" :1082,
+        		"h" :40,
+        		"zIndex" :0,
+        		"speed" :200,
+        		"defaultState"  : "exit",
+        		"draw" :"miniGuide.drawDateBg",
+        		"states": {
+                    "enter":  { "x": 131, "y": 430, "w": 1082, "h": 40, "a": 255 },
+                    "exit":   { "x": 131, "y": 450, "w": 1082, "h": 40, "a": 0 }
+                }   		        		
+        	}        	
+        },
+        "timeLineLogo":{
+        	"create" :"CanvasWidget",
+        	"param" :{
+        		"w" :192,
+        		"h" :40,
+        		"zIndex" :0,
+        		"speed" :200,
+        		"defaultState"  : "enter",
+        		"draw" :"miniGuide.drawTimeLineLogo",
+        		"states": {
+                     "enter":  { "x": 318, "y": 430, "w": 192, "h": 40, "a": 255 },
+                     "exit":   { "x": 318, "y": 450, "w": 192, "h": 40, "a": 0 },
+                     "enter_On":  { "x":318, "y": 430, "w": 192, "h": 40, "a": 255 },
+                     "exit_On":   { "x": 318, "y": 430, "w": 192, "h": 40, "a": 0 }
+                }   		        		
+        	}        	
+        },
+        "timeLineWidget": {  
+            "create": "WidgetContainer",  
+            "param": {    
+                "options": [    
+                    "screen",     
+                    "nocontainer"  
+                ],       
+                "zIndex": 2,  
+                "speed": 200,  
+                "defaultState": "exit",  
+                "bounds": {"x": 0, "y": 466, "w": 1280, "h": 176}  
+            }  
+        },  
+        "timeLinePrograms": {
+            "create": "ScrollListWidget",
+            "param": { 
+            	
+            	"itemInitFunc"  : "miniGuide.drawTimeLinePrograms",
+            	 "onFocus" :"onScrollTimeLineProgramsFocus",
+                "itemWidth"     : 390,
+                "itemHeight"    : 76,
+				"options" 		: ["noloop"],
+                "focusIndex"    : 3,
+                "nbItem"        : 7,
+                "zIndex"        :4,
+                "wcontainer": "timeLineWidget",
+                "defaultState"  : "exit_On",
+                "states": {
+                    "enter": {
+                        "speed": 200,
+                        "items": [
+                            { "x": -689, "y": 0, "w": 380, "h": 76, "a": 0},
+                            { "x": -311, "y": 0, "w": 380, "h": 76, "a": 255},
+                            { "x":   66, "y": 0, "w": 380, "h": 76, "a": 255},
+                            { "x":  445, "y": 0, "w": 390, "h": 76, "a": 255},
+                            { "x":  834, "y": 0, "w": 380, "h": 76, "a": 255},
+                            { "x": 1212, "y": 0, "w": 380, "h": 76, "a": 255},
+                            { "x": 1590, "y": 0, "w": 380, "h": 76, "a": 0}
+                        ]
+                    },
+                    "exit": {
+                        "speed": 200,
+                        "items": [
+							{ "x": -669, "y": 20, "w": 380, "h": 76, "a": 0},
+                            { "x": -311, "y": 20, "w": 380, "h": 76, "a": 0},
+                            { "x":   66, "y": 20, "w": 380, "h": 76, "a": 0},
+                            { "x":  445, "y": 20, "w": 390, "h": 76, "a": 0},
+                            { "x":  834, "y": 20, "w": 380, "h": 76, "a": 0},
+                            { "x": 1212, "y": 20, "w": 380, "h": 76, "a": 0},
+                            { "x": 1590, "y": 20, "w": 380, "h": 76, "a": 0}
+                        ]
+                    },
+                     "exit_On": {
+                        "speed": 200,
+                        "items": [
+							{ "x": -689, "y": 0, "w": 380, "h": 76, "a": 0},
+                            { "x": -311, "y": 0, "w": 380, "h": 76, "a": 0},
+                            { "x":   66, "y": 0, "w": 380, "h": 76, "a": 0},
+                            { "x":  445, "y": 0, "w": 390, "h": 76, "a": 0},
+                            { "x":  834, "y": 0, "w": 380, "h": 76, "a": 0},
+                            { "x": 1212, "y": 0, "w": 380, "h": 76, "a": 0},
+                            { "x": 1590, "y": 0, "w": 380, "h": 76, "a": 0}
+                        ]
+                    }
+                }
+            }
+        },        
+        "timeLineArrows":{
+        	"create" :"CanvasWidget",
+        	"param" :{
+        		"wcontainer": "timeLineWidget",
+        		"w" :507,
+        		"h" :68,
+        		"zIndex" :6,
+        		"speed" :0,
+        		"defaultState"  : "exit",
+        		"draw" :"miniGuide.drawTimeLineArrows",
+        		"states": {
+                     "enter":  { "x": 386, "y": 0, "w": 507, "h": 68, "a": 255 },
+                     "exit":   { "x": 386, "y": 0, "w": 507, "h": 68, "a": 0 }
+                }   		        		
+        	}        	
+        },
+      "channelNumberBar": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1280,  
+                "h"         : 112,  
+                "zIndex"    : 1,  
+                "speed"     : 200,  
+                "draw"      : "miniGuide.drawChannelNumberBar",
+                "states": {
+                    "enter":  { "x": 0, "y": 312, "w": 1280, "h": 112, "a": 255 },
+                    "exit":   { "x": 0, "y": 312, "w": 1280, "h": 112, "a": 0 }
+                }
+            }  
+        }
+	}
+}

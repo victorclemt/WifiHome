@@ -1,0 +1,46 @@
+{
+	"widgets": {
+		
+		"logoutBg": {  
+			"create": "CanvasWidget",  
+			"param": {  
+				"w"         : 1280,  
+		    	"h"         : 720,  
+		    	"zIndex"    : 2,  
+		    	"bounds"    : {"x":0, "y":0},  
+		    	"draw"      : "drawLogoutBg"
+			}  
+		},
+		
+        "buttons": {
+			"create": "ScrollListWidget",
+			"param":{ 
+				"itemWidth"     : 186,
+				"itemHeight"    : 104,
+				"itemInitFunc"  : "drawLogoutButton",
+				"options"		:["noloop", "simplefocus"],
+				"focusIndex"    : 0,
+				"nbItem"        : 2,
+				"zIndex"        : 4,
+				"defaultState"  : "enter",
+				"states": {
+					"enter": {
+						"speed": 100,
+						"items": [
+							{ "x":  451, "y": 362, "w": 186, "h":  104, "a": 255},
+							{ "x":  643, "y": 362, "w": 186, "h":  104, "a": 255}
+						]
+					},
+					"exit": {
+						"speed": 50,
+						"items": [
+							{ "x":  451, "y": 362, "w": 186, "h":  104, "a": 0},
+							{ "x":  643, "y": 362, "w": 186, "h":  104, "a": 0}
+						]
+					}
+				}	                
+			}
+		}
+
+    }
+}

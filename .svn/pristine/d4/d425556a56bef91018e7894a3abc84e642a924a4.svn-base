@@ -1,0 +1,294 @@
+{
+	"widgets":{
+      
+		"legend": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 442,
+                "h": 248,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "installer.drawLegend",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 131, "y": 254, "w": 442, "h": 248, "a": 255 },
+                    "exit":   { "x": 131, "y": 254, "w": 442, "h": 248, "a": 0 },
+                    "exit_l":   { "x": 101, "y": 254, "w": 442, "h": 248, "a": 0 },
+                    "exit_r":   { "x": 161, "y": 254, "w": 442, "h": 248, "a": 0 }
+                }
+            }
+        },
+        "bg": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1280,  
+                "h"         :  720,  
+                "zIndex"    :  3,  
+                "draw"      : "installer.drawBg",
+ 				"speed"     : 200,  
+                "defaultState": "exit",
+                "states": {
+                    "enter":  { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 255 },
+                    "medium": { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 80 },
+                    "exit":   { "x": 0, "y": 0, "w": 1280, "h": 720, "a":   0 }
+                }
+            }  
+        },
+        "line": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 1,
+                "h": 192,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "installer.drawLine",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  	{ "x": 603, "y": 254, "w": 1, "h": 192, "a": 255 },
+                    "exit":   	{ "x": 603, "y": 254, "w": 1, "h": 192, "a": 0 },
+                    "exit_l":   { "x": 573, "y": 254, "w": 1, "h": 192, "a": 0 },
+                    "exit_r":   { "x": 633, "y": 254, "w": 1, "h": 192, "a": 0 }
+                }
+            }
+        },
+        "headerText": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 506,
+                "h": 212,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "installer.drawHeaderText",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 643, "y": 254, "w": 506, "h": 212, "a": 255 },
+                    "exit":   { "x": 643, "y": 254, "w": 506, "h": 212, "a": 0 },
+                    "exit_l":   { "x": 603, "y": 254, "w": 506, "h": 212, "a": 0 },
+                    "exit_r":   { "x": 673, "y": 254, "w": 506, "h": 212, "a": 0 }
+                }
+            }
+        },
+        "headerText2": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 122,
+                "h": 196,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "installer.drawHeaderText2",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 771, "y": 218, "w": 122, "h": 196, "a": 255 },
+                    "exit":   { "x": 771, "y": 218, "w": 122, "h": 196, "a": 0 },
+                    "exit_l":   { "x": 731, "y": 218, "w": 122, "h": 196, "a": 0 },
+                    "exit_r":   { "x": 801, "y": 218, "w": 122, "h": 196, "a": 0 }
+                }
+            }
+        },
+        "headerText3": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 442,
+                "h": 248,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "installer.drawHeaderText3",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 643, "y": 218, "w": 442, "h": 248, "a": 255 },
+                    "exit":   { "x": 643, "y": 218, "w": 442, "h": 248, "a": 0 },
+                    "exit_l":   { "x": 613, "y": 218, "w": 442, "h": 248, "a": 0 },
+                    "exit_r":   { "x": 673, "y": 218, "w": 442, "h": 248, "a": 0 }
+                }
+            }
+        },
+        "headerText4": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 122,
+                "h": 248,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "installer.drawHeaderText4",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 771, "y": 218, "w": 122, "h": 248, "a": 255 },
+                    "exit":   { "x": 771, "y": 218, "w": 122, "h": 248, "a": 0 },
+                    "exit_l":   { "x": 731, "y": 218, "w": 122, "h": 248, "a": 0 },
+                    "exit_r":   { "x": 801, "y": 218, "w": 122, "h": 248, "a": 0 }
+                }
+            }
+        },
+        "buttons": {
+		            "create": "ScrollListWidget",
+		            "param":{ 
+			                "itemWidth"     : 186,
+			                "itemHeight"    : 32,
+			                "itemInitFunc"  : "installer.drawButtonList",
+			                //"onFocus"		: "setup.onFocusButtons",
+			                "options"		:["noloop"],
+			                "focusIndex"    : {"max":1, "min":0, "first":0},
+			                "nbItem"        : 3,
+			                "zIndex"        : 3,
+			                "defaultState"  : "exit",
+			                "states": {
+			                   "enter": {
+			                        "speed": 200,
+			                        "items": [
+										{ "x": 643, "y": 542, "w": 186, "h": 32, "a": 255 },
+										{ "x": 835, "y": 542, "w": 186, "h": 32, "a": 255 }
+			                        ]
+			                    },
+			            
+			                  "exit": {
+			                        "speed": 200,
+			                        "items": [
+										{ "x": 643, "y": 542, "w": 186, "h": 32, "a": 0 },
+										{ "x": 835, "y": 542, "w": 186, "h": 32, "a": 0 }
+			                        ]
+			                    },
+			                 "exit_l": {
+			                        "speed": 200,
+			                        "items": [
+										{ "x": 613, "y": 542, "w": 186, "h": 32, "a": 0 },
+										{ "x": 805, "y": 542, "w": 186, "h": 32, "a": 0 }
+			                        ]
+			                    },
+			                 "exit_r": {
+			                        "speed": 200,
+			                        "items": [
+										{ "x": 673, "y": 542, "w": 186, "h": 32, "a": 0 },
+										{ "x": 865, "y": 542, "w": 186, "h": 32, "a": 0 }
+			                        ]
+			                    },
+			               	"enter_last": {
+			                        "speed": 200,
+			                        "items": [
+										{ "x": 835, "y": 326, "w": 186, "h": 32, "a": 255 }
+			                        ]
+			                    },
+			            
+			                "exit_last": {
+			                        "speed": 200,
+			                        "items": [
+										{ "x": 835, "y": 326, "w": 186, "h": 32, "a": 0 }
+			                        ]
+			                    }
+		                	}
+			                
+		            	}
+		        	},
+		"footerText": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 634,
+                "h": 68,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "installer.drawFooterText",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 323, "y": 614, "w": 634, "h": 68, "a": 255 },
+                    "exit":   { "x": 323, "y": 614, "w": 634, "h": 68, "a": 0 },
+                    "exit_l":   { "x": 303, "y": 614, "w": 634, "h": 68, "a": 0 },
+                    "exit_r":   { "x": 343, "y": 614, "w": 634, "h": 68, "a": 0 }
+                }
+            }
+        },        	
+	
+	    "check1": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 58,  
+                "h"         :  68,  
+                "zIndex"    :    0,  
+                "speed"     :  200,  
+                "bounds"    : {"x":0, "y":0}, 
+                "draw"      : "setup.drawCheck",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  			{ "x": 707, "y": 222, "w": 58, "h": 68, "a": 255 },
+                    "enter_2":  		{ "x": 707, "y": 202, "w": 58, "h": 68, "a": 255 },
+                    "exit_2":  			{ "x": 707, "y": 202, "w": 58, "h": 68, "a": 0 },
+                    "exit":   			{ "x": 707, "y": 222, "w": 58, "h": 68, "a": 0 },
+                    "exit_r":   		{ "x": 737, "y": 222, "w": 58, "h": 68, "a": 0 },
+                    "exit_2r":   		{ "x": 737, "y": 202, "w": 58, "h": 68, "a": 0 }
+                }
+            }  
+        },
+       "check2": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 58,  
+                "h"         :  68,  
+                "zIndex"    :    0,  
+                "speed"     :  200,  
+                "bounds"    : {"x":0, "y":0}, 
+                "draw"      : "setup.drawCheck",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  			{ "x": 707, "y": 294, "w": 58, "h": 68, "a": 255 },
+                    "enter_2":  		{ "x": 707, "y": 274, "w": 58, "h": 68, "a": 255 },
+                    "exit_2":  			{ "x": 707, "y": 274, "w": 58, "h": 68, "a": 255 },
+                    "exit":   			{ "x": 707, "y": 294, "w": 58, "h": 68, "a": 0 },
+                    "exit_r":   		{ "x": 737, "y": 294, "w": 58, "h": 68, "a": 0 },
+                    "exit_2r":   		{ "x": 737, "y": 274, "w": 58, "h": 68, "a": 0 }
+                }
+            }  
+        },
+        "check3": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 58,  
+                "h"         :  68,  
+                "zIndex"    :    0,  
+                "speed"     : 200,  
+                "bounds"    : {"x":0, "y":0}, 
+                "draw"      : "setup.drawCheck",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  			{ "x": 707, "y": 366, "w": 58, "h": 68, "a": 255 },
+                    "enter_2":  		{ "x": 707, "y": 346, "w": 58, "h": 68, "a": 255 },
+                    "exit_2":  			{ "x": 707, "y": 346, "w": 58, "h": 68, "a": 255 },
+                    "exit":   			{ "x": 707, "y": 366, "w": 58, "h": 68, "a": 0 },
+                    "exit_r":   		{ "x": 737, "y": 366, "w": 58, "h": 68, "a": 0 },
+                    "exit_2r":   		{ "x": 737, "y": 346, "w": 58, "h": 68, "a": 0 }
+                }
+            }  
+        },
+        "check4": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 58,  
+                "h"         :  68,  
+                "zIndex"    :    0,  
+                "speed"     : 200,  
+                "bounds"    : {"x":0, "y":0}, 
+                "draw"      : "setup.drawCheck",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  			{ "x": 707, "y": 418, "w": 58, "h": 68, "a": 255 },
+                    "exit":   			{ "x": 707, "y": 418, "w": 58, "h": 68, "a": 0 },
+                    "exit_r":   		{ "x": 737, "y": 418, "w": 58, "h": 68, "a": 0 }
+                }
+            }  
+        },
+        "outline": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 442,
+                "h": 248,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "installer.drawOutline",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  	  { "x": 643,  "y": 218, "w": 442, "h": 248, "a": 255},
+                    "exit":   	  { "x": 643,  "y": 218, "w": 442, "h": 248, "a": 0 },
+                    "exit_l":     { "x": 603,  "y": 218, "w": 442, "h": 248, "a": 0 },
+                    "exit_r":     { "x": 673,  "y": 218, "w": 442, "h": 248, "a": 0 }
+                }
+            }
+        } 
+	}
+}

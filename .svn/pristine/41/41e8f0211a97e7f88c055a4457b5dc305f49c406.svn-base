@@ -1,0 +1,138 @@
+{
+	"widgets":{
+		"line": {
+            "create": "CanvasWidget",
+            "param": {
+                "w"         :   1,
+                "h"         : 150,
+                "zIndex"    :   1,
+                "speed"     : 200,
+                "draw"      : "suscription.drawLine",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 589, "y": 250, "w": 1, "h": 150, "a": 255 },
+                    "exit":   { "x": 589, "y": 250, "w": 1, "h": 150, "a": 0 }
+                }
+            }
+        },
+        "footerList": {
+            "create": "CanvasWidget",
+            "param": {
+                "w"         : 1034,
+                "h"         :  68,
+                "zIndex"    :  10,
+                "speed"     : 200,
+                "draw"      : "drawFooterList",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 123, "y": 614, "w": 1034, "h": 68, "a": 255 },
+                    "exit":   { "x": 123, "y": 722, "w": 1034, "h": 68, "a": 0 }
+                }
+            }
+        },
+        "name": {
+            "create": "CanvasWidget",
+            "param": {
+                "w"         : 442,
+                "h"         : 212,
+                "zIndex"    :   2,
+                "speed"     : 200,
+                "draw"      : "suscription.drawName",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 131, "y": 218, "w": 442, "h": 212, "a": 255 },
+                    "exit":   { "x": 131, "y": 238, "w": 442, "h": 212, "a": 0 }
+                }
+            }
+        },
+		"description": {
+            "create": "CanvasWidget",
+            "param": {
+                "w"         : 442,
+                "h"         : 158,
+                "zIndex"    :   2,
+                "speed"     : 200,
+                "draw"      : "suscription.drawDescription",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 643, "y": 220, "w": 442, "h": 158, "a": 255 },
+                    "exit":   { "x": 643, "y": 240, "w": 442, "h": 158, "a": 0 }
+                }
+            }
+        },
+        "suscButtons": {
+            "create": "ScrollListWidget",
+            "param": {
+            	"itemInitFunc"  : "suscription.drawSuscButtons",
+                "itemWidth"     : 187,
+                "itemHeight"    : 32,
+				"options" 		: ["noloop"],
+                "focusIndex"	: {"min": 0,"max": 1,"first": 0},
+                "nbItem"        : 2,
+                "zIndex"        : 3,
+                "defaultState"  : "exit",
+                "states": {
+                	"exit": {
+                        "speed": 200,
+                        "items": [
+                            { "x": 643, "y": 418, "w": 187, "h": 32, "a": 0},
+                            { "x": 835, "y": 418, "w": 187, "h": 32, "a": 0}
+                        ]
+                    },
+                    "enter": {
+                        "speed": 200,
+                        "items": [
+                            { "x": 643, "y": 398, "w": 187, "h": 32, "a": 255},
+                            { "x": 835, "y": 398, "w": 187, "h": 32, "a": 255}
+                        ]
+                    }
+                }
+            }
+        },
+        "imgs": {
+            "create": "ScrollListWidget",
+            "param": {
+            	"itemInitFunc"  : "suscription.drawImgs",
+                "itemWidth"     : 186,
+                "itemHeight"    : 104,
+				"options" 		: ["noloop", "nofocus"],
+                "focusIndex"	: 1,
+                "nbItem"        : 9,
+                "zIndex"        : 3,
+                "defaultState"  : "exit",
+                "states": {
+                	"exit": {
+                        "speed": 200,
+                        "items": [
+                        	{ "x": 0,   "y": 490, "w": 186, "h": 104, "a": 0},
+                            { "x": 0,   "y": 490, "w": 186, "h": 104, "a": 0},
+                            { "x": 186, "y": 490, "w": 186, "h": 104, "a": 0},
+                            { "x": 372, "y": 490, "w": 186, "h": 104, "a": 0},
+                            { "x": 558, "y": 490, "w": 186, "h": 104, "a": 0},
+                            { "x": 744, "y": 490, "w": 186, "h": 104, "a": 0},
+                            { "x": 930, "y": 490, "w": 186, "h": 104, "a": 0},
+                            { "x": 1116, "y": 490, "w": 186, "h": 104, "a": 0},
+                            { "x": 1116, "y": 490, "w": 186, "h": 104, "a": 0}
+                        ]
+                    },
+                    "enter": {
+                        "speed": 200,
+                        "items": [
+                        	{ "x": 0,   "y": 470, "w": 186, "h": 104, "a": 0},
+                            { "x": 0,   "y": 470, "w": 186, "h": 104, "a": 255},
+                            { "x": 186, "y": 470, "w": 186, "h": 104, "a": 255},
+                            { "x": 372, "y": 470, "w": 186, "h": 104, "a": 255},
+                            { "x": 558, "y": 470, "w": 186, "h": 104, "a": 255},
+                            { "x": 744, "y": 470, "w": 186, "h": 104, "a": 255},
+                            { "x": 930, "y": 470, "w": 186, "h": 104, "a": 255},
+                            { "x": 1116, "y": 470, "w": 186, "h": 104, "a": 255},
+                            { "x": 1116, "y": 470, "w": 186, "h": 104, "a": 0}
+                        ]
+                    }
+                }
+            }
+        }
+	
+	
+	}
+}

@@ -1,0 +1,70 @@
+{	
+    "widgets": {
+    	
+    	"notification": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1280,  
+                "h"         :  720,  
+                "zIndex"    :    0,  
+                "speed"     :  300,  
+                "bounds"    : {"x":0, "y":0}, 
+                "draw"      : "interactiveMsg.drawMsg",
+                "states": {
+                    "enter":  { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 255 },
+                    "exit":   { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 0 }
+                }
+            }  
+        },
+        
+        "buttonsPanel": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1280,  
+                "h"         : 358,  
+                "zIndex"    : 1,  
+                "speed"     : 200,  
+                "draw"      : "anytimePlayer.drawButtonsPanel",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  	{ "x": 0, "y": 642, "w": 1280, "h": 358, "a": 255 },
+                    "exit":   	{ "x": 0, "y": 662, "w": 1280, "h": 358, "a": 0 }
+                }
+            }  
+        },	
+        
+        "progressBar": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1280,  
+                "h"         : 40,  
+                "zIndex"    : 2,  
+                "speed"     : 200,  
+                "draw"      : "startOverPlayer.drawProgressBar",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  	{ "x": 0, "y": 642, "w": 1280, "h": 40, "a": 255 },
+                    "exit":   	{ "x": 0, "y": 662, "w": 1280, "h": 40, "a": 0 }
+                }
+            }  
+        },	
+        
+         "startOverLogo": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 58,  
+                "h"         : 58,  
+                "zIndex"    : 2,  
+                "draw"      : "startOverPlayer.drawStartOverLogo",
+ 				"speed"     : 200,  
+                "defaultState": "exit",
+                "states": {
+                    "enter":  { "x": 67, "y": 650, "w": 58, "h": 58, "a": 255 },
+                    "exit":   { "x": 67, "y": 650, "w": 58, "h": 58, "a": 0 }
+                }
+            }  
+        }
+
+
+	}
+}

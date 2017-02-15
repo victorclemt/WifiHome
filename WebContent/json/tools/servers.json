@@ -1,0 +1,289 @@
+{
+    "widgets": {
+ 		
+ 		"nipPanelBg": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 1280,
+                "h": 720,
+                "speed": 150,
+                "zIndex": 0,
+                "defaultState": "exit",
+                "states": {
+                    "enter" : { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 255 },
+                    "exit"  : { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 0 }
+                },
+                "draw": "vodTest.nipPanelBgDraw"
+            }
+        },
+        
+		"nip01_topInput": {
+		            "create": "InputWidget",
+		            "param": {
+		                "w": 200,
+		                "h": 47,
+		                "speed": 100,
+		                "zIndex": 4,
+		                "bounds": { "x": 313, "y": 275 },
+		                "delay": 1000,
+		                "maxLength": 6,
+		                "key": ["num", "delete"],
+		                "hidden": true
+		                }
+		  },
+ 		
+ 		"BEServices": {
+		            "create": "ScrollListWidget",
+		            "param":{ 
+			                "itemWidth"     : 600,
+			                "itemHeight"    : 47,
+			                "itemInitFunc"  : "servers.drawBEServices",
+			                "onFocus"       : "servers.onFocusServices",
+			                "options"		:["noloop"],
+			                "focusIndex"    :{"min": 1,"max": 3,"first": 1},
+			                "nbItem"        : 3,
+			                "zIndex"        : 2,
+			                "defaultState"  : "enter",
+			                "states": {
+			                    "enter": {
+			                        "speed": 300,
+			                        "items": [
+										{ "x":  50, "y": 150, "w": 600, "h": 47, "a": 0},										
+										{ "x":  50, "y": 190, "w": 600, "h": 47, "a": 255},
+										{ "x":  50, "y": 247, "w": 600, "h": 47, "a": 255},
+										{ "x":  50, "y": 304, "w": 600, "h": 47, "a": 255},
+										{ "x":  50, "y": 361, "w": 600, "h": 47, "a": 0},
+										{ "x":  50, "y": 418, "w": 600, "h": 47, "a": 0},
+										{ "x":  50, "y": 475, "w": 600, "h": 47, "a":0}
+										
+										
+			                        ]
+			                    },
+			
+			                    "exit": {
+			                        "speed": 100,
+			                        "items": [
+										{ "x":  50, "y": 150, "w": 600, "h": 47, "a": 0},										
+										{ "x":  50, "y": 190, "w": 600, "h": 47, "a": 0},
+										{ "x":  50, "y": 247, "w": 600, "h": 47, "a": 0},
+										{ "x":  50, "y": 304, "w": 600, "h": 47, "a": 0},
+										{ "x":  50, "y": 361, "w": 600, "h": 47, "a": 0},
+										{ "x":  50, "y": 418, "w": 600, "h": 47, "a": 0},
+										{ "x":  50, "y": 475, "w": 600, "h": 47, "a": 0}
+										
+			                     	]
+		                    	}
+		                	}
+			                
+		            	}
+		        	},
+		        	
+		   "requests": {
+		            "create": "ScrollListWidget",
+		            "param":{ 
+			                "itemWidth"     : 1150,
+			                "itemHeight"    : 47,
+			                "itemInitFunc"  : "servers.drawRequest",			        
+			                "options"		:["noloop"],
+			                "focusIndex"    :{"min": 1,"max": 4,"first": 1},
+			                "nbItem"        : 7,
+			                "zIndex"        : 2,
+			                "defaultState"  : "enter",
+			                "states": {
+			                    "enter": {
+			                        "speed": 200,
+			                        "items": [
+										
+										
+										{ "x":  50, "y": 361, "w": 1150, "h": 47, "a": 0},
+										{ "x":  50, "y": 418, "w": 1150, "h": 47, "a": 255},
+										{ "x":  50, "y": 475, "w": 1150, "h": 47, "a":255},
+										{ "x":  50, "y": 532, "w": 1150, "h": 47, "a":255},
+										{ "x":  50, "y": 589, "w": 1150, "h": 47, "a":255},
+										{ "x":  50, "y": 646, "w": 1150, "h": 47, "a":0}
+										
+										
+			                        ]
+			                    },
+			
+			                    "exit": {
+			                        "speed": 10,
+			                        "items": [
+										
+										{ "x":  50, "y": 361, "w": 1150, "h": 47, "a": 0},
+										{ "x":  50, "y": 418, "w": 1150, "h": 47, "a":0},
+										{ "x":  50, "y": 475, "w": 1150, "h": 47, "a":0},
+										{ "x":  50, "y": 532, "w": 1150, "h": 47, "a":0},
+										{ "x":  50, "y": 589, "w": 1150, "h": 47, "a":0},
+										{ "x":  50, "y": 646, "w": 1150, "h": 47, "a":0}
+										
+			                     	]
+		                    	}
+		                	}
+			                
+		            	}
+		        	},
+		   
+		   "parameters": {
+		            "create": "ScrollListWidget",
+		            "param":{ 
+			                "itemWidth"     : 200,
+			                "itemHeight"    : 47,
+			                "itemInitFunc"  : "servers.drawParams",
+			                "onFocus"       : "servers.onFocusParams",
+			                "options"		:["noloop"],
+			                "focusIndex"    :{"min": 1,"max": 5,"first": 1},
+			                "nbItem"        : 7,
+			                "zIndex"        : 2,
+			                "defaultState"  : "enter",
+			                "states": {
+			                    "enter": {
+			                        "speed": 300,
+			                        "items": [
+										{ "x":  700, "y": 150, "w": 200, "h": 47, "a": 0},										
+										{ "x":  700, "y": 190, "w": 200, "h": 47, "a": 255},
+										{ "x":  700, "y": 247, "w": 200, "h": 47, "a": 255},
+										{ "x":  700, "y": 304, "w": 200, "h": 47, "a": 255},
+										{ "x":  700, "y": 361, "w": 200, "h": 47, "a": 255},
+										{ "x":  700, "y": 418, "w": 200, "h": 47, "a": 255},
+										{ "x":  700, "y": 475, "w": 200, "h": 47, "a":0}
+										
+										
+			                        ]
+			                    },
+			
+			                    "exit": {
+			                        "speed": 100,
+			                        "items": [
+										{ "x":  700, "y": 150, "w": 200, "h": 47, "a": 0},										
+										{ "x":  700, "y": 190, "w": 200, "h": 47, "a": 0},
+										{ "x":  700, "y": 247, "w": 200, "h": 47, "a": 0},
+										{ "x":  700, "y": 304, "w": 200, "h": 47, "a": 0},
+										{ "x":  700, "y": 361, "w": 200, "h": 47, "a": 0},
+										{ "x":  700, "y": 418, "w": 200, "h": 47, "a": 0},
+										{ "x":  700, "y": 475, "w": 200, "h": 47, "a": 0}
+										
+			                     	]
+		                    	}
+		                	}
+			                
+		            	}
+		        	},	
+		        	
+		     
+		        	
+		   "servicesHeader": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 600,
+                "h": 47,
+                "zIndex": 1,
+                "speed": 300,
+                "defaultState": "exit",
+                "draw"      : "servers.drawHeader",
+                "states": {
+                    "enter":  { "x": 50, "y": 123, "w": 600, "h": 47, "a": 255 },
+                    "exit":   { "x": 50, "y": 123, "w": 600, "h": 47, "a":   0 },
+                    "on":  	  { "x": 50, "y": 123, "w": 600, "h": 47, "a": 255 }
+                }
+            }
+        },
+        
+        "parametersHeader": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 600,
+                "h": 47,
+                "zIndex": 1,
+                "speed": 300,
+                "defaultState": "exit",
+                "draw"      : "servers.drawHeader",
+                "states": {
+                    "enter":  { "x": 700, "y": 123, "w": 600, "h": 47, "a": 255 },
+                    "exit":   { "x": 700, "y": 123, "w": 600, "h": 47, "a":   0 },
+                    "on":  	  { "x": 700, "y": 123, "w": 600, "h": 47, "a": 255 }
+                }
+            }
+        },
+        
+         "requestHeader": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 600,
+                "h": 47,
+                "zIndex": 1,
+                "speed": 300,
+                "defaultState": "exit",
+                "draw"      : "servers.drawHeader",
+                "states": {
+                    "enter":  { "x": 50, "y": 361, "w": 600, "h": 47, "a": 255 },
+                    "exit":   { "x": 50, "y": 361, "w": 600, "h": 47, "a":   0 },
+                    "on":  	  { "x": 50, "y": 361, "w": 600, "h": 47, "a": 255 }
+                }
+            }
+        },
+        
+        "detail": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1280,  
+                "h"         : 285,  
+                "zIndex"    : 5,  
+                "speed"     : 0,  
+                "bounds"    : {"x":0, "y":123},  
+                "draw"      : "servers.drawDetail"
+                
+            }  
+        },
+        
+        
+        "param_1": {
+		            "create": "InputWidget",
+		            "param": {
+		                "w": 200,
+		                "h": 47,
+		                "speed": 100,
+		                "zIndex": 4,
+		                "bounds": { "x": 950, "y": 190},
+		                "delay": 1000,
+		                "maxLength": 3,
+		                "key": ["num", "delete"],
+		                "hidden": false		      
+		                }
+		 },
+		 "param_2": {
+		            "create": "InputWidget",
+		            "param": {
+		                "w": 200,
+		                "h": 47,
+		                "speed": 100,
+		                "zIndex": 4,
+		                "bounds": { "x": 950, "y": 247},
+		                "delay": 1000,
+		                "maxLength": 3,
+		                "key": ["num", "delete"],
+		                "hidden": false
+		                }
+		 },
+		 "param_3": {
+		            "create": "InputWidget",
+		            "param": {
+		                "w": 200,
+		                "h": 47,
+		                "speed": 100,
+		                "zIndex": 4,
+		                "bounds": { "x": 950, "y": 304},
+		                "delay": 1000,
+		                "maxLength": 3,
+		                "key": ["num", "delete"],
+		                "hidden": false
+		                }
+		 }
+		    
+ 		
+ 		
+ 		
+ 		
+ 		
+    }   
+}

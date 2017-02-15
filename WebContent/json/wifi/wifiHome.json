@@ -1,0 +1,217 @@
+{
+
+    "widgets": {
+    	"malla": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1280,  
+                "h"         :  720,  
+                "zIndex"    :  5,  
+                "draw"      : "wifiHome.drawMalla",
+ 				"speed"     : 200,  
+                "defaultState": "exit",
+                "states": {
+                    "enter":  { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 255 },
+                    "exit":   { "x": 0, "y": 0, "w": 1280, "h": 720, "a":   0 }
+                }
+            }  
+        },
+        "tituloRedWifi": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 314,  
+                "h"         : 176,  
+                "zIndex"    :  1,  
+                "draw"      : "wifiHome.drawTitulo",
+ 				"speed"     : 200,  
+                "defaultState": "exit",
+                "states": {
+                    "enter":  { "x": 323, "y": 250, "w": 314, "h": 176, "a": 255 },
+                    "exit":   { "x": 323, "y": 250, "w": 314, "h": 176, "a":   0 }
+                }
+            }  
+        },
+        // "steps": {
+        //     "create": "ScrollListWidget",
+        //     "param": {
+        //         "itemInitFunc": "wifiHome.drawMainSteps",
+        //         "itemWidth": 1280,
+        //         "itemHeight": 720,
+        //         //"focusIndex":{"min": 1,"max": 1,"first": 1},
+        //         "nbItem": 3,
+        //         "zIndex": 2,
+        //         "defaultState": "exit",
+        //         "options": [ "noloop"],
+        //         "states": {
+        //             "enter": {
+        //                 "speed": 200,
+        //                 "items": [
+                      
+        //                         { "x": -1900,  "y": 0, "a": 255},
+        //                         { "x":  0,  "y": 0, "a": 255},
+        //                         { "x":  2162, "y": 0, "a": 255}
+                             
+        //                 ]
+        //             },
+        //             "exit": {
+        //                 "speed": 200,
+        //                 "items": [
+        //                         { "x": -1900,  "y": 0, "a": 0},
+        //                         { "x":  0,  "y": 0, "a": 0},
+        //                         { "x":  2162, "y": 0, "a": 0}
+        //                 ]
+        //             }
+        //         }
+        //     }
+        // },
+        "steps": {
+            "create": "ScrollListWidget",
+            "param": {
+                "itemInitFunc": "wifiHome.drawMainSteps",
+                "itemWidth": 1280,
+                "itemHeight": 720,
+                //"focusIndex":{"min": 1,"max": 1,"first": 1},
+                "nbItem": 3,
+                "zIndex": 2,
+                "defaultState": "exit",
+                "options": [ "noloop"],
+                "states": {
+                    "enter": {
+                        "speed": 200,
+                        "items": [
+                      
+                                { "x": -1900,  "y": 0, "a": 255},
+                                { "x":  0,  "y": 0, "a": 255},
+                                { "x":  2162, "y": 0, "a": 255}
+                             
+                        ]
+                    },
+                    "exit": {
+                        "speed": 200,
+                        "items": [
+                                { "x": -1900,  "y": 0, "a": 0},
+                                { "x":  0,  "y": 0, "a": 0},
+                                { "x":  2162, "y": 0, "a": 0}
+                        ]
+                    }
+                }
+            }
+        },
+
+        "BtnSiguienteSSID": {  
+           "create": "ScrollListWidget",  
+                "param": {  
+                "itemInitFunc"  : "drawBtnSiguienteSSID",             
+                   "itemWidth": 192,  
+                   "itemHeight": 32,  
+                   "focusIndex":{"min": 0, "max": 3, "first":0},
+                   "nbItem": 3,  
+                   "zIndex": 3,  
+                   "defaultState": "exit", 
+                    "options": ["noloop"],
+                   "states": {  
+                    "enter": {  
+                        "speed": 100,  
+                        "items": [                            
+                            { "x": 829, "y": 538, "a": 255 }
+                        ]  
+                    },  
+                    "exit": {  
+                        "speed": 100,  
+                        "items": [  
+                            { "x": 829, "y": 538, "a": 0 }
+                        ]
+                    }  
+                }  
+            }  
+        },
+
+        "inputNombreRed": {  
+        "create": "InputWidget",  
+        "param": {  
+            "w": 300,  
+            "h": 30,  
+            "speed": 200,  
+            "zIndex": 4,  
+            "bounds": { "x": 643, "y": 326 },  
+            // specific InputWidget parameters  
+            //"maxLength": 16,
+            "delay": 1000,
+            "defaultState": "center", 
+            "key": ["default"],  
+            "scrollList": [6, 100, 50, 150],
+            "states": {  
+                    "center": {  
+                        "speed": 200,
+                        "x": 643, "y": 326, "a": 255  
+                    },  
+                    "left": {  
+                        "speed": 200,
+                        "x": -637, "y": 326, "a": 255
+                    }  
+                }
+            }
+        },
+
+
+        "inputTipoSeguridad": {  
+        "create": "InputWidget",  
+        "param": {  
+            "w": 300,  
+            "h": 30,  
+            "speed": 200,  
+            "zIndex": 3,  
+            "bounds": { "x": 1923, "y": 326 },  
+            // specific InputWidget parameters  
+            //"maxLength": 16,  
+            "delay": 1000,
+            "defaultState": "right",
+            "key": ["default"],  
+            "scrollList": [6, 100, 50, 150],
+            "states": {  
+                    "left": {  
+                        "speed": 200,
+                        "x": -637, "y": 326, "a": 255  
+                    },  
+                    "center": {  
+                        "speed": 200,
+                        "x": 643, "y": 326, "a": 255
+                    },
+                    "right": {  
+                        "speed": 200,
+                        "x": 1923, "y": 326, "a": 255
+                    }  
+                }
+            }
+        },
+
+        "inputContrasena": {  
+        "create": "InputWidget",  
+        "param": {  
+            "w": 300,  
+            "h": 30,  
+            "speed": 200,  
+            "zIndex": 3,  
+            "bounds": { "x": 1923, "y": 326 },  
+            // specific InputWidget parameters  
+            //"maxLength": 16,  
+            "hidden": true, 
+            "delay": 1000,
+            "defaultState": "right",
+            "key": ["default"],  
+            "scrollList": [6, 100, 50, 150],
+            "states": {
+                    "center": {  
+                        "speed": 200,
+                        "x": 643, "y": 326, "a": 255
+                    },
+                    "right": {  
+                        "speed": 200,
+                        "x": 1923, "y": 326, "a": 255
+                    }  
+                }
+            }
+        }
+    }
+
+}

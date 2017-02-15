@@ -1,0 +1,36 @@
+{
+    "widgets" : 
+    {
+"channelNumberBar": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1280,  
+                "h"         : 112,  
+                "zIndex"    : 1,  
+                "speed"     : 200,  
+                "draw"      : "interactiveChannels.drawChannelNumberBar",
+                "states": {
+                    "enter":  { "x": 0, "y": 312, "w": 1280, "h": 112, "a": 255 },
+                    "exit":   { "x": 0, "y": 312, "w": 1280, "h": 112, "a": 0 }
+                }
+            }  
+        },    
+"bg": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1280,  
+                "h"         : 720,  
+                "zIndex"    : 1,  
+                "speed"     : 200,  
+                "draw"      : "interactiveChannels.drawBg",
+                "states": {
+                    "enter":  { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 255 },
+                    "exit":   { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 0 }
+                }
+            }  
+        }
+        
+        
+//////////////////////////////////////////////////        
+    }
+}        

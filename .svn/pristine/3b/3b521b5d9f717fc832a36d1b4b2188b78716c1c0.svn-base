@@ -1,0 +1,327 @@
+{
+	"widgets":{
+        "loading": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 1146,
+                "h": 572,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "invoice.drawLoading",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 67, "y": 110, "w": 1146, "h": 572, "a": 255 },
+                    "exit":   { "x": 67, "y": 110, "w": 1146, "h": 572, "a": 0 }
+                }
+            }
+        },
+        
+        "message": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 506,
+                "h": 248,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "invoice.drawMessage",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 67, "y": 290, "w": 506, "h": 248, "a": 255 },
+                    "exit":   { "x": 67, "y": 290, "w": 506, "h": 248, "a": 0 }
+                }
+            }
+        },
+        "headers": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 570,
+                "h": 104,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "invoice.drawHeaders",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 707, "y": 146, "w": 570, "h": 104, "a": 255 },
+                    "exit":   { "x": 707, "y": 146, "w": 570, "h": 104, "a": 0 }
+                }
+            }
+        },
+        "clientdata": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 570,
+                "h": 72,
+                "zIndex": 8,
+                "speed": 200,
+                "draw"      : "invoice.drawClientData",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 67, "y": 146, "w": 570, "h": 72, "a": 255 },
+                    "exit":   { "x": 67, "y": 146, "w": 570, "h": 72, "a": 0 }
+                }
+            }
+        },
+        "payment": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 1146,
+                "h": 68,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "invoice.drawPayment",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 67, "y": 254, "w": 1146, "h": 68, "a": 255 },
+                    "exit":   { "x": 67, "y": 254, "w": 1146, "h": 68, "a": 0 }
+                }
+            }
+        },
+        "line": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 1146,
+                "h": 1,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "invoice.drawLine",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 67, "y": 341, "w": 1146, "h": 1, "a": 255 },
+                    "exit":   { "x": 67, "y": 341, "w": 1146, "h": 1, "a": 0 },
+                    "enter2":  { "x": 67, "y": 233, "w": 1146, "h": 1, "a": 255 },
+                    "exit2":   { "x": 67, "y": 233, "w": 1146, "h": 1, "a": 0 }
+                }
+            }
+        },
+        "billDetail": {
+            "create": "ScrollListWidget",
+            "param": {
+        		"itemInitFunc" :	"invoice.drawBillDetail",
+                "itemWidth": 890,
+                "itemHeight": 32,
+                "focusIndex": {"min": 1,"max": 9,"first": 1}, 
+                "nbItem": 7,
+                "zIndex": 2,
+                "options": ["noloop"],
+                "defaultState": "enter",
+                "states": {
+                    "enter": {
+                        "speed": 0,
+                        "items": [
+                        	{ "x": 67, "y": 326, "w": 890, "h": 32, "a": 0   },
+                            { "x": 67, "y": 362, "w": 890, "h": 32, "a": 255 },
+                            { "x": 67, "y": 398, "w": 890, "h": 32, "a": 255 },
+                            { "x": 67, "y": 434, "w": 890, "h": 32, "a": 255 },
+                            { "x": 67, "y": 470, "w": 890, "h": 32, "a": 255 },
+                            { "x": 67, "y": 506, "w": 890, "h": 32, "a": 255 },
+                            { "x": 67, "y": 542, "w": 890, "h": 32, "a": 255 },
+                            { "x": 67, "y": 578, "w": 890, "h": 32, "a": 255 },
+                            { "x": 67, "y": 614, "w": 890, "h": 32, "a": 255 },
+                            { "x": 67, "y": 650, "w": 890, "h": 32, "a": 255 }
+                        ]
+                    },
+                    "exit": {
+                        "speed": 0,
+                        "items": [
+							{ "x": 67, "y": 326, "w": 890, "h": 32, "a": 0 },
+                            { "x": 67, "y": 362, "w": 890, "h": 32, "a": 0 },
+                            { "x": 67, "y": 398, "w": 890, "h": 32, "a": 0 },
+                            { "x": 67, "y": 434, "w": 890, "h": 32, "a": 0 },
+                            { "x": 67, "y": 470, "w": 890, "h": 32, "a": 0 },
+                            { "x": 67, "y": 506, "w": 890, "h": 32, "a": 0 },
+                            { "x": 67, "y": 542, "w": 890, "h": 32, "a": 0 },
+                            { "x": 67, "y": 578, "w": 890, "h": 32, "a": 0 },
+                            { "x": 67, "y": 614, "w": 890, "h": 32, "a": 0 },
+                            { "x": 67, "y": 650, "w": 890, "h": 32, "a": 0 }
+                        ]
+                    },
+                    "exit2": {
+                        "speed": 0,
+                        "items": [
+							{ "x": 67, "y": 326, "w": 890, "h": 32, "a": 0   },
+                            { "x": 67, "y": 362, "w": 890, "h": 32, "a": 0 },
+                            { "x": 67, "y": 398, "w": 890, "h": 32, "a": 0 },
+                            { "x": 67, "y": 434, "w": 890, "h": 32, "a": 0 },
+                            { "x": 67, "y": 470, "w": 890, "h": 32, "a": 0 },
+                            { "x": 67, "y": 506, "w": 890, "h": 32, "a": 0 },
+                            { "x": 67, "y": 542, "w": 890, "h": 32, "a": 0 },
+                            { "x": 67, "y": 578, "w": 890, "h": 32, "a": 0 },
+                            { "x": 67, "y": 614, "w": 890, "h": 32, "a": 0 },
+                            { "x": 67, "y": 650, "w": 890, "h": 32, "a": 0 }
+                        ]
+                    }
+                }
+            }
+        },
+        "payButton": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 250,
+                "h": 320,
+                "zIndex": 2,
+                "speed": 0,
+                "defaultState": "exit",
+                "draw"      : "invoice.drawPayButton",
+                "states": {
+                    "enter":  { "x": 963, "y": 362, "w": 250, "h": 320, "a": 255 },
+                    "exit":   { "x": 963, "y": 362, "w": 250, "h": 320, "a":   0 }
+                }
+            }
+        },
+         "line2": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 1,
+                "h": 400,
+                "zIndex": 2,
+                "speed": 0,
+                "draw"      : "invoice.drawLine2",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  	{ "x": 603, "y": 270, "w": 1, "h": 400, "a": 255 },
+                    "exit":   	{ "x": 603, "y": 270, "w": 1, "h": 400, "a": 0 },
+                    "exit_l":   { "x": 573, "y": 270, "w": 1, "h": 400, "a": 0 },
+                    "exit_r":   { "x": 633, "y": 270, "w": 1, "h": 400, "a": 0 }
+                }
+            }
+        },
+     
+        "references": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 506,
+                "h": 388,
+                "zIndex": 2,
+                "speed": 0,
+                "defaultState": "exit",
+                "draw"      : "invoice.drawReferences",
+                "states": {
+                    "enter":  { "x": 67, "y": 258, "w": 506, "h": 388, "a": 255 },
+                    "exit":   { "x": 67, "y": 258, "w": 506, "h": 388, "a":   0 }
+                }
+            }
+        },
+        "comingsoon": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 570,
+                "h": 284,
+                "zIndex": 2,
+                "speed": 0,
+                "defaultState": "exit",
+                "draw"      : "invoice.drawComingSoon",
+                "states": {
+                    "enter":  { "x": 643, "y": 258, "w": 570, "h": 284, "a": 255 },
+                    "exit":   { "x": 643, "y": 258, "w": 570, "h": 284, "a":   0 }
+                }
+            }
+        },
+         "conditions": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 506,
+                "h": 32,
+                "zIndex": 2,
+                "speed": 0,
+                "defaultState": "exit",
+                "draw"      : "invoice.drawConditions",
+                "states": {
+                    "enter":  { "x": 67, "y": 650, "w": 506, "h": 32, "a": 255 },
+                    "exit":   { "x": 67, "y": 650, "w": 506, "h": 32, "a":   0 }
+                }
+            }
+        },
+        "buttons": {
+		            "create": "ScrollListWidget",
+		            "param":{ 
+			                "itemWidth"     : 314,
+			                "itemHeight"    : 32,
+			                "itemInitFunc"  : "invoice.drawButtonList",
+			                "options"		:["noloop"],
+			                "focusIndex"    : {"max":0, "min":0, "first":0},
+			                "nbItem"        : 3,
+			                "zIndex"        : 2,
+			                "defaultState"  : "exit",
+			                "states": {
+			                   "enter": {
+			                        "speed": 200,
+			                        "items": [
+										{ "x": 771, "y": 470, "w": 314, "h": 32, "a": 255 },
+										{ "x": 1027, "y": 470, "w": 314, "h": 32, "a": 255 }
+			                        ]
+			                    },
+			            
+			                  "exit": {
+			                        "speed": 0,
+			                        "items": [
+										{ "x": 771, "y": 470, "w": 314, "h": 32, "a": 0 },
+										{ "x": 1027, "y": 470, "w": 314, "h": 32, "a": 0 }
+			                        ]
+			                    }
+		                	}
+			                
+		            	}
+		        	},
+        "notFound": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 1280,
+                "h": 212,
+                "speed": 150,
+                "zIndex": 2,
+                "defaultState": "exit",
+                "states": {
+                    "enter" : { "x": 0, "y": 218, "w": 1280, "h": 212, "a": 255 },
+                    "exit"  : { "x": 0, "y": 218, "w": 1280, "h": 212, "a": 0 }
+                },
+                "draw": "invoice.drawNotFound"
+            }
+        },
+        "upArrow": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         :  35,  
+                "h"         : 176,  
+                "zIndex"    :   3,  
+                "speed"     : 0,  
+                "bounds"    : {"x":0, "y":0}, 
+                "draw"      : "invoice.drawArrowsInv",
+                "states": {
+                    "enter":  { "x": 509, "y": 340, "w": 35, "h": 176, "a": 255 },
+                    "exit":   { "x": 509, "y": 340, "w": 35, "h": 176, "a": 0 }
+                }
+            }  
+        },
+        "downArrow": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         :  35,  
+                "h"         : 176,  
+                "zIndex"    :   3,  
+                "speed"     : 0,  
+                "bounds"    : {"x":0, "y":0}, 
+                "draw"      : "invoice.drawArrowsInv",
+                "states": {
+                		"enter":  { "x": 509,  "y": 662, "w": 35, "h": 176, "a": 255 },
+                    	"enter_1":  { "x": 509,  "y": 682, "w": 35, "h": 176, "a": 255 },
+                    	"enter_2":  { "x": 509,  "y": 682, "w": 35, "h": 176, "a": 255 },
+                    	"enter_3":  { "x": 509,  "y": 682, "w": 35, "h": 176, "a": 255 },
+                    	"enter_4":  { "x": 509, "y":  682, "w": 35, "h": 176, "a": 255 },
+                    	"enter_5":  { "x": 509, "y": 682, "w": 35, "h": 176, "a": 255 },
+                    	"enter_6":  { "x": 509, "y": 682, "w": 35, "h": 176, "a": 255 },
+                    	                    	
+
+						"exit":    	{ "x": 509,   "y": 662,  "w": 35, "h": 176, "a": 0 },
+						"exit_1":   { "x": 509, "y": 682, "w": 35, "h": 176, "a": 0 },
+                    	"exit_2":   { "x": 509,  "y": 682, "w": 35, "h": 176, "a": 0 },
+                    	"exit_3":   { "x": 509,  "y": 682, "w": 35, "h": 176, "a": 0 },
+                    	"exit_4":   { "x": 509,  "y": 682, "w": 35, "h": 176, "a": 0 },
+                    	"exit_5":   { "x": 509, "y": 682, "w": 35, "h": 176, "a": 0 },
+                    	"exit_6":   { "x": 509, "y": 682, "w": 35, "h": 176, "a": 0 }                   	                    	
+                	}
+            }  
+        }
+        
+
+	}
+}

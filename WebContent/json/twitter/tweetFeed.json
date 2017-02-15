@@ -1,0 +1,112 @@
+{
+	"widgets":{
+		"notificationTweet": {
+		    "create": "ScrollListWidget",
+		    "param":{ 
+			"itemWidth" :	579,
+        	"itemHeight" :	144,
+			"itemInitFunc"  : "drawNotificationTweet",
+			"focusIndex"    :{"min": 1,"max": 1,"first": 1},
+			"nbItem"        : 1,
+			"zIndex"        : 2,
+			"speed" :	200,
+			"options": ["noloop","nofocus"],
+			"defaultState"  : "exit",
+			"states" :{
+        			"exit" :{
+        			"speed" :	200,
+        				"items" :
+        				[   				
+        					{ "x" : 0, "y" : 538,"w" : 579, "h" : 144, "a" : 0},
+        					{ "x" : -579, "y" : 538, "w" : 579, "h" : 144, "a" : 255},
+        					{ "x" : 0, "y" : 538, "w" : 579, "h" : 144, "a" :0}
+        				]
+        			},
+        			"enter_On" :{
+        			"speed" :	200,
+        				"items" :
+        				[      				
+        					{ "x" : 0, "y" : 538, "w" : 579, "h" : 0, "a" : 0},
+        					{ "x" : 0, "y" : 538, "w" : 579, "h" : 144, "a" : 255},
+        					{ "x" : 0, "y" : 673, "w" : 579, "h" : 0, "a" :0}
+        				]
+        			},
+        			"exit_On" :{
+        			"speed" :	200,
+        				"items" :
+        				[   				
+        					{ "x" : 0, "y" : 538, "w" : 579, "h" : 144, "a" : 0},
+        					{ "x" : -579, "y" : 538, "w" : 579, "h" : 144, "a" : 255},
+        					{ "x" : 0, "y" : 538, "w" : 579, "h" : 144, "a" :0}
+        				]
+        			}
+	        	}	
+			}
+		},
+		"bg_Twitter": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 643,  
+                "h"         : 144,  
+                "zIndex"    : 1,  
+                "speed"     : 200,  
+                "draw"      : "drawBg_Twitter",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  {"x": 0, "y": 538, "w": 643, "h": 144, "a": 255 },
+                    "exit":   {"x": -643, "y": 538, "w": 643, "h": 144, "a":  255 }
+                }
+                  
+            }  
+        },
+        "logo_Twitter": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 134,  
+                "h"         : 40,  
+                "zIndex"    : 0,  
+                "speed"     : 200,  
+                "draw"      : "drawLogo_Twitter",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  {"x": 509, "y": 538, "w": 134, "h": 40, "a": 255 },
+                    "exit":   {"x": 0, "y": 538, "w": 134, "h": 40, "a":  255 }
+                }
+                  
+            }  
+        },
+        "active_Twitter": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 58,  
+                "h"         : 32,  
+                "zIndex"    : 0,  
+                "speed"     : 200,  
+                "draw"      : "drawActive_Twitter",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  {"x": 67, "y": 650, "w": 58, "h": 32, "a": 255 },
+                    "exit":   {"x": 67, "y": 650, "w": 58, "h": 32, "a":  0 }
+                }
+                  
+            }  
+        },
+         "malla": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1280,  
+                "h"         :  720,  
+                "zIndex"    :    10,  
+                "speed"     :  200,  
+                "bounds"    : {"x":0, "y":0}, 
+                "draw"      : "tweetFeed.drawMalla",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 255 },
+                    "exit":   { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 0 }
+                }
+            }  
+        }
+	}
+
+}

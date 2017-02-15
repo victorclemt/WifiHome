@@ -1,0 +1,22 @@
+{	
+    "widgets": {
+    	
+    	"base": {  
+            "create": "CanvasWidget",  
+            "param": {  
+                "w"         : 1280,  
+                "h"         :  720,  
+                "zIndex"    :    0,  
+                "speed"     :  300,  
+                "bounds"    : {"x":0, "y":0}, 
+                "draw"      : "drawOnion",
+                "states": {
+                    "enter":  { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 255 },
+                    "exit":   { "x": 0, "y": 0, "w": 1280, "h": 720, "a": 0 }
+                }
+            }  
+        }
+
+
+	}
+}

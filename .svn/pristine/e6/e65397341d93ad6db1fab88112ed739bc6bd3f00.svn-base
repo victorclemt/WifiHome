@@ -1,0 +1,131 @@
+{
+	"widgets":{
+        
+        
+        "message": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 506,
+                "h": 248,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "invoicePay.drawMessage",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 67, "y": 290, "w": 506, "h": 248, "a": 255 },
+                    "exit":   { "x": 67, "y": 290, "w": 506, "h": 248, "a": 0 }
+                }
+            }
+        },
+        "headers": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 570,
+                "h": 104,
+                "zIndex": 2,
+                "speed": 200,
+                "draw"      : "invoicePay.drawHeaders",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 707, "y": 146, "w": 570, "h": 104, "a": 255 },
+                    "exit":   { "x": 707, "y": 146, "w": 570, "h": 104, "a": 0 }
+                }
+            }
+        },
+        "clientdata": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 570,
+                "h": 72,
+                "zIndex": 8,
+                "speed": 0,
+                "draw"      : "invoicePay.drawClientData",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 67, "y": 146, "w": 570, "h": 72, "a": 255 },
+                    "exit":   { "x": 67, "y": 146, "w": 570, "h": 72, "a": 0 }
+                }
+            }
+        },
+        "payment": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 1146,
+                "h": 68,
+                "zIndex": 2,
+                "speed": 0,
+                "draw"      : "invoicePay.drawPayment",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 67, "y": 254, "w": 1146, "h": 68, "a": 255 },
+                    "exit":   { "x": 67, "y": 254, "w": 1146, "h": 68, "a": 0 }
+                }
+            }
+        },
+        "line": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 1146,
+                "h": 1,
+                "zIndex": 2,
+                "speed": 0,
+                "draw"      : "invoicePay.drawLine",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  { "x": 67, "y": 233, "w": 1146, "h": 1, "a": 255 },
+                    "exit":   { "x": 67, "y": 233, "w": 1146, "h": 1, "a": 0 }
+                }
+            }
+        },
+        
+        "line2": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 1,
+                "h": 248,
+                "zIndex": 2,
+                "speed": 0,
+                "draw"      : "invoicePay.drawLine2",
+                "defaultState"  : "exit",
+                "states": {
+                    "enter":  	{ "x": 603, "y": 290, "w": 1, "h": 248, "a": 255 },
+                    "exit":   	{ "x": 603, "y": 290, "w": 1, "h": 248, "a": 0 },
+                    "exit_l":   { "x": 573, "y": 290, "w": 1, "h": 248, "a": 0 },
+                    "exit_r":   { "x": 633, "y": 290, "w": 1, "h": 248, "a": 0 }
+                }
+            }
+        },
+     
+        "references": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 506,
+                "h": 356,
+                "zIndex": 2,
+                "speed": 0,
+                "defaultState": "exit",
+                "draw"      : "invoicePay.drawReferences",
+                "states": {
+                    "enter":  { "x": 67, "y": 290, "w": 506, "h": 356, "a": 255 },
+                    "exit":   { "x": 67, "y": 290, "w": 506, "h": 356, "a":   0 }
+                }
+            }
+        },
+        "comingsoon": {
+            "create": "CanvasWidget",
+            "param": {
+                "w": 570,
+                "h": 176,
+                "zIndex": 2,
+                "speed": 0,
+                "defaultState": "exit",
+                "draw"      : "invoicePay.drawComingSoon",
+                "states": {
+                    "enter":  { "x": 643, "y": 290, "w": 570, "h": 176, "a": 255 },
+                    "exit":   { "x": 643, "y": 290, "w": 570, "h": 176, "a":   0 }
+                }
+            }
+        }
+        
+	}
+}
