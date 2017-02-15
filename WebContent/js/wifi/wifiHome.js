@@ -88,6 +88,11 @@ wifiHome.prototype.onEnter = function onEnter(_data)
     this.widgets.BtnSiguienteSSID.setData(this.confirm);
     this.widgets.BtnSiguienteSSID.stateChange("enter");
 
+    var BtnAnteriorSSID = this.widgets.BtnAnteriorSSID;
+    BtnAnteriorSSID.setData({title:"Anterior"});
+    BtnAnteriorSSID.stateChange("enter");
+    BtnAnteriorSSID.setFocus(true);
+
     this.widgets.malla.setData();
     this.widgets.malla.stateChange("exit");
     this.client.unlock();
@@ -125,13 +130,13 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
     }
 
     switch (_key) {
-        // case "KEY_TV_YELLOW":
-        //     BtnSiguienteSSID.setFocus(false);
-        //     break;
+        case "KEY_TV_YELLOW":
+            this.widgets.BtnAnteriorSSID.setFocus(false);
+            break;
 
-        // case "KEY_TV_YELLOW_LONG":
-        //     BtnSiguienteSSID.setFocus(true);
-        //     break;
+        case "KEY_TV_YELLOW_LONG":
+            this.widgets.BtnAnteriorSSID.setFocus(true);
+            break;
 
         case "KEY_TV_GREEN":
             if (this.mallaOn){
@@ -263,8 +268,6 @@ wifiHome.drawMainSteps = function drawMainSteps(_data) {
 
 };
 
-
-
 wifiHome.drawBtnSiguienteSSID = function drawBtnSiguienteSSID(_data){
 
   this.draw = function draw(focus) {
@@ -274,11 +277,7 @@ wifiHome.drawBtnSiguienteSSID = function drawBtnSiguienteSSID(_data){
 
   
   var custo_text = focus ? JSON.stringify(this.themaData.standarBlackFont) : JSON.stringify(this.themaData.standardFont);
-    custo_text = JSON.parse(custo_text);  
-
-    var custoW = {"fill": "rgba(30,30,40,1)"};
-
-    NGM.trace("The value of focus is: " + focus);
+    custo_text = JSON.parse(custo_text);
     
     if(focus){
       var custoW = {"fill": "rgba(255, 255, 255, 1)"};
@@ -286,7 +285,7 @@ wifiHome.drawBtnSiguienteSSID = function drawBtnSiguienteSSID(_data){
 
     } else {
       custoW = {"fill":"rgba(0, 0, 255,1)"};
-      Canvas.drawShape(ctx, "rect", [0,5,ctx.viewportWidth,ctx.viewportHeight], custoW);  
+      Canvas.drawShape(ctx, "rect", [0,0,ctx.viewportWidth,ctx.viewportHeight], custoW);  
     }
     
     Canvas.drawText(ctx, _data.text1, new Rect(10, 0, ctx.viewportWidth-100, 32), custo_text);
@@ -294,4 +293,28 @@ wifiHome.drawBtnSiguienteSSID = function drawBtnSiguienteSSID(_data){
     ctx.drawObject(ctx.endObject());
   } 
   
+}
+
+// wifiHome.test = function test(_data, focus) {
+//     wifiHome.drawYetAnotherButton.bind(this)(_data, focus);
+// }
+
+wifiHome.drawYetAnotherButton = function drawYetAnotherButton(_data, focus) {
+    // this.draw = function draw(focus) {
+        NGM.trace("The vaule of focus is " + focus);
+        var ctx = this.getContext("2d");
+        ctx.beginObject();
+        ctx.clear();
+
+        var w = ctx.viewportWidth;
+
+        var custo_text = focus ? JSON.stringify(this.themaData.standarGrayFont) : JSON.stringify(this.themaData.standardFont);
+        custo_text = JSON.parse(custo_text);
+        var custo = this.themaData.panel;
+        // Canvas.drawShape(ctx, "rect", [8,8,w-16,32], custo);
+        Canvas.drawShape(ctx, "rect", [8,8,w-16,32], custo);
+        Canvas.drawText(ctx, "Anterior", new Rect(60, 10, w - 16, 32), custo_text);
+
+        ctx.drawObject(ctx.endObject());
+    // }
 }

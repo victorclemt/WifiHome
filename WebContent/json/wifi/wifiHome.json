@@ -106,7 +106,7 @@
                    "itemHeight": 32,  
                    "focusIndex":{"min": 0, "max": 3, "first":0},
                    "nbItem": 3,  
-                   "zIndex": 3,  
+                   "zIndex": 3,
                    "defaultState": "exit", 
                     "options": ["noloop"],
                    "states": {  
@@ -124,6 +124,19 @@
                     }  
                 }  
             }  
+        },
+
+        "BtnAnteriorSSID": {
+            "create": "CanvasWidget",
+            "param": {
+                "w"         : 192,
+                "h"         : 40,
+                "zIndex"    : 5,
+                "speed"     : 100,
+                "bounds"    : {"x":573, "y":538},
+                // "bounds"    : {"x":0, "y":0},
+                "draw"      : "drawYetAnotherButton"
+            }
         },
 
         "inputNombreRed": {  
