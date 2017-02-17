@@ -87,17 +87,17 @@ wifiHome.prototype.onEnter = function onEnter(_data)
     widgets.inputContrasena.setData('the best Password ever');
     widgets.inputContrasena.stateChange("right");
 
-    widgets.BtnSiguienteSSID.setData({buttonTxt:"Siguiente"});
-    widgets.BtnSiguienteSSID.stateChange("center");
+    widgets.btnSiguienteSSID.setData({buttonTxt:"Siguiente"});
+    widgets.btnSiguienteSSID.stateChange("center");
 
-    widgets.BtnAnteriorTipoSeguridad.setData({buttonTxt:"Anterior"});
-    widgets.BtnAnteriorTipoSeguridad.stateChange("enter");
+    widgets.btnAnteriorTipoSeguridad.setData({buttonTxt:"Anterior"});
+    widgets.btnAnteriorTipoSeguridad.stateChange("enter");
 
-    widgets.BtnSiguienteTipoSeguridad.setData({buttonTxt:"Siguiente"});
-    widgets.BtnSiguienteTipoSeguridad.stateChange("enter");
+    widgets.btnSiguienteTipoSeguridad.setData({buttonTxt:"Siguiente"});
+    widgets.btnSiguienteTipoSeguridad.stateChange("enter");
 
-    widgets.BtnAnteriorContrasena.setData({buttonTxt:"Anterior"});
-    widgets.BtnAnteriorContrasena.stateChange("enter");
+    widgets.btnAnteriorContrasena.setData({buttonTxt:"Anterior"});
+    widgets.btnAnteriorContrasena.stateChange("enter");
 
     this.widgets.malla.setData();
     this.widgets.malla.stateChange("exit");
@@ -130,10 +130,10 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
     var inputNombreRed = widgets.inputNombreRed;
     var inputTipoSeguridad = widgets.inputTipoSeguridad;
     var inputContrasena = widgets.inputContrasena;
-    var BtnSiguienteSSID = widgets.BtnSiguienteSSID;
-    var BtnAnteriorTipoSeguridad = widgets.BtnAnteriorTipoSeguridad;
-    var BtnSiguienteTipoSeguridad = widgets.BtnSiguienteTipoSeguridad;
-    var BtnAnteriorContrasena = widgets.BtnAnteriorContrasena;
+    var btnSiguienteSSID = widgets.btnSiguienteSSID;
+    var btnAnteriorTipoSeguridad = widgets.btnAnteriorTipoSeguridad;
+    var btnSiguienteTipoSeguridad = widgets.btnSiguienteTipoSeguridad;
+    var btnAnteriorContrasena = widgets.btnAnteriorContrasena;
 
     if (this._inputHasFocus) {
         var keyHandled = inputNombreRed.keyHandler(_key);
@@ -142,11 +142,11 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
 
     switch (_key) {
         case "KEY_TV_YELLOW":
-            widgets.BtnAnteriorSSID.setFocus(false);
+            widgets.btnAnteriorSSID.setFocus(false);
             break;
 
         case "KEY_TV_YELLOW_LONG":
-            this.widgets.BtnAnteriorSSID.setFocus(true);
+            this.widgets.btnAnteriorSSID.setFocus(true);
             break;
 
         case "KEY_TV_GREEN":
@@ -166,17 +166,17 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
             if (scrolled) this.scrollListPos--;
             if (this.scrollListPos == 0) {
                 inputNombreRed.stateChange("center");
-                BtnSiguienteSSID.stateChange("center");
+                btnSiguienteSSID.stateChange("center");
                 inputTipoSeguridad.stateChange("right");
-                BtnAnteriorTipoSeguridad.stateChange("right");
-                BtnSiguienteTipoSeguridad.stateChange("right");
+                btnAnteriorTipoSeguridad.stateChange("right");
+                btnSiguienteTipoSeguridad.stateChange("right");
             }
             if (this.scrollListPos == 1) {
                 inputTipoSeguridad.stateChange("center");
-                BtnAnteriorTipoSeguridad.stateChange("center");
-                BtnSiguienteTipoSeguridad.stateChange("center");
+                btnAnteriorTipoSeguridad.stateChange("center");
+                btnSiguienteTipoSeguridad.stateChange("center");
                 inputContrasena.stateChange("right");
-                BtnAnteriorContrasena.stateChange("right");
+                btnAnteriorContrasena.stateChange("right");
             }
             this.client.unlock();
             return true;
@@ -186,17 +186,17 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
             if (scrolled) this.scrollListPos++;
             if (this.scrollListPos == 1) {
                 inputNombreRed.stateChange("left");
-                BtnSiguienteSSID.stateChange("left");
+                btnSiguienteSSID.stateChange("left");
                 inputTipoSeguridad.stateChange("center");
-                BtnAnteriorTipoSeguridad.stateChange("center");
-                BtnSiguienteTipoSeguridad.stateChange("center");
+                btnAnteriorTipoSeguridad.stateChange("center");
+                btnSiguienteTipoSeguridad.stateChange("center");
             }
             if (this.scrollListPos == 2) {
                 inputTipoSeguridad.stateChange("left");
-                BtnAnteriorTipoSeguridad.stateChange("left");
-                BtnSiguienteTipoSeguridad.stateChange("left");
+                btnAnteriorTipoSeguridad.stateChange("left");
+                btnSiguienteTipoSeguridad.stateChange("left");
                 inputContrasena.stateChange("center");
-                BtnAnteriorContrasena.stateChange("center");
+                btnAnteriorContrasena.stateChange("center");
             }
             this.client.unlock();
             return true;
@@ -215,12 +215,12 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
                 // remove the focus
                 inputNombreRed.setFocus(false);
                 this._inputHasFocus = false;
-                BtnSiguienteSSID.setFocus(true);
+                btnSiguienteSSID.setFocus(true);
             } else {
                 // give the focus
                 inputNombreRed.setFocus(true);
                 this._inputHasFocus = true;
-                BtnSiguienteSSID.setFocus(false);
+                btnSiguienteSSID.setFocus(false);
             }
         break;
 
@@ -346,8 +346,6 @@ wifiHome.heyDrawAPrettyButton = function heyDrawAPrettyButton(_data, focus) {
         var custo_text = focus ? JSON.stringify(this.themaData.standarGrayFont) : JSON.stringify(this.themaData.standardFont);
         custo_text = JSON.parse(custo_text);
         var custo = this.themaData.panel;
-
-        NGM.dump(custo);
 
         Canvas.drawShape(ctx, "rect", [8,8,w-16,32], custo);
         Canvas.drawText(ctx, _data.buttonTxt, new Rect(60, 10, w - 16, 32), custo_text);

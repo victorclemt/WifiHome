@@ -98,7 +98,7 @@
             }
         },
 
-        // "BtnSiguienteSSID": {  
+        // "btnSiguienteSSID": {  
         //    "create": "ScrollListWidget",  
         //         "param": {  
         //         "itemInitFunc"  : "drawBtnSiguienteSSID",             
@@ -126,7 +126,7 @@
         //     }  
         // },
 
-        "BtnSiguienteSSID": {
+        "btnSiguienteSSID": {
             "create": "CanvasWidget",
             "param": {
                 "w"         : 192,
@@ -149,7 +149,7 @@
             }
         },
 
-        "BtnAnteriorTipoSeguridad": {
+        "btnAnteriorTipoSeguridad": {
             "create": "CanvasWidget",
             "param": {
                 "w"         : 192,
@@ -176,7 +176,7 @@
             }
         },
 
-        "BtnSiguienteTipoSeguridad": {
+        "btnSiguienteTipoSeguridad": {
             "create": "CanvasWidget",
             "param": {
                 "w"         : 192,
@@ -203,7 +203,7 @@
             }
         },
 
-        "BtnAnteriorContrasena": {
+        "btnAnteriorContrasena": {
             "create": "CanvasWidget",
             "param": {
                 "w"         : 192,
