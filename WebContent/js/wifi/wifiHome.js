@@ -141,8 +141,18 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
     var btnAnteriorContrasena = widgets.btnAnteriorContrasena;
 
     if (this.inputHasFocus) {
-        var keyHandled = inputNombreRed.keyHandler(_key);
-        if (keyHandled || _key === 'KEY_BACKSPACE') return true;
+        if (this.scrollListPos == 0) {
+            // var keyHandled = inputNombreRed.keyHandler(_key);
+            if (inputNombreRed.keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
+        }
+        else if (this.scrollListPos == 1) {
+            // var keyHandled = inputTipoSeguridad.keyHandler(_key);
+            if (inputTipoSeguridad.keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
+        }
+        else if (this.scrollListPos == 2) {
+            // var keyHandled = inputContrasena.keyHandler(_key);
+            if (inputContrasena.keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
+        }
     }
 
     switch (_key) {
@@ -163,7 +173,7 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
                 this.mallaOn = true;
             }
             
-            break;
+            return true;
           
        case "KEY_LEFT":
        case "KEY_RIGHT":
@@ -270,8 +280,8 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
                     // remove the focus
                     inputTipoSeguridad.setFocus(false);
                     this.inputHasFocus = false;
-                    btnAnteriorTipoSeguridad.setFocus(true);
-                    this.btnAnteriorHasFocus = true;
+                    btnSiguienteTipoSeguridad.setFocus(true);
+                    this.btnSiguienteHasFocus = true;
                 } else if(this.btnSiguienteHasFocus || this.btnAnteriorHasFocus) {
                     // give the focus
                     inputTipoSeguridad.setFocus(true);
@@ -297,7 +307,7 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
                     this.btnAnteriorHasFocus = false;
                 }
             }
-        break;
+        return true;
 
         // case "KEY_UP":
         //     canvas.animation.move(0, -20, 300, 0, true).start();
@@ -315,7 +325,7 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
         case "KEY_IRBACK":
         case "KEY_MENU":
             this.home.closeSection(this);
-            break;        
+            return true;        
     }
 
     return true;
