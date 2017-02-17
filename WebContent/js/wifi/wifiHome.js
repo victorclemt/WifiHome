@@ -90,14 +90,14 @@ wifiHome.prototype.onEnter = function onEnter(_data)
     widgets.BtnSiguienteSSID.setData({buttonTxt:"Siguiente"});
     widgets.BtnSiguienteSSID.stateChange("center");
 
-    // widgets.BtnAnteriorTipoSeguridad.setData({buttonTxt:"Anterior"});
-    // widgets.BtnAnteriorTipoSeguridad.stateChange("enter");
+    widgets.BtnAnteriorTipoSeguridad.setData({buttonTxt:"Anterior"});
+    widgets.BtnAnteriorTipoSeguridad.stateChange("enter");
 
-    // widgets.BtnSiguienteTipoSeguridad.setData({buttonTxt:"Siguiente"});
-    // widgets.BtnSiguienteTipoSeguridad.stateChange("enter");
+    widgets.BtnSiguienteTipoSeguridad.setData({buttonTxt:"Siguiente"});
+    widgets.BtnSiguienteTipoSeguridad.stateChange("enter");
 
-    // widgets.BtnAnteriorContrasena.setData({buttonTxt:"Anterior"});
-    // widgets.BtnAnteriorContrasena.stateChange("enter");
+    widgets.BtnAnteriorContrasena.setData({buttonTxt:"Anterior"});
+    widgets.BtnAnteriorContrasena.stateChange("enter");
 
     this.widgets.malla.setData();
     this.widgets.malla.stateChange("exit");
@@ -123,12 +123,17 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
 {
     NGM.trace("Mr., you received a key: " + _key);
 
-    var canvas = this.widgets.wifiText;
-    var steps = this.widgets.steps;
-    var inputNombreRed = this.widgets.inputNombreRed;
-    var inputTipoSeguridad = this.widgets.inputTipoSeguridad;
-    var inputContrasena = this.widgets.inputContrasena;
-    var BtnSiguienteSSID = this.widgets.BtnSiguienteSSID;
+    var widgets = this.widgets;
+
+    var canvas = widgets.wifiText;
+    var steps = widgets.steps;
+    var inputNombreRed = widgets.inputNombreRed;
+    var inputTipoSeguridad = widgets.inputTipoSeguridad;
+    var inputContrasena = widgets.inputContrasena;
+    var BtnSiguienteSSID = widgets.BtnSiguienteSSID;
+    var BtnAnteriorTipoSeguridad = widgets.BtnAnteriorTipoSeguridad;
+    var BtnSiguienteTipoSeguridad = widgets.BtnSiguienteTipoSeguridad;
+    var BtnAnteriorContrasena = widgets.BtnAnteriorContrasena;
 
     if (this._inputHasFocus) {
         var keyHandled = inputNombreRed.keyHandler(_key);
@@ -137,7 +142,7 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
 
     switch (_key) {
         case "KEY_TV_YELLOW":
-            this.widgets.BtnAnteriorSSID.setFocus(false);
+            widgets.BtnAnteriorSSID.setFocus(false);
             break;
 
         case "KEY_TV_YELLOW_LONG":
@@ -146,10 +151,10 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
 
         case "KEY_TV_GREEN":
             if (this.mallaOn){
-                this.widgets.malla.stateChange("exit");
+                widgets.malla.stateChange("exit");
                 this.mallaOn = false;
             } else {
-                this.widgets.malla.stateChange("enter");
+                widgets.malla.stateChange("enter");
                 this.mallaOn = true;
             }
             
@@ -163,10 +168,15 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
                 inputNombreRed.stateChange("center");
                 BtnSiguienteSSID.stateChange("center");
                 inputTipoSeguridad.stateChange("right");
+                BtnAnteriorTipoSeguridad.stateChange("right");
+                BtnSiguienteTipoSeguridad.stateChange("right");
             }
             if (this.scrollListPos == 1) {
                 inputTipoSeguridad.stateChange("center");
+                BtnAnteriorTipoSeguridad.stateChange("center");
+                BtnSiguienteTipoSeguridad.stateChange("center");
                 inputContrasena.stateChange("right");
+                BtnAnteriorContrasena.stateChange("right");
             }
             this.client.unlock();
             return true;
@@ -178,10 +188,15 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
                 inputNombreRed.stateChange("left");
                 BtnSiguienteSSID.stateChange("left");
                 inputTipoSeguridad.stateChange("center");
+                BtnAnteriorTipoSeguridad.stateChange("center");
+                BtnSiguienteTipoSeguridad.stateChange("center");
             }
             if (this.scrollListPos == 2) {
                 inputTipoSeguridad.stateChange("left");
+                BtnAnteriorTipoSeguridad.stateChange("left");
+                BtnSiguienteTipoSeguridad.stateChange("left");
                 inputContrasena.stateChange("center");
+                BtnAnteriorContrasena.stateChange("center");
             }
             this.client.unlock();
             return true;

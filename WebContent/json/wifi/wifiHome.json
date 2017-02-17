@@ -149,44 +149,82 @@
             }
         },
 
-        // "BtnAnteriorTipoSeguridad": {
-        //     "create": "CanvasWidget",
-        //     "param": {
-        //         "w"         : 192,
-        //         "h"         : 40,
-        //         "zIndex"    : 5,
-        //         "speed"     : 100,
-        //         "bounds"    : {"x":643, "y":538},
-        //         // "bounds"    : {"x":0, "y":0},
-        //         "draw"      : "drawBtnAnteriorTipoSeguridad"
-        //     }
-        // },
+        "BtnAnteriorTipoSeguridad": {
+            "create": "CanvasWidget",
+            "param": {
+                "w"         : 192,
+                "h"         : 40,
+                "zIndex"    : 5,
+                "speed"     : 100,
+                "bounds"    : {"x":643, "y":538},
+                "defaultState": "right",
+                "states": {
+                    "center": {  
+                        "speed": 200,
+                        "x": 643, "y": 538, "a": 255
+                    },
+                    "left": {  
+                        "speed": 200,
+                        "x": -637, "y": 538, "a": 255
+                    },
+                    "right": {  
+                        "speed": 200,
+                        "x": 1923, "y": 538, "a": 255
+                    } 
+                },
+                "draw"      : "drawBtnAnteriorTipoSeguridad"
+            }
+        },
 
-        // "BtnSiguienteTipoSeguridad": {
-        //     "create": "CanvasWidget",
-        //     "param": {
-        //         "w"         : 192,
-        //         "h"         : 40,
-        //         "zIndex"    : 5,
-        //         "speed"     : 100,
-        //         "bounds"    : {"x":643, "y":538},
-        //         // "bounds"    : {"x":0, "y":0},
-        //         "draw"      : "drawBtnSiguienteTipoSeguridad"
-        //     }
-        // },
+        "BtnSiguienteTipoSeguridad": {
+            "create": "CanvasWidget",
+            "param": {
+                "w"         : 192,
+                "h"         : 40,
+                "zIndex"    : 5,
+                "speed"     : 100,
+                "bounds"    : {"x":643, "y":538},
+                "defaultState": "right",
+                "states": {
+                    "center": {  
+                        "speed": 200,
+                        "x": 899, "y": 538, "a": 255
+                    },
+                    "left": {  
+                        "speed": 200,
+                        "x": -381, "y": 538, "a": 255
+                    },
+                    "right": {  
+                        "speed": 200,
+                        "x": 2179, "y": 538, "a": 255
+                    } 
+                },
+                "draw"      : "drawBtnSiguienteTipoSeguridad"
+            }
+        },
 
-        // "BtnAnteriorContrasena": {
-        //     "create": "CanvasWidget",
-        //     "param": {
-        //         "w"         : 192,
-        //         "h"         : 40,
-        //         "zIndex"    : 5,
-        //         "speed"     : 100,
-        //         "bounds"    : {"x":643, "y":538},
-        //         // "bounds"    : {"x":0, "y":0},
-        //         "draw"      : "drawBtnAnteriorContrasena"
-        //     }
-        // },
+        "BtnAnteriorContrasena": {
+            "create": "CanvasWidget",
+            "param": {
+                "w"         : 192,
+                "h"         : 40,
+                "zIndex"    : 5,
+                "speed"     : 100,
+                "bounds"    : {"x":643, "y":538},
+                "defaultState": "right",
+                "states": {
+                    "center": {  
+                        "speed": 200,
+                        "x": 643, "y": 538, "a": 255
+                    },
+                    "right": {  
+                        "speed": 200,
+                        "x": 1923, "y": 538, "a": 255
+                    } 
+                },
+                "draw"      : "drawBtnAnteriorContrasena"
+            }
+        },
 
         "inputNombreRed": {  
         "create": "InputWidget",  
