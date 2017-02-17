@@ -76,22 +76,25 @@ wifiHome.prototype.onEnter = function onEnter(_data)
 
     }
 
-    this.widgets.inputNombreRed.setData('Un SSID cualquiera');
-    this.widgets.inputNombreRed.stateChange("center");
+    var widgets = this.widgets;
 
-    this.widgets.inputTipoSeguridad.setData('WPA');
-    this.widgets.inputTipoSeguridad.stateChange("right");
+    widgets.inputNombreRed.setData('Un SSID cualquiera');
+    widgets.inputNombreRed.stateChange("center");
 
-    this.widgets.inputContrasena.setData('the best Password ever');
-    this.widgets.inputContrasena.stateChange("right");
+    widgets.inputTipoSeguridad.setData('WPA');
+    widgets.inputTipoSeguridad.stateChange("right");
 
-    this.widgets.BtnSiguienteSSID.setData(this.confirm);
-    this.widgets.BtnSiguienteSSID.stateChange("enter");
+    widgets.inputContrasena.setData('the best Password ever');
+    widgets.inputContrasena.stateChange("right");
 
-    var BtnAnteriorSSID = this.widgets.BtnAnteriorSSID;
-    BtnAnteriorSSID.setData({title:"Anterior"});
-    BtnAnteriorSSID.stateChange("enter");
-    BtnAnteriorSSID.setFocus(true);
+    // widgets.BtnSiguienteSSID.setData(this.confirm);
+    // widgets.BtnSiguienteSSID.stateChange("enter");
+
+    widgets.BtnAnteriorSSID.setData({buttonTxt:"Anterior"});
+    widgets.BtnAnteriorSSID.stateChange("enter");
+
+    widgets.BtnSiguiente.setData({buttonTxt:"Siguiente"})
+    widgets.BtnSiguiente.stateChange("enter");
 
     this.widgets.malla.setData();
     this.widgets.malla.stateChange("exit");
@@ -295,11 +298,15 @@ wifiHome.drawBtnSiguienteSSID = function drawBtnSiguienteSSID(_data){
   
 }
 
-// wifiHome.test = function test(_data, focus) {
-//     wifiHome.drawYetAnotherButton.bind(this)(_data, focus);
-// }
+wifiHome.test2 = function test2(_data, focus) {
+    wifiHome.heyDrawAPrettyButton.bind(this)(_data, focus);
+}
 
-wifiHome.drawYetAnotherButton = function drawYetAnotherButton(_data, focus) {
+wifiHome.test = function test(_data, focus) {
+    wifiHome.heyDrawAPrettyButton.bind(this)(_data, focus);
+}
+
+wifiHome.heyDrawAPrettyButton = function heyDrawAPrettyButton(_data, focus) {
     // this.draw = function draw(focus) {
         NGM.trace("The vaule of focus is " + focus);
         var ctx = this.getContext("2d");
@@ -311,9 +318,11 @@ wifiHome.drawYetAnotherButton = function drawYetAnotherButton(_data, focus) {
         var custo_text = focus ? JSON.stringify(this.themaData.standarGrayFont) : JSON.stringify(this.themaData.standardFont);
         custo_text = JSON.parse(custo_text);
         var custo = this.themaData.panel;
-        // Canvas.drawShape(ctx, "rect", [8,8,w-16,32], custo);
+
+        NGM.dump(custo);
+
         Canvas.drawShape(ctx, "rect", [8,8,w-16,32], custo);
-        Canvas.drawText(ctx, "Anterior", new Rect(60, 10, w - 16, 32), custo_text);
+        Canvas.drawText(ctx, _data.buttonTxt, new Rect(60, 10, w - 16, 32), custo_text);
 
         ctx.drawObject(ctx.endObject());
     // }
