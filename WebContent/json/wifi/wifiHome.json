@@ -98,48 +98,35 @@
             }
         },
 
-        "BtnSiguienteSSID": {  
-           "create": "ScrollListWidget",  
-                "param": {  
-                "itemInitFunc"  : "drawBtnSiguienteSSID",             
-                   "itemWidth": 192,  
-                   "itemHeight": 32,  
-                   "focusIndex":{"min": 0, "max": 3, "first":0},
-                   "nbItem": 3,  
-                   "zIndex": 3,
-                   "defaultState": "exit", 
-                    "options": ["noloop"],
-                   "states": {  
-                    "enter": {  
-                        "speed": 100,  
-                        "items": [                            
-                            { "x": 829, "y": 538, "a": 255 }
-                        ]  
-                    },  
-                    "exit": {  
-                        "speed": 100,  
-                        "items": [  
-                            { "x": 829, "y": 538, "a": 0 }
-                        ]
-                    }  
-                }  
-            }  
-        },
+        // "BtnSiguienteSSID": {  
+        //    "create": "ScrollListWidget",  
+        //         "param": {  
+        //         "itemInitFunc"  : "drawBtnSiguienteSSID",             
+        //            "itemWidth": 192,  
+        //            "itemHeight": 32,  
+        //            "focusIndex":{"min": 0, "max": 3, "first":0},
+        //            "nbItem": 3,  
+        //            "zIndex": 3,
+        //            "defaultState": "exit", 
+        //             "options": ["noloop"],
+        //            "states": {  
+        //             "enter": {  
+        //                 "speed": 100,  
+        //                 "items": [                            
+        //                     { "x": 829, "y": 538, "a": 255 }
+        //                 ]  
+        //             },  
+        //             "exit": {  
+        //                 "speed": 100,  
+        //                 "items": [  
+        //                     { "x": 829, "y": 538, "a": 0 }
+        //                 ]
+        //             }  
+        //         }  
+        //     }  
+        // },
 
-        "BtnAnteriorSSID": {
-            "create": "CanvasWidget",
-            "param": {
-                "w"         : 192,
-                "h"         : 40,
-                "zIndex"    : 5,
-                "speed"     : 100,
-                "bounds"    : {"x":643, "y":538},
-                // "bounds"    : {"x":0, "y":0},
-                "draw"      : "test"
-            }
-        },
-
-        "BtnSiguiente": {
+        "BtnSiguienteSSID": {
             "create": "CanvasWidget",
             "param": {
                 "w"         : 192,
@@ -147,10 +134,59 @@
                 "zIndex"    : 5,
                 "speed"     : 100,
                 "bounds"    : {"x":899, "y":538},
-                // "bounds"    : {"x":0, "y":0},
-                "draw"      : "test2"
+                "defaultState": "center",
+                "states": {
+                    "center": {  
+                        "speed": 200,
+                        "x": 899, "y": 538, "a": 255
+                    },
+                    "left": {  
+                        "speed": 200,
+                        "x": -381, "y": 538, "a": 255
+                    }  
+                },
+                "draw"      : "drawBtnSiguienteSSID"
             }
         },
+
+        // "BtnAnteriorTipoSeguridad": {
+        //     "create": "CanvasWidget",
+        //     "param": {
+        //         "w"         : 192,
+        //         "h"         : 40,
+        //         "zIndex"    : 5,
+        //         "speed"     : 100,
+        //         "bounds"    : {"x":643, "y":538},
+        //         // "bounds"    : {"x":0, "y":0},
+        //         "draw"      : "drawBtnAnteriorTipoSeguridad"
+        //     }
+        // },
+
+        // "BtnSiguienteTipoSeguridad": {
+        //     "create": "CanvasWidget",
+        //     "param": {
+        //         "w"         : 192,
+        //         "h"         : 40,
+        //         "zIndex"    : 5,
+        //         "speed"     : 100,
+        //         "bounds"    : {"x":643, "y":538},
+        //         // "bounds"    : {"x":0, "y":0},
+        //         "draw"      : "drawBtnSiguienteTipoSeguridad"
+        //     }
+        // },
+
+        // "BtnAnteriorContrasena": {
+        //     "create": "CanvasWidget",
+        //     "param": {
+        //         "w"         : 192,
+        //         "h"         : 40,
+        //         "zIndex"    : 5,
+        //         "speed"     : 100,
+        //         "bounds"    : {"x":643, "y":538},
+        //         // "bounds"    : {"x":0, "y":0},
+        //         "draw"      : "drawBtnAnteriorContrasena"
+        //     }
+        // },
 
         "inputNombreRed": {  
         "create": "InputWidget",  

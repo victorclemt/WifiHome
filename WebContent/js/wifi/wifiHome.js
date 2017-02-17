@@ -37,7 +37,7 @@ function wifiHome(_json, _options)
                             ];
 
 
-    this.confirm =  [{text1:"Siguiente"}];
+    // this.confirm =  [{text1:"Siguiente"}];
 
     this.wizard = [];
 
@@ -87,14 +87,17 @@ wifiHome.prototype.onEnter = function onEnter(_data)
     widgets.inputContrasena.setData('the best Password ever');
     widgets.inputContrasena.stateChange("right");
 
-    // widgets.BtnSiguienteSSID.setData(this.confirm);
-    // widgets.BtnSiguienteSSID.stateChange("enter");
+    widgets.BtnSiguienteSSID.setData({buttonTxt:"Siguiente"});
+    widgets.BtnSiguienteSSID.stateChange("center");
 
-    widgets.BtnAnteriorSSID.setData({buttonTxt:"Anterior"});
-    widgets.BtnAnteriorSSID.stateChange("enter");
+    // widgets.BtnAnteriorTipoSeguridad.setData({buttonTxt:"Anterior"});
+    // widgets.BtnAnteriorTipoSeguridad.stateChange("enter");
 
-    widgets.BtnSiguiente.setData({buttonTxt:"Siguiente"})
-    widgets.BtnSiguiente.stateChange("enter");
+    // widgets.BtnSiguienteTipoSeguridad.setData({buttonTxt:"Siguiente"});
+    // widgets.BtnSiguienteTipoSeguridad.stateChange("enter");
+
+    // widgets.BtnAnteriorContrasena.setData({buttonTxt:"Anterior"});
+    // widgets.BtnAnteriorContrasena.stateChange("enter");
 
     this.widgets.malla.setData();
     this.widgets.malla.stateChange("exit");
@@ -158,6 +161,7 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
             if (scrolled) this.scrollListPos--;
             if (this.scrollListPos == 0) {
                 inputNombreRed.stateChange("center");
+                BtnSiguienteSSID.stateChange("center");
                 inputTipoSeguridad.stateChange("right");
             }
             if (this.scrollListPos == 1) {
@@ -172,6 +176,7 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
             if (scrolled) this.scrollListPos++;
             if (this.scrollListPos == 1) {
                 inputNombreRed.stateChange("left");
+                BtnSiguienteSSID.stateChange("left");
                 inputTipoSeguridad.stateChange("center");
             }
             if (this.scrollListPos == 2) {
@@ -271,38 +276,46 @@ wifiHome.drawMainSteps = function drawMainSteps(_data) {
 
 };
 
-wifiHome.drawBtnSiguienteSSID = function drawBtnSiguienteSSID(_data){
+// wifiHome.drawBtnSiguienteSSID = function drawBtnSiguienteSSID(_data){
 
-  this.draw = function draw(focus) {
-    var ctx = this.getContext("2d");
-    ctx.beginObject();
-    ctx.clear();    
+//   this.draw = function draw(focus) {
+//     var ctx = this.getContext("2d");
+//     ctx.beginObject();
+//     ctx.clear();    
 
   
-  var custo_text = focus ? JSON.stringify(this.themaData.standarBlackFont) : JSON.stringify(this.themaData.standardFont);
-    custo_text = JSON.parse(custo_text);
+//   var custo_text = focus ? JSON.stringify(this.themaData.standarBlackFont) : JSON.stringify(this.themaData.standardFont);
+//     custo_text = JSON.parse(custo_text);
     
-    if(focus){
-      var custoW = {"fill": "rgba(255, 255, 255, 1)"};
-      Canvas.drawShape(ctx, "rect", [0,0,ctx.viewportWidth,ctx.viewportHeight], custoW);  
+//     if(focus){
+//       var custoW = {"fill": "rgba(255, 255, 255, 1)"};
+//       Canvas.drawShape(ctx, "rect", [0,0,ctx.viewportWidth,ctx.viewportHeight], custoW);  
 
-    } else {
-      custoW = {"fill":"rgba(0, 0, 255,1)"};
-      Canvas.drawShape(ctx, "rect", [0,0,ctx.viewportWidth,ctx.viewportHeight], custoW);  
-    }
+//     } else {
+//       custoW = {"fill":"rgba(0, 0, 255,1)"};
+//       Canvas.drawShape(ctx, "rect", [0,0,ctx.viewportWidth,ctx.viewportHeight], custoW);  
+//     }
     
-    Canvas.drawText(ctx, _data.text1, new Rect(10, 0, ctx.viewportWidth-100, 32), custo_text);
+//     Canvas.drawText(ctx, _data.text1, new Rect(10, 0, ctx.viewportWidth-100, 32), custo_text);
         
-    ctx.drawObject(ctx.endObject());
-  } 
+//     ctx.drawObject(ctx.endObject());
+//   } 
   
-}
+// }
 
-wifiHome.test2 = function test2(_data, focus) {
+wifiHome.drawBtnSiguienteSSID = function drawBtnSiguienteSSID(_data, focus) {
     wifiHome.heyDrawAPrettyButton.bind(this)(_data, focus);
 }
 
-wifiHome.test = function test(_data, focus) {
+wifiHome.drawBtnAnteriorTipoSeguridad = function drawBtnAnteriorTipoSeguridad(_data, focus) {
+    wifiHome.heyDrawAPrettyButton.bind(this)(_data, focus);
+}
+
+wifiHome.drawBtnSiguienteTipoSeguridad = function drawBtnSiguienteTipoSeguridad(_data, focus) {
+    wifiHome.heyDrawAPrettyButton.bind(this)(_data, focus);
+}
+
+wifiHome.drawBtnAnteriorContrasena = function drawBtnAnteriorContrasena(_data, focus) {
     wifiHome.heyDrawAPrettyButton.bind(this)(_data, focus);
 }
 
