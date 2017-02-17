@@ -42,7 +42,11 @@ function wifiHome(_json, _options)
     this.wizard = [];
 
     // variable to remember if the input has the focus  
-    this._inputHasFocus = false; 
+    this.inputHasFocus = true;
+
+    // variable to remember if the buttons have focus
+    this.btnSiguienteHasFocus = false;
+    this.btnAnteriorHasFocus = false;
 
     // variable to remember the position of the scrolllist
     this.scrollListPos = 0;
@@ -80,6 +84,7 @@ wifiHome.prototype.onEnter = function onEnter(_data)
 
     widgets.inputNombreRed.setData('Un SSID cualquiera');
     widgets.inputNombreRed.stateChange("center");
+    widgets.inputNombreRed.setFocus(true);
 
     widgets.inputTipoSeguridad.setData('WPA');
     widgets.inputTipoSeguridad.stateChange("right");
@@ -135,19 +140,19 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
     var btnSiguienteTipoSeguridad = widgets.btnSiguienteTipoSeguridad;
     var btnAnteriorContrasena = widgets.btnAnteriorContrasena;
 
-    if (this._inputHasFocus) {
+    if (this.inputHasFocus) {
         var keyHandled = inputNombreRed.keyHandler(_key);
         if (keyHandled || _key === 'KEY_BACKSPACE') return true;
     }
 
     switch (_key) {
-        case "KEY_TV_YELLOW":
-            widgets.btnAnteriorSSID.setFocus(false);
-            break;
+        // case "KEY_TV_YELLOW":
+        //     widgets.btnAnteriorSSID.setFocus(false);
+        //     break;
 
-        case "KEY_TV_YELLOW_LONG":
-            this.widgets.btnAnteriorSSID.setFocus(true);
-            break;
+        // case "KEY_TV_YELLOW_LONG":
+        //     this.widgets.btnAnteriorSSID.setFocus(true);
+        //     break;
 
         case "KEY_TV_GREEN":
             if (this.mallaOn){
@@ -159,44 +164,85 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
             }
             
             break;
-        // para acomodar las cosas    
+          
        case "KEY_LEFT":
-            this.client.lock();
-            var scrolled = steps.scrollPrev();
-            if (scrolled) this.scrollListPos--;
-            if (this.scrollListPos == 0) {
-                inputNombreRed.stateChange("center");
-                btnSiguienteSSID.stateChange("center");
-                inputTipoSeguridad.stateChange("right");
-                btnAnteriorTipoSeguridad.stateChange("right");
-                btnSiguienteTipoSeguridad.stateChange("right");
-            }
+       case "KEY_RIGHT":
             if (this.scrollListPos == 1) {
-                inputTipoSeguridad.stateChange("center");
-                btnAnteriorTipoSeguridad.stateChange("center");
-                btnSiguienteTipoSeguridad.stateChange("center");
-                inputContrasena.stateChange("right");
-                btnAnteriorContrasena.stateChange("right");
+                if (this.btnSiguienteHasFocus) {
+                    btnSiguienteTipoSeguridad.setFocus(false);
+                    this.btnSiguienteHasFocus = false;
+                    btnAnteriorTipoSeguridad.setFocus(true);
+                    this.btnAnteriorHasFocus = true
+                } else if (this.btnAnteriorHasFocus) {
+                    btnSiguienteTipoSeguridad.setFocus(true);
+                    this.btnSiguienteHasFocus = true;
+                    btnAnteriorTipoSeguridad.setFocus(false);
+                    this.btnAnteriorHasFocus = false
+                }
             }
-            this.client.unlock();
             return true;
-        case "KEY_RIGHT":
+
+        // Para demostrar que se puede hacer un desmadre 
+        case "KEY_IRENTER":
             this.client.lock();
-            var scrolled = steps.scrollNext();
-            if (scrolled) this.scrollListPos++;
-            if (this.scrollListPos == 1) {
-                inputNombreRed.stateChange("left");
-                btnSiguienteSSID.stateChange("left");
-                inputTipoSeguridad.stateChange("center");
-                btnAnteriorTipoSeguridad.stateChange("center");
-                btnSiguienteTipoSeguridad.stateChange("center");
-            }
-            if (this.scrollListPos == 2) {
-                inputTipoSeguridad.stateChange("left");
-                btnAnteriorTipoSeguridad.stateChange("left");
-                btnSiguienteTipoSeguridad.stateChange("left");
-                inputContrasena.stateChange("center");
-                btnAnteriorContrasena.stateChange("center");
+            if (this.scrollListPos == 0 && this.btnSiguienteHasFocus) {
+                var scrolled = steps.scrollNext();
+                if (scrolled) {
+                    this.scrollListPos++;
+                    btnSiguienteSSID.setFocus(false);
+                    this.btnSiguienteHasFocus = false;
+                    inputTipoSeguridad.setFocus(true);
+                    this.inputHasFocus = true;
+                    inputNombreRed.stateChange("left");
+                    btnSiguienteSSID.stateChange("left");
+                    inputTipoSeguridad.stateChange("center");
+                    btnAnteriorTipoSeguridad.stateChange("center");
+                    btnSiguienteTipoSeguridad.stateChange("center");
+                }
+            } else if (this.scrollListPos == 1) {
+                if (this.btnAnteriorHasFocus) {
+                    var scrolled = steps.scrollPrev();
+                    if (scrolled) {
+                        this.scrollListPos--;
+                        btnAnteriorTipoSeguridad.setFocus(false);
+                        this.btnAnteriorHasFocus = false;
+                        inputNombreRed.setFocus(true);
+                        this.inputHasFocus = true;
+                        inputNombreRed.stateChange("center");
+                        btnSiguienteSSID.stateChange("center");
+                        inputTipoSeguridad.stateChange("right");
+                        btnAnteriorTipoSeguridad.stateChange("right");
+                        btnSiguienteTipoSeguridad.stateChange("right");
+                    }
+                } else if (this.btnSiguienteHasFocus) {
+                    var scrolled = steps.scrollNext();
+                    if (scrolled) {
+                        this.scrollListPos++;
+                        btnSiguienteTipoSeguridad.setFocus(false);
+                        this.btnSiguienteHasFocus = false;
+                        inputContrasena.setFocus(true);
+                        this.inputHasFocus = true;
+                        inputTipoSeguridad.stateChange("left");
+                        btnAnteriorTipoSeguridad.stateChange("left");
+                        btnSiguienteTipoSeguridad.stateChange("left");
+                        inputContrasena.stateChange("center");
+                        btnAnteriorContrasena.stateChange("center");
+                    }
+                }
+            } else if (this.scrollListPos == 2 && this.btnAnteriorHasFocus) {
+                var scrolled = steps.scrollPrev();
+                if (scrolled) {
+                    this.scrollListPos--;
+                    btnAnteriorContrasena.setFocus(false);
+                    this.btnAnteriorHasFocus = false;
+                    inputTipoSeguridad.setFocus(true);
+                    this.inputHasFocus = true;
+                    inputTipoSeguridad.stateChange("center");
+                    btnAnteriorTipoSeguridad.stateChange("center");
+                    btnSiguienteTipoSeguridad.stateChange("center");
+                    inputContrasena.stateChange("right");
+                    btnAnteriorContrasena.stateChange("right");
+                }
             }
             this.client.unlock();
             return true;
@@ -204,23 +250,52 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
         //The return of Carlos !
         case 'KEY_UP':
         case 'KEY_DOWN':
-            // if (this.scrollListPos == 0) {
+            if (this.scrollListPos == 0) {
+                if (this.inputHasFocus) {
+                    // remove the focus
+                    inputNombreRed.setFocus(false);
+                    this.inputHasFocus = false;
+                    btnSiguienteSSID.setFocus(true);
+                    this.btnSiguienteHasFocus = true;
+                } else {
+                    // give the focus
+                    inputNombreRed.setFocus(true);
+                    this.inputHasFocus = true;
+                    btnSiguienteSSID.setFocus(false);
+                    this.btnSiguienteHasFocus = false;
+                }
 
-            // } else if (this.scrollListPos == 1) {
+            } else if (this.scrollListPos == 1) {
+                if (this.inputHasFocus) {
+                    // remove the focus
+                    inputTipoSeguridad.setFocus(false);
+                    this.inputHasFocus = false;
+                    btnAnteriorTipoSeguridad.setFocus(true);
+                    this.btnAnteriorHasFocus = true;
+                } else if(this.btnSiguienteHasFocus || this.btnAnteriorHasFocus) {
+                    // give the focus
+                    inputTipoSeguridad.setFocus(true);
+                    this.inputHasFocus = true;
+                    btnAnteriorTipoSeguridad.setFocus(false);
+                    btnSiguienteTipoSeguridad.setFocus(false);
+                    this.btnSiguienteHasFocus = false;
+                    this.btnAnteriorHasFocus = false;
+                }
 
-            // } else if (this.scrollListPos == 2) {
-
-            // }
-            if (this._inputHasFocus) {
-                // remove the focus
-                inputNombreRed.setFocus(false);
-                this._inputHasFocus = false;
-                btnSiguienteSSID.setFocus(true);
-            } else {
-                // give the focus
-                inputNombreRed.setFocus(true);
-                this._inputHasFocus = true;
-                btnSiguienteSSID.setFocus(false);
+            } else if (this.scrollListPos == 2) {
+                if (this.inputHasFocus) {
+                    // remove the focus
+                    inputContrasena.setFocus(false);
+                    this.inputHasFocus = false;
+                    btnAnteriorContrasena.setFocus(true);
+                    this.btnAnteriorHasFocus = true;
+                } else {
+                    // give the focus
+                    inputContrasena.setFocus(true);
+                    this.inputHasFocus = true;
+                    btnAnteriorContrasena.setFocus(false);
+                    this.btnAnteriorHasFocus = false;
+                }
             }
         break;
 
@@ -253,7 +328,6 @@ wifiHome.drawMalla = function drawMalla(_data)
     var ctx = this.getContext("2d");
     ctx.beginObject();
     ctx.clear();
-
 
     tp_draw.getSingleton().drawImage("img/wifi/DevsOnion.png", ctx, 0, 0);
 
@@ -291,33 +365,6 @@ wifiHome.drawMainSteps = function drawMainSteps(_data) {
 
 };
 
-// wifiHome.drawBtnSiguienteSSID = function drawBtnSiguienteSSID(_data){
-
-//   this.draw = function draw(focus) {
-//     var ctx = this.getContext("2d");
-//     ctx.beginObject();
-//     ctx.clear();    
-
-  
-//   var custo_text = focus ? JSON.stringify(this.themaData.standarBlackFont) : JSON.stringify(this.themaData.standardFont);
-//     custo_text = JSON.parse(custo_text);
-    
-//     if(focus){
-//       var custoW = {"fill": "rgba(255, 255, 255, 1)"};
-//       Canvas.drawShape(ctx, "rect", [0,0,ctx.viewportWidth,ctx.viewportHeight], custoW);  
-
-//     } else {
-//       custoW = {"fill":"rgba(0, 0, 255,1)"};
-//       Canvas.drawShape(ctx, "rect", [0,0,ctx.viewportWidth,ctx.viewportHeight], custoW);  
-//     }
-    
-//     Canvas.drawText(ctx, _data.text1, new Rect(10, 0, ctx.viewportWidth-100, 32), custo_text);
-        
-//     ctx.drawObject(ctx.endObject());
-//   } 
-  
-// }
-
 wifiHome.drawBtnSiguienteSSID = function drawBtnSiguienteSSID(_data, focus) {
     wifiHome.heyDrawAPrettyButton.bind(this)(_data, focus);
 }
@@ -335,15 +382,13 @@ wifiHome.drawBtnAnteriorContrasena = function drawBtnAnteriorContrasena(_data, f
 }
 
 wifiHome.heyDrawAPrettyButton = function heyDrawAPrettyButton(_data, focus) {
-    // this.draw = function draw(focus) {
-        NGM.trace("The vaule of focus is " + focus);
         var ctx = this.getContext("2d");
         ctx.beginObject();
         ctx.clear();
 
         var w = ctx.viewportWidth;
 
-        var custo_text = focus ? JSON.stringify(this.themaData.standarGrayFont) : JSON.stringify(this.themaData.standardFont);
+        var custo_text = focus ? JSON.stringify(this.themaData.standardFont) : JSON.stringify(this.themaData.standarGrayFont);
         custo_text = JSON.parse(custo_text);
         var custo = this.themaData.panel;
 
@@ -351,5 +396,4 @@ wifiHome.heyDrawAPrettyButton = function heyDrawAPrettyButton(_data, focus) {
         Canvas.drawText(ctx, _data.buttonTxt, new Rect(60, 10, w - 16, 32), custo_text);
 
         ctx.drawObject(ctx.endObject());
-    // }
 }
