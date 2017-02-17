@@ -123,7 +123,6 @@ wifiHome.prototype.onExit = function onExit()
     NGM.trace("Exit WIFI CONFIGURATION");
 }
 
-
 wifiHome.prototype.onKeyPress = function onKeyPress(_key)
 {
     NGM.trace("Mr., you received a key: " + _key);
@@ -194,67 +193,38 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
 
         // Para demostrar que se puede hacer un desmadre 
         case "KEY_IRENTER":
-            this.client.lock();
+            var previousScrollListPos;
             if (this.scrollListPos == 0 && this.btnSiguienteHasFocus) {
                 var scrolled = steps.scrollNext();
                 if (scrolled) {
-                    this.scrollListPos++;
-                    btnSiguienteSSID.setFocus(false);
-                    this.btnSiguienteHasFocus = false;
-                    inputTipoSeguridad.setFocus(true);
-                    this.inputHasFocus = true;
-                    inputNombreRed.stateChange("left");
-                    btnSiguienteSSID.stateChange("left");
-                    inputTipoSeguridad.stateChange("center");
-                    btnAnteriorTipoSeguridad.stateChange("center");
-                    btnSiguienteTipoSeguridad.stateChange("center");
+                    previousScrollListPos = this.scrollListPos;
+                    ++this.scrollListPos;
+                    moveButtonsAndInputs.bind(this)(previousScrollListPos);
                 }
             } else if (this.scrollListPos == 1) {
                 if (this.btnAnteriorHasFocus) {
                     var scrolled = steps.scrollPrev();
                     if (scrolled) {
-                        this.scrollListPos--;
-                        btnAnteriorTipoSeguridad.setFocus(false);
-                        this.btnAnteriorHasFocus = false;
-                        inputNombreRed.setFocus(true);
-                        this.inputHasFocus = true;
-                        inputNombreRed.stateChange("center");
-                        btnSiguienteSSID.stateChange("center");
-                        inputTipoSeguridad.stateChange("right");
-                        btnAnteriorTipoSeguridad.stateChange("right");
-                        btnSiguienteTipoSeguridad.stateChange("right");
+                        previousScrollListPos = this.scrollListPos;
+                        --this.scrollListPos;
+                        moveButtonsAndInputs.bind(this)(previousScrollListPos);
                     }
                 } else if (this.btnSiguienteHasFocus) {
                     var scrolled = steps.scrollNext();
                     if (scrolled) {
-                        this.scrollListPos++;
-                        btnSiguienteTipoSeguridad.setFocus(false);
-                        this.btnSiguienteHasFocus = false;
-                        inputContrasena.setFocus(true);
-                        this.inputHasFocus = true;
-                        inputTipoSeguridad.stateChange("left");
-                        btnAnteriorTipoSeguridad.stateChange("left");
-                        btnSiguienteTipoSeguridad.stateChange("left");
-                        inputContrasena.stateChange("center");
-                        btnAnteriorContrasena.stateChange("center");
+                        previousScrollListPos = this.scrollListPos;
+                        ++this.scrollListPos;
+                        moveButtonsAndInputs.bind(this)(previousScrollListPos);
                     }
                 }
             } else if (this.scrollListPos == 2 && this.btnAnteriorHasFocus) {
                 var scrolled = steps.scrollPrev();
                 if (scrolled) {
-                    this.scrollListPos--;
-                    btnAnteriorContrasena.setFocus(false);
-                    this.btnAnteriorHasFocus = false;
-                    inputTipoSeguridad.setFocus(true);
-                    this.inputHasFocus = true;
-                    inputTipoSeguridad.stateChange("center");
-                    btnAnteriorTipoSeguridad.stateChange("center");
-                    btnSiguienteTipoSeguridad.stateChange("center");
-                    inputContrasena.stateChange("right");
-                    btnAnteriorContrasena.stateChange("right");
+                    previousScrollListPos = this.scrollListPos;
+                    --this.scrollListPos;
+                    moveButtonsAndInputs.bind(this)(previousScrollListPos);
                 }
             }
-            this.client.unlock();
             return true;
 
         //The return of Carlos !
@@ -309,18 +279,6 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
             }
         return true;
 
-        // case "KEY_UP":
-        //     canvas.animation.move(0, -20, 300, 0, true).start();
-        //     NGM.trace("y");
-        //     NGM.trace(this.y+=20);
-        //     return true;
-        // case "KEY_DOWN":
-        //     canvas.animation.move(0, 20, 300, 0, true).start();
-        //     NGM.trace("y");
-        //     NGM.trace(this.y-=20);
-        //     return true;
-
-
         case "KEY_BACK":
         case "KEY_IRBACK":
         case "KEY_MENU":
@@ -329,7 +287,37 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
     }
 
     return true;
+}
 
+var moveButtonsAndInputs = function(previousScrollListPos) {
+    var widgets = this.widgets;
+
+    var inputBoxes = [widgets.inputNombreRed, widgets.inputTipoSeguridad, widgets.inputContrasena];
+    var buttons = [[widgets.btnSiguienteSSID], [widgets.btnAnteriorTipoSeguridad, 
+                    widgets.btnSiguienteTipoSeguridad], [widgets.btnAnteriorContrasena]];
+
+    this.client.lock();
+    inputBoxes[this.scrollListPos].stateChange("center");
+    for (var i = 0; var len = buttons[this.scrollListPos].length; i < len; i++) {
+        buttons[this.scrollListPos][i].stateChange("center");
+    }
+    inputBoxes[this.scrollListPos].setFocus(true);
+    this.inputHasFocus = true;
+    this.btnSiguienteHasFocus = false;
+    this.btnAnteriorHasFocus = false;
+
+    if (this.scrollListPos > previousScrollListPos) {
+        inputBoxes[previousScrollListPos].stateChange("left");
+        for (var i = 0; var len = buttons[previousScrollListPos].length; i < len; i++) {
+            buttons[previousScrollListPos][i].stateChange("left");
+        }
+    } else {
+        inputBoxes[previousScrollListPos].stateChange("right");
+        for (var i = 0; var len = buttons[previousScrollListPos].length; i < len; i++) {
+            buttons[previousScrollListPos][i].stateChange("right");
+        }
+    }
+    this.client.unlock();
 }
 
 // Dibuja la malla al presionar enter para ver las dimensiones para el desarrollo.
