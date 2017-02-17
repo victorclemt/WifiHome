@@ -193,6 +193,7 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
 
         // Para demostrar que se puede hacer un desmadre 
         case "KEY_IRENTER":
+            this.client.lock();
             var previousScrollListPos;
             if (this.scrollListPos == 0 && this.btnSiguienteHasFocus) {
                 var scrolled = steps.scrollNext();
@@ -225,6 +226,7 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
                     moveButtonsAndInputs.bind(this)(previousScrollListPos);
                 }
             }
+            this.client.unlock();
             return true;
 
         //The return of Carlos !
@@ -289,16 +291,17 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
     return true;
 }
 
-var moveButtonsAndInputs = function(previousScrollListPos) {
+var moveButtonsAndInputs = function moveButtonsAndInputs(previousScrollListPos) {
     var widgets = this.widgets;
 
     var inputBoxes = [widgets.inputNombreRed, widgets.inputTipoSeguridad, widgets.inputContrasena];
     var buttons = [[widgets.btnSiguienteSSID], [widgets.btnAnteriorTipoSeguridad, 
-                    widgets.btnSiguienteTipoSeguridad], [widgets.btnAnteriorContrasena]];
+                widgets.btnSiguienteTipoSeguridad], [widgets.btnAnteriorContrasena]];
 
-    this.client.lock();
+    
     inputBoxes[this.scrollListPos].stateChange("center");
-    for (var i = 0; var len = buttons[this.scrollListPos].length; i < len; i++) {
+    NGM.trace("The length of the array is " + buttons[this.scrollListPos].length);
+    for (var i = 0, len = buttons[this.scrollListPos].length; i < len; i++) {
         buttons[this.scrollListPos][i].stateChange("center");
     }
     inputBoxes[this.scrollListPos].setFocus(true);
@@ -308,16 +311,17 @@ var moveButtonsAndInputs = function(previousScrollListPos) {
 
     if (this.scrollListPos > previousScrollListPos) {
         inputBoxes[previousScrollListPos].stateChange("left");
-        for (var i = 0; var len = buttons[previousScrollListPos].length; i < len; i++) {
+        for (var i = 0, len = buttons[previousScrollListPos].length; i < len; i++) {
             buttons[previousScrollListPos][i].stateChange("left");
+            buttons[previousScrollListPos][i].setFocus(false);
         }
     } else {
         inputBoxes[previousScrollListPos].stateChange("right");
-        for (var i = 0; var len = buttons[previousScrollListPos].length; i < len; i++) {
+        for (var i = 0, len = buttons[previousScrollListPos].length; i < len; i++) {
             buttons[previousScrollListPos][i].stateChange("right");
+            buttons[previousScrollListPos][i].setFocus(false);
         }
     }
-    this.client.unlock();
 }
 
 // Dibuja la malla al presionar enter para ver las dimensiones para el desarrollo.
