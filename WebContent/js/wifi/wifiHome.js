@@ -139,6 +139,10 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
     var btnSiguienteTipoSeguridad = widgets.btnSiguienteTipoSeguridad;
     var btnAnteriorContrasena = widgets.btnAnteriorContrasena;
 
+    var inputBoxes = [widgets.inputNombreRed, widgets.inputTipoSeguridad, widgets.inputContrasena];
+    var buttons = [[widgets.btnSiguienteSSID], [widgets.btnAnteriorTipoSeguridad, 
+                widgets.btnSiguienteTipoSeguridad], [widgets.btnAnteriorContrasena]];
+
     if (this.inputHasFocus) {
         if (this.scrollListPos == 0) {
             // var keyHandled = inputNombreRed.keyHandler(_key);
@@ -200,7 +204,8 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
                 if (scrolled) {
                     previousScrollListPos = this.scrollListPos;
                     ++this.scrollListPos;
-                    moveButtonsAndInputs.bind(this)(previousScrollListPos);
+                    moveButtonsAndInputs(previousScrollListPos, this.scrollListPos, inputBoxes, buttons);
+                    changeFocuses.bind(this)(previousScrollListPos, inputBoxes, buttons);
                 }
             } else if (this.scrollListPos == 1) {
                 if (this.btnAnteriorHasFocus) {
@@ -208,14 +213,16 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
                     if (scrolled) {
                         previousScrollListPos = this.scrollListPos;
                         --this.scrollListPos;
-                        moveButtonsAndInputs.bind(this)(previousScrollListPos);
+                        moveButtonsAndInputs(previousScrollListPos, this.scrollListPos, inputBoxes, buttons);
+                        changeFocuses.bind(this)(previousScrollListPos, inputBoxes, buttons);
                     }
                 } else if (this.btnSiguienteHasFocus) {
                     var scrolled = steps.scrollNext();
                     if (scrolled) {
                         previousScrollListPos = this.scrollListPos;
                         ++this.scrollListPos;
-                        moveButtonsAndInputs.bind(this)(previousScrollListPos);
+                        moveButtonsAndInputs(previousScrollListPos, this.scrollListPos, inputBoxes, buttons);
+                        changeFocuses.bind(this)(previousScrollListPos, inputBoxes, buttons);
                     }
                 }
             } else if (this.scrollListPos == 2 && this.btnAnteriorHasFocus) {
@@ -223,7 +230,8 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
                 if (scrolled) {
                     previousScrollListPos = this.scrollListPos;
                     --this.scrollListPos;
-                    moveButtonsAndInputs.bind(this)(previousScrollListPos);
+                    moveButtonsAndInputs(previousScrollListPos, this.scrollListPos, inputBoxes, buttons);
+                    changeFocuses.bind(this)(previousScrollListPos, inputBoxes, buttons);
                 }
             }
             this.client.unlock();
@@ -291,25 +299,14 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
     return true;
 }
 
-var moveButtonsAndInputs = function moveButtonsAndInputs(previousScrollListPos) {
-    var widgets = this.widgets;
+var moveButtonsAndInputs = function moveButtonsAndInputs(previousScrollListPos, scrollListPos, inputBoxes, buttons) {  
 
-    var inputBoxes = [widgets.inputNombreRed, widgets.inputTipoSeguridad, widgets.inputContrasena];
-    var buttons = [[widgets.btnSiguienteSSID], [widgets.btnAnteriorTipoSeguridad, 
-                widgets.btnSiguienteTipoSeguridad], [widgets.btnAnteriorContrasena]];
-
-    
-    inputBoxes[this.scrollListPos].stateChange("center");
-    NGM.trace("The length of the array is " + buttons[this.scrollListPos].length);
-    for (var i = 0, len = buttons[this.scrollListPos].length; i < len; i++) {
-        buttons[this.scrollListPos][i].stateChange("center");
+    inputBoxes[scrollListPos].stateChange("center");
+    for (var i = 0, len = buttons[scrollListPos].length; i < len; i++) {
+        buttons[scrollListPos][i].stateChange("center");
     }
-    inputBoxes[this.scrollListPos].setFocus(true);
-    this.inputHasFocus = true;
-    this.btnSiguienteHasFocus = false;
-    this.btnAnteriorHasFocus = false;
 
-    if (this.scrollListPos > previousScrollListPos) {
+    if (scrollListPos > previousScrollListPos) {
         inputBoxes[previousScrollListPos].stateChange("left");
         for (var i = 0, len = buttons[previousScrollListPos].length; i < len; i++) {
             buttons[previousScrollListPos][i].stateChange("left");
@@ -320,6 +317,41 @@ var moveButtonsAndInputs = function moveButtonsAndInputs(previousScrollListPos) 
         for (var i = 0, len = buttons[previousScrollListPos].length; i < len; i++) {
             buttons[previousScrollListPos][i].stateChange("right");
             buttons[previousScrollListPos][i].setFocus(false);
+        }
+    }
+}
+
+var changeFocuses = function changeFocuses(previousScrollListPos, inputBoxes, buttons, upOrDown) {
+    if (this.scrollListPos != previousScrollListPos) {
+        inputBoxes[this.scrollListPos].setFocus(true);
+        this.inputHasFocus = true;
+        this.btnSiguienteHasFocus = false;
+        this.btnAnteriorHasFocus = false;
+        for (var i = 0, len = buttons[previousScrollListPos].length; i < len; i++) {
+            buttons[previousScrollListPos][i].setFocus(false);
+        }
+    } else {
+        if (this.inputHasFocus && upOrDown) {
+            inputBoxes[this.scrollListPos].setFocus(false);
+            this.inputHasFocus = false;
+            buttons[this.scrollListPos][buttons[this.scrollListPos].length - 1].setFocus(true);
+            this.btnSiguienteHasFocus = true;
+        } else if (!this.inputHasFocus && upOrDown) {
+            inputBoxes[this.scrollListPos].setFocus(true);
+            this.inputHasFocus = true;
+            for (var i = 0, len = buttons[this.scrollListPos].length; i < len; i++) {
+                buttons[this.scrollListPos][i].setFocus(false);
+            }
+            this.btnSiguienteHasFocus = false;
+            this.btnAnteriorHasFocus = false;
+        } else if (!this.inputHasFocus && !upOrDown && this.scrollListPos == 1) {
+            if (this.btnSiguienteHasFocus) {
+                buttons[this.scrollListPos][0].setFocus(true);
+                buttons[this.scrollListPos][1].setFocus(false);
+            } else {
+                buttons[this.scrollListPos][0].setFocus(false);
+                buttons[this.scrollListPos][1].setFocus(true);
+            }
         }
     }
 }
