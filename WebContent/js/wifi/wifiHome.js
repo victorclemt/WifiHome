@@ -41,13 +41,6 @@ function wifiHome(_json, _options)
 
     this.wizard = [];
 
-    // variable to remember if the input has the focus  
-    this.inputHasFocus = true;
-
-    // variable to remember if the buttons have focus
-    this.btnSiguienteHasFocus = false;
-    this.btnAnteriorHasFocus = false;
-
     // variable to remember the position of the scrolllist
     this.scrollListPos = 0;
 }
@@ -65,7 +58,6 @@ wifiHome.prototype.onEnter = function onEnter(_data)
   
     this.home.showHeader();
 
-    this.client.lock();
     if (this.firstTimer){
 
       this.home.setBg("img/wifi/BACK-General.jpg");
@@ -83,31 +75,21 @@ wifiHome.prototype.onEnter = function onEnter(_data)
     var widgets = this.widgets;
 
     widgets.inputNombreRed.setData('Un SSID cualquiera');
-    widgets.inputNombreRed.stateChange("center");
-    widgets.inputNombreRed.setFocus(true);
+    setGlobalFocus.bind(this)(widgets.inputNombreRed);
 
     widgets.inputTipoSeguridad.setData('WPA');
-    widgets.inputTipoSeguridad.stateChange("right");
 
     widgets.inputContrasena.setData('the best Password ever');
-    widgets.inputContrasena.stateChange("right");
 
     widgets.btnSiguienteSSID.setData({buttonTxt:"Siguiente"});
-    widgets.btnSiguienteSSID.stateChange("center");
 
     widgets.btnAnteriorTipoSeguridad.setData({buttonTxt:"Anterior"});
-    widgets.btnAnteriorTipoSeguridad.stateChange("enter");
 
     widgets.btnSiguienteTipoSeguridad.setData({buttonTxt:"Siguiente"});
-    widgets.btnSiguienteTipoSeguridad.stateChange("enter");
 
     widgets.btnAnteriorContrasena.setData({buttonTxt:"Anterior"});
-    widgets.btnAnteriorContrasena.stateChange("enter");
 
     this.widgets.malla.setData();
-    this.widgets.malla.stateChange("exit");
-    this.client.unlock();
-
 }
 
 
@@ -172,37 +154,23 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
         case "KEY_IRENTER":
             this.client.lock();
             var previousScrollListPos = this.scrollListPos; 
-            if (this.scrollListPos == 0 && this.btnSiguienteHasFocus) {
+            if (this.scrollListPos == 0 && this.objectWithFocus.name.indexOf("Siguiente") !== -1) {
                 var scrolled = steps.scrollNext();
-                if (scrolled) {
-                    ++this.scrollListPos;
-                    moveButtonsAndInputs(previousScrollListPos, this.scrollListPos, inputBoxes, buttons);
-                    changeFocuses.bind(this)(previousScrollListPos, inputBoxes, buttons);
-                }
+                if (scrolled) ++this.scrollListPos;
             } else if (this.scrollListPos == 1) {
-                if (this.btnAnteriorHasFocus) {
+                if (this.objectWithFocus.name.indexOf("Anterior") !== -1) {
                     var scrolled = steps.scrollPrev();
-                    if (scrolled) {
-                        --this.scrollListPos;
-                        moveButtonsAndInputs(previousScrollListPos, this.scrollListPos, inputBoxes, buttons);
-                        changeFocuses.bind(this)(previousScrollListPos, inputBoxes, buttons);
-                    }
-                } else if (this.btnSiguienteHasFocus) {
+                    if (scrolled) --this.scrollListPos;
+                } else if (this.objectWithFocus.name.indexOf("Siguiente") !== -1) {
                     var scrolled = steps.scrollNext();
-                    if (scrolled) {
-                        ++this.scrollListPos;
-                        moveButtonsAndInputs(previousScrollListPos, this.scrollListPos, inputBoxes, buttons);
-                        changeFocuses.bind(this)(previousScrollListPos, inputBoxes, buttons);
-                    }
+                    if (scrolled) ++this.scrollListPos;
                 }
-            } else if (this.scrollListPos == 2 && this.btnAnteriorHasFocus) {
+            } else if (this.scrollListPos == 2 && this.objectWithFocus.name.indexOf("Anterior") !== -1) {
                 var scrolled = steps.scrollPrev();
-                if (scrolled) {
-                    --this.scrollListPos;
-                    moveButtonsAndInputs(previousScrollListPos, this.scrollListPos, inputBoxes, buttons);
-                    changeFocuses.bind(this)(previousScrollListPos, inputBoxes, buttons);
-                }
+                if (scrolled) --this.scrollListPos;
             }
+            moveButtonsAndInputs(previousScrollListPos, this.scrollListPos, inputBoxes, buttons);
+            changeFocuses.bind(this)(previousScrollListPos, inputBoxes, buttons);
             this.client.unlock();
             return true;
 
@@ -223,7 +191,6 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
 }
 
 var moveButtonsAndInputs = function moveButtonsAndInputs(previousScrollListPos, scrollListPos, inputBoxes, buttons) {  
-
     inputBoxes[scrollListPos].stateChange("center");
     for (var i = 0, len = buttons[scrollListPos].length; i < len; i++) {
         buttons[scrollListPos][i].stateChange("center");
@@ -233,57 +200,37 @@ var moveButtonsAndInputs = function moveButtonsAndInputs(previousScrollListPos, 
         inputBoxes[previousScrollListPos].stateChange("left");
         for (var i = 0, len = buttons[previousScrollListPos].length; i < len; i++) {
             buttons[previousScrollListPos][i].stateChange("left");
-            buttons[previousScrollListPos][i].setFocus(false);
         }
     } else {
         inputBoxes[previousScrollListPos].stateChange("right");
         for (var i = 0, len = buttons[previousScrollListPos].length; i < len; i++) {
             buttons[previousScrollListPos][i].stateChange("right");
-            buttons[previousScrollListPos][i].setFocus(false);
         }
     }
 }
 
 var changeFocuses = function changeFocuses(previousScrollListPos, inputBoxes, buttons, upOrDown) {
     if (this.scrollListPos != previousScrollListPos) {
-        inputBoxes[this.scrollListPos].setFocus(true);
-        this.inputHasFocus = true;
-        this.btnSiguienteHasFocus = false;
-        this.btnAnteriorHasFocus = false;
-        for (var i = 0, len = buttons[previousScrollListPos].length; i < len; i++) {
-            buttons[previousScrollListPos][i].setFocus(false);
-        }
+        setGlobalFocus.bind(this)(inputBoxes[this.scrollListPos]);
     } else {
-        if (this.inputHasFocus && upOrDown) {
-            inputBoxes[this.scrollListPos].setFocus(false);
-            this.inputHasFocus = false;
-            buttons[this.scrollListPos][buttons[this.scrollListPos].length - 1].setFocus(true);
-            if (this.scrollListPos == 2)
-                this.btnAnteriorHasFocus = true;
-            else
-                this.btnSiguienteHasFocus = true;
-        } else if (!this.inputHasFocus && upOrDown) {
-            inputBoxes[this.scrollListPos].setFocus(true);
-            this.inputHasFocus = true;
-            for (var i = 0, len = buttons[this.scrollListPos].length; i < len; i++) {
-                buttons[this.scrollListPos][i].setFocus(false);
-            }
-            this.btnSiguienteHasFocus = false;
-            this.btnAnteriorHasFocus = false;
-        } else if (!this.inputHasFocus && !upOrDown && this.scrollListPos == 1) {
-            if (this.btnSiguienteHasFocus) {
-                buttons[this.scrollListPos][0].setFocus(true);
-                buttons[this.scrollListPos][1].setFocus(false);
-                this.btnSiguienteHasFocus = false;
-                this.btnAnteriorHasFocus = true;
+        if (this.objectWithFocus.name.indexOf("input") !== -1 && upOrDown) {
+            setGlobalFocus.bind(this)(buttons[this.scrollListPos][buttons[this.scrollListPos].length - 1]);
+        } else if (this.objectWithFocus.name.indexOf("input") === -1 && upOrDown) {
+            setGlobalFocus.bind(this)(inputBoxes[this.scrollListPos]);
+        } else if (this.objectWithFocus.name.indexOf("input") === -1 && !upOrDown && this.scrollListPos == 1) {
+            if (this.objectWithFocus.name.indexOf("Siguiente") !== -1) {
+                setGlobalFocus.bind(this)(buttons[this.scrollListPos][0]);
             } else {
-                buttons[this.scrollListPos][0].setFocus(false);
-                buttons[this.scrollListPos][1].setFocus(true);
-                this.btnSiguienteHasFocus = true;
-                this.btnAnteriorHasFocus = false;
+                setGlobalFocus.bind(this)(buttons[this.scrollListPos][1]);
             }
         }
     }
+}
+
+var setGlobalFocus = function setGlobalFocus(objectToFocus) {
+    if (this.objectWithFocus !== undefined) this.objectWithFocus.setFocus(false);
+    this.objectWithFocus = objectToFocus;
+    this.objectWithFocus.setFocus(true);
 }
 
 // Dibuja la malla al presionar enter para ver las dimensiones para el desarrollo.
