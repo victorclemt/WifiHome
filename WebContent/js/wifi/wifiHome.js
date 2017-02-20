@@ -75,7 +75,7 @@ wifiHome.prototype.onEnter = function onEnter(_data)
     var widgets = this.widgets;
 
     widgets.inputNombreRed.setData('Un SSID cualquiera');
-    setGlobalFocus.bind(this)(widgets.inputNombreRed);
+    setGlobalFocusOn.bind(this)(widgets.inputNombreRed);
 
     widgets.inputTipoSeguridad.setData('WPA');
 
@@ -211,23 +211,23 @@ var moveButtonsAndInputs = function moveButtonsAndInputs(previousScrollListPos, 
 
 var changeFocuses = function changeFocuses(previousScrollListPos, inputBoxes, buttons, upOrDown) {
     if (this.scrollListPos != previousScrollListPos) {
-        setGlobalFocus.bind(this)(inputBoxes[this.scrollListPos]);
+        setGlobalFocusOn.bind(this)(inputBoxes[this.scrollListPos]);
     } else {
         if (this.objectWithFocus.name.indexOf("input") !== -1 && upOrDown) {
-            setGlobalFocus.bind(this)(buttons[this.scrollListPos][buttons[this.scrollListPos].length - 1]);
+            setGlobalFocusOn.bind(this)(buttons[this.scrollListPos][buttons[this.scrollListPos].length - 1]);
         } else if (this.objectWithFocus.name.indexOf("input") === -1 && upOrDown) {
-            setGlobalFocus.bind(this)(inputBoxes[this.scrollListPos]);
+            setGlobalFocusOn.bind(this)(inputBoxes[this.scrollListPos]);
         } else if (this.objectWithFocus.name.indexOf("input") === -1 && !upOrDown && this.scrollListPos == 1) {
             if (this.objectWithFocus.name.indexOf("Siguiente") !== -1) {
-                setGlobalFocus.bind(this)(buttons[this.scrollListPos][0]);
+                setGlobalFocusOn.bind(this)(buttons[this.scrollListPos][0]);
             } else {
-                setGlobalFocus.bind(this)(buttons[this.scrollListPos][1]);
+                setGlobalFocusOn.bind(this)(buttons[this.scrollListPos][1]);
             }
         }
     }
 }
 
-var setGlobalFocus = function setGlobalFocus(objectToFocus) {
+var setGlobalFocusOn = function setGlobalFocusOn(objectToFocus) {
     if (this.objectWithFocus !== undefined) this.objectWithFocus.setFocus(false);
     this.objectWithFocus = objectToFocus;
     this.objectWithFocus.setFocus(true);
