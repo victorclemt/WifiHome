@@ -84,6 +84,22 @@ wifiHome.prototype.onEnter = function onEnter(_data)
         widgets.btnSiguienteTipoSeguridad.setData({buttonTxt:"Siguiente"});
 
         widgets.btnAnteriorContrasena.setData({buttonTxt:"Anterior"});
+
+        this.widgetsInWifi = {
+            SSIDScreen: [
+                widgets.inputNombreRed,
+                widgets.btnSiguienteSSID
+            ],
+            securityScreen: [
+                widgets.inputTipoSeguridad,
+                widgets.btnAnteriorTipoSeguridad,
+                widgets.btnSiguienteTipoSeguridad
+            ],
+            contrasenaScreen: [
+                widgets.inputContrasena,
+                widgets.btnAnteriorContrasena
+            ]
+        };
     
     } else {
 
@@ -205,19 +221,35 @@ wifiHome.prototype.onKeyPressSSID = function onKeyPressSSID(_key) {
     var inputBox = widgets.inputNombreRed;
     var btnSiguiente = widgets.btnSiguienteSSID;
 
-    if (this.objectWithFocus.name.indexOf("input") !== -1) {
+    if (this.objectWithFocus == inputBox) {
         if (inputBox.keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
     }
 
     switch(_key) {
         case 'KEY_UP':
         case 'KEY_DOWN':
-            if (this.objectWithFocus.name.indexOf("input") !== -1) {
+            if (this.objectWithFocus == inputBox) {
                 setGlobalFocusOn.bind(this)(btnSiguiente);
-            } else {
+            } else if (this.objectWithFocus == btnSiguiente){
                 setGlobalFocusOn.bind(this)(inputBox);
             }
-            
+            break;
+        case "KEY_IRENTER":
+            if (this.objectWithFocus == btnSiguiente){
+                this.client.lock();
+                this.screenName = "securityScreen";
+                // inputBox.stateChange("left");
+                // btnSiguiente.stateChange("left");
+                widgets.steps.scrollNext();
+                //move to the left the widgets in curren screen
+                this.widgetsInWifi.SSIDScreen.map(function(widget){
+                    return widget.stateChange("left");
+                });
+                this.widgetsInWifi.securityScreen.map(function(widget){
+                    return widget.stateChange("center");
+                });
+                this.client.unlock();
+            }
         return true;
     }
 }
