@@ -66,30 +66,30 @@ wifiHome.prototype.onEnter = function onEnter(_data)
     
 
       this.widgets.steps.setData(this.wizardFirstTime); 
-      this.widgets.steps.stateChange("enter"); 
+      this.widgets.steps.stateChange("enter");
+
+      var widgets = this.widgets;
+
+        widgets.inputNombreRed.setData('Un SSID cualquiera');
+        setGlobalFocusOn.bind(this)(widgets.inputNombreRed);
+
+        widgets.inputTipoSeguridad.setData('WPA');
+
+        widgets.inputContrasena.setData('the best Password ever');
+
+        widgets.btnSiguienteSSID.setData({buttonTxt:"Siguiente"});
+
+        widgets.btnAnteriorTipoSeguridad.setData({buttonTxt:"Anterior"});
+
+        widgets.btnSiguienteTipoSeguridad.setData({buttonTxt:"Siguiente"});
+
+        widgets.btnAnteriorContrasena.setData({buttonTxt:"Anterior"});
     
     } else {
 
     this.home.setBg("img/wifi/BACK-RedWifi.jpg");
 
     }
-
-    var widgets = this.widgets;
-
-    widgets.inputNombreRed.setData('Un SSID cualquiera');
-    setGlobalFocusOn.bind(this)(widgets.inputNombreRed);
-
-    widgets.inputTipoSeguridad.setData('WPA');
-
-    widgets.inputContrasena.setData('the best Password ever');
-
-    widgets.btnSiguienteSSID.setData({buttonTxt:"Siguiente"});
-
-    widgets.btnAnteriorTipoSeguridad.setData({buttonTxt:"Anterior"});
-
-    widgets.btnSiguienteTipoSeguridad.setData({buttonTxt:"Siguiente"});
-
-    widgets.btnAnteriorContrasena.setData({buttonTxt:"Anterior"});
 
     this.widgets.malla.setData();
 }
@@ -120,76 +120,82 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
     var buttons = [[widgets.btnSiguienteSSID], [widgets.btnAnteriorTipoSeguridad, 
                 widgets.btnSiguienteTipoSeguridad], [widgets.btnAnteriorContrasena]];
 
-    if (this.objectWithFocus.name.indexOf("input") !== -1) {
-        if (this.scrollListPos == 0) {
-            // var keyHandled = inputNombreRed.keyHandler(_key);
-            if (inputBoxes[0].keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
-        }
-        else if (this.scrollListPos == 1) {
-            // var keyHandled = inputTipoSeguridad.keyHandler(_key);
-            if (inputBoxes[1].keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
-        }
-        else if (this.scrollListPos == 2) {
-            // var keyHandled = inputContrasena.keyHandler(_key);
-            if (inputBoxes[2].keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
-        }
+    switch (this.screenName) {
+        case "SSIDScreen":
+            this.onKeyPressSSID(_key);
+            break;
     }
 
-    switch (_key) {
-        case "KEY_TV_GREEN":
-            if (this.mallaOn){
-                widgets.malla.stateChange("exit");
-                this.mallaOn = false;
-            } else {
-                widgets.malla.stateChange("enter");
-                this.mallaOn = true;
-            }
+    // if (this.objectWithFocus.name.indexOf("input") !== -1) {
+    //     if (this.scrollListPos == 0) {
+    //         // var keyHandled = inputNombreRed.keyHandler(_key);
+    //         if (inputBoxes[0].keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
+    //     }
+    //     else if (this.scrollListPos == 1) {
+    //         // var keyHandled = inputTipoSeguridad.keyHandler(_key);
+    //         if (inputBoxes[1].keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
+    //     }
+    //     else if (this.scrollListPos == 2) {
+    //         // var keyHandled = inputContrasena.keyHandler(_key);
+    //         if (inputBoxes[2].keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
+    //     }
+    // }
+
+    // switch (_key) {
+    //     case "KEY_TV_GREEN":
+    //         if (this.mallaOn){
+    //             widgets.malla.stateChange("exit");
+    //             this.mallaOn = false;
+    //         } else {
+    //             widgets.malla.stateChange("enter");
+    //             this.mallaOn = true;
+    //         }
             
-            return true;
+    //         return true;
           
-       case "KEY_LEFT":
-       case "KEY_RIGHT":
-            changeFocuses.bind(this)(this.scrollListPos, inputBoxes, buttons, false);
-            return true;
+    //    case "KEY_LEFT":
+    //    case "KEY_RIGHT":
+    //         changeFocuses.bind(this)(this.scrollListPos, inputBoxes, buttons, false);
+    //         return true;
 
-        // Para demostrar que se puede hacer un desmadre 
-        case "KEY_IRENTER":
-            this.client.lock();
-            var previousScrollListPos = this.scrollListPos; 
-            if (this.scrollListPos == 0 && this.objectWithFocus.name.indexOf("Siguiente") !== -1) {
-                var scrolled = steps.scrollNext();
-                if (scrolled) ++this.scrollListPos;
-            } else if (this.scrollListPos == 1) {
-                if (this.objectWithFocus.name.indexOf("Anterior") !== -1) {
-                    var scrolled = steps.scrollPrev();
-                    if (scrolled) --this.scrollListPos;
-                } else if (this.objectWithFocus.name.indexOf("Siguiente") !== -1) {
-                    var scrolled = steps.scrollNext();
-                    if (scrolled) ++this.scrollListPos;
-                }
-            } else if (this.scrollListPos == 2 && this.objectWithFocus.name.indexOf("Anterior") !== -1) {
-                var scrolled = steps.scrollPrev();
-                if (scrolled) --this.scrollListPos;
-            }
-            if (this.objectWithFocus.name.indexOf("input") === -1) {
-                moveButtonsAndInputs(previousScrollListPos, this.scrollListPos, inputBoxes, buttons);
-                changeFocuses.bind(this)(previousScrollListPos, inputBoxes, buttons);
-            }
-            this.client.unlock();
-            return true;
+    //     // Para demostrar que se puede hacer un desmadre 
+    //     case "KEY_IRENTER":
+    //         this.client.lock();
+    //         var previousScrollListPos = this.scrollListPos; 
+    //         if (this.scrollListPos == 0 && this.objectWithFocus.name.indexOf("Siguiente") !== -1) {
+    //             var scrolled = steps.scrollNext();
+    //             if (scrolled) ++this.scrollListPos;
+    //         } else if (this.scrollListPos == 1) {
+    //             if (this.objectWithFocus.name.indexOf("Anterior") !== -1) {
+    //                 var scrolled = steps.scrollPrev();
+    //                 if (scrolled) --this.scrollListPos;
+    //             } else if (this.objectWithFocus.name.indexOf("Siguiente") !== -1) {
+    //                 var scrolled = steps.scrollNext();
+    //                 if (scrolled) ++this.scrollListPos;
+    //             }
+    //         } else if (this.scrollListPos == 2 && this.objectWithFocus.name.indexOf("Anterior") !== -1) {
+    //             var scrolled = steps.scrollPrev();
+    //             if (scrolled) --this.scrollListPos;
+    //         }
+    //         if (this.objectWithFocus.name.indexOf("input") === -1) {
+    //             moveButtonsAndInputs(previousScrollListPos, this.scrollListPos, inputBoxes, buttons);
+    //             changeFocuses.bind(this)(previousScrollListPos, inputBoxes, buttons);
+    //         }
+    //         this.client.unlock();
+    //         return true;
 
-        //The return of Carlos !
-        case 'KEY_UP':
-        case 'KEY_DOWN':
-            changeFocuses.bind(this)(this.scrollListPos, inputBoxes, buttons, true);
-        return true;
+    //     //The return of Carlos !
+    //     case 'KEY_UP':
+    //     case 'KEY_DOWN':
+    //         changeFocuses.bind(this)(this.scrollListPos, inputBoxes, buttons, true);
+    //     return true;
 
-        case "KEY_BACK":
-        case "KEY_IRBACK":
-        case "KEY_MENU":
-            this.home.closeSection(this);
-            return true;        
-    }
+    //     case "KEY_BACK":
+    //     case "KEY_IRBACK":
+    //     case "KEY_MENU":
+    //         this.home.closeSection(this);
+    //         return true;        
+    // }
 
     return true;
 }
