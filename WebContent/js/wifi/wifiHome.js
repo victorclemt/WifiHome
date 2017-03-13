@@ -43,6 +43,8 @@ function wifiHome(_json, _options)
 
     // variable to remember the position of the scrolllist
     this.scrollListPos = 0;
+
+    this.screenName = "SSIDScreen";
 }
 
 
@@ -118,7 +120,7 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
     var buttons = [[widgets.btnSiguienteSSID], [widgets.btnAnteriorTipoSeguridad, 
                 widgets.btnSiguienteTipoSeguridad], [widgets.btnAnteriorContrasena]];
 
-    if (this.inputHasFocus) {
+    if (this.objectWithFocus.name.indexOf("input") !== -1) {
         if (this.scrollListPos == 0) {
             // var keyHandled = inputNombreRed.keyHandler(_key);
             if (inputBoxes[0].keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
@@ -169,8 +171,10 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
                 var scrolled = steps.scrollPrev();
                 if (scrolled) --this.scrollListPos;
             }
-            moveButtonsAndInputs(previousScrollListPos, this.scrollListPos, inputBoxes, buttons);
-            changeFocuses.bind(this)(previousScrollListPos, inputBoxes, buttons);
+            if (this.objectWithFocus.name.indexOf("input") === -1) {
+                moveButtonsAndInputs(previousScrollListPos, this.scrollListPos, inputBoxes, buttons);
+                changeFocuses.bind(this)(previousScrollListPos, inputBoxes, buttons);
+            }
             this.client.unlock();
             return true;
 
@@ -188,6 +192,28 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
     }
 
     return true;
+}
+
+wifiHome.prototype.onKeyPressSSID = function onKeyPressSSID(_key) {
+    var widgets = this.widgets;
+    var inputBox = widgets.inputNombreRed;
+    var btnSiguiente = widgets.btnSiguienteSSID;
+
+    if (this.objectWithFocus.name.indexOf("input") !== -1) {
+        if (inputBox.keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
+    }
+
+    switch(_key) {
+        case 'KEY_UP':
+        case 'KEY_DOWN':
+            if (this.objectWithFocus.name.indexOf("input") !== -1) {
+                setGlobalFocusOn.bind(this)(btnSiguiente);
+            } else {
+                setGlobalFocusOn.bind(this)(inputBox);
+            }
+            
+        return true;
+    }
 }
 
 var moveButtonsAndInputs = function moveButtonsAndInputs(previousScrollListPos, scrollListPos, inputBoxes, buttons) {  
