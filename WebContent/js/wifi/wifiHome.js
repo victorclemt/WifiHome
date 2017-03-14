@@ -74,16 +74,13 @@ wifiHome.prototype.onEnter = function onEnter(_data)
         setGlobalFocusOn.bind(this)(widgets.inputNombreRed);
 
         widgets.inputTipoSeguridad.setData('WPA');
-
         widgets.inputContrasena.setData('the best Password ever');
 
         widgets.btnSiguienteSSID.setData({buttonTxt:"Siguiente"});
-
-        widgets.btnAnteriorTipoSeguridad.setData({buttonTxt:"Anterior"});
-
+        widgets.btnAnteriorTipoSeguridad.setData({buttonTxt:"Atrás"});
         widgets.btnSiguienteTipoSeguridad.setData({buttonTxt:"Siguiente"});
-
-        widgets.btnAnteriorContrasena.setData({buttonTxt:"Anterior"});
+        widgets.btnAnteriorContrasena.setData({buttonTxt:"Atrás"});
+        widgets.btnSincronizarContrasena.setData({buttonTxt:"Sincronizar"});
 
         this.widgetsInWifi = {
             SSIDScreen: [
@@ -97,7 +94,8 @@ wifiHome.prototype.onEnter = function onEnter(_data)
             ],
             passwordScreen: [
                 widgets.inputContrasena,
-                widgets.btnAnteriorContrasena
+                widgets.btnAnteriorContrasena,
+                widgets.btnSincronizarContrasena
             ]
         };
     
@@ -129,13 +127,6 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
 
     var widgets = this.widgets;
 
-    var canvas = widgets.wifiText;
-    var steps = widgets.steps;
-
-    var inputBoxes = [widgets.inputNombreRed, widgets.inputTipoSeguridad, widgets.inputContrasena];
-    var buttons = [[widgets.btnSiguienteSSID], [widgets.btnAnteriorTipoSeguridad, 
-                widgets.btnSiguienteTipoSeguridad], [widgets.btnAnteriorContrasena]];
-
     switch (this.screenName) {
         case "SSIDScreen":
             this.onKeyPressSSID(_key);
@@ -146,79 +137,23 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
         case "passwordScreen":
             this.onKeyPressPassword(_key);
             break;
+
+        case "KEY_BACK":
+        case "KEY_IRBACK":
+        case "KEY_MENU":
+            this.home.closeSection(this);
+            break;
+
+        case "KEY_TV_GREEN":
+            if (this.mallaOn){
+                widgets.malla.stateChange("exit");
+                this.mallaOn = false;
+            } else {
+                widgets.malla.stateChange("enter");
+                this.mallaOn = true;
+            }
+        break;
     }
-
-    // if (this.objectWithFocus.name.indexOf("input") !== -1) {
-    //     if (this.scrollListPos == 0) {
-    //         // var keyHandled = inputNombreRed.keyHandler(_key);
-    //         if (inputBoxes[0].keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
-    //     }
-    //     else if (this.scrollListPos == 1) {
-    //         // var keyHandled = inputTipoSeguridad.keyHandler(_key);
-    //         if (inputBoxes[1].keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
-    //     }
-    //     else if (this.scrollListPos == 2) {
-    //         // var keyHandled = inputContrasena.keyHandler(_key);
-    //         if (inputBoxes[2].keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
-    //     }
-    // }
-
-    // switch (_key) {
-    //     case "KEY_TV_GREEN":
-    //         if (this.mallaOn){
-    //             widgets.malla.stateChange("exit");
-    //             this.mallaOn = false;
-    //         } else {
-    //             widgets.malla.stateChange("enter");
-    //             this.mallaOn = true;
-    //         }
-            
-    //         return true;
-          
-    //    case "KEY_LEFT":
-    //    case "KEY_RIGHT":
-    //         changeFocuses.bind(this)(this.scrollListPos, inputBoxes, buttons, false);
-    //         return true;
-
-    //     // Para demostrar que se puede hacer un desmadre 
-    //     case "KEY_IRENTER":
-    //         this.client.lock();
-    //         var previousScrollListPos = this.scrollListPos; 
-    //         if (this.scrollListPos == 0 && this.objectWithFocus.name.indexOf("Siguiente") !== -1) {
-    //             var scrolled = steps.scrollNext();
-    //             if (scrolled) ++this.scrollListPos;
-    //         } else if (this.scrollListPos == 1) {
-    //             if (this.objectWithFocus.name.indexOf("Anterior") !== -1) {
-    //                 var scrolled = steps.scrollPrev();
-    //                 if (scrolled) --this.scrollListPos;
-    //             } else if (this.objectWithFocus.name.indexOf("Siguiente") !== -1) {
-    //                 var scrolled = steps.scrollNext();
-    //                 if (scrolled) ++this.scrollListPos;
-    //             }
-    //         } else if (this.scrollListPos == 2 && this.objectWithFocus.name.indexOf("Anterior") !== -1) {
-    //             var scrolled = steps.scrollPrev();
-    //             if (scrolled) --this.scrollListPos;
-    //         }
-    //         if (this.objectWithFocus.name.indexOf("input") === -1) {
-    //             moveButtonsAndInputs(previousScrollListPos, this.scrollListPos, inputBoxes, buttons);
-    //             changeFocuses.bind(this)(previousScrollListPos, inputBoxes, buttons);
-    //         }
-    //         this.client.unlock();
-    //         return true;
-
-    //     //The return of Carlos !
-    //     case 'KEY_UP':
-    //     case 'KEY_DOWN':
-    //         changeFocuses.bind(this)(this.scrollListPos, inputBoxes, buttons, true);
-    //     return true;
-
-    //     case "KEY_BACK":
-    //     case "KEY_IRBACK":
-    //     case "KEY_MENU":
-    //         this.home.closeSection(this);
-    //         return true;        
-    // }
-
     return true;
 }
 
@@ -328,6 +263,7 @@ wifiHome.prototype.onKeyPressPassword = function onKeyPressPassword(_key) {
     var widgets = this.widgets;
     var inputBox = widgets.inputContrasena;
     var btnAnterior = widgets.btnAnteriorContrasena;
+    var btnSincronizar = widgets.btnSincronizarContrasena;
 
     if (this.objectWithFocus == inputBox) {
         if (inputBox.keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
@@ -337,9 +273,18 @@ wifiHome.prototype.onKeyPressPassword = function onKeyPressPassword(_key) {
         case 'KEY_UP':
         case 'KEY_DOWN':
             if(this.objectWithFocus == inputBox) {
+                setGlobalFocusOn.bind(this)(btnSincronizar);
+            } else if(this.objectWithFocus == btnAnterior || this.objectWithFocus == btnSincronizar) {
+                setGlobalFocusOn.bind(this)(inputBox);
+            }
+            break;
+
+        case 'KEY_LEFT':
+        case 'KEY_RIGHT':
+            if(this.objectWithFocus == btnSincronizar) {
                 setGlobalFocusOn.bind(this)(btnAnterior);
             } else if(this.objectWithFocus == btnAnterior) {
-                setGlobalFocusOn.bind(this)(inputBox);
+                setGlobalFocusOn.bind(this)(btnSincronizar);
             }
             break;
 
@@ -359,45 +304,10 @@ wifiHome.prototype.onKeyPressPassword = function onKeyPressPassword(_key) {
                 //Giving focus to input
                 setGlobalFocusOn.bind(this)(widgets.inputTipoSeguridad);
                 this.client.unlock();
+            } else if(this.objectWithFocus == btnSincronizar) {
+                
             }
         return true;
-    }
-}
-
-var moveButtonsAndInputs = function moveButtonsAndInputs(previousScrollListPos, scrollListPos, inputBoxes, buttons) {  
-    inputBoxes[scrollListPos].stateChange("center");
-    for (var i = 0, len = buttons[scrollListPos].length; i < len; i++) {
-        buttons[scrollListPos][i].stateChange("center");
-    }
-
-    if (scrollListPos > previousScrollListPos) {
-        inputBoxes[previousScrollListPos].stateChange("left");
-        for (var i = 0, len = buttons[previousScrollListPos].length; i < len; i++) {
-            buttons[previousScrollListPos][i].stateChange("left");
-        }
-    } else {
-        inputBoxes[previousScrollListPos].stateChange("right");
-        for (var i = 0, len = buttons[previousScrollListPos].length; i < len; i++) {
-            buttons[previousScrollListPos][i].stateChange("right");
-        }
-    }
-}
-
-var changeFocuses = function changeFocuses(previousScrollListPos, inputBoxes, buttons, upOrDown) {
-    if (this.scrollListPos != previousScrollListPos) {
-        setGlobalFocusOn.bind(this)(inputBoxes[this.scrollListPos]);
-    } else {
-        if (this.objectWithFocus.name.indexOf("input") !== -1 && upOrDown) {
-            setGlobalFocusOn.bind(this)(buttons[this.scrollListPos][buttons[this.scrollListPos].length - 1]);
-        } else if (this.objectWithFocus.name.indexOf("input") === -1 && upOrDown) {
-            setGlobalFocusOn.bind(this)(inputBoxes[this.scrollListPos]);
-        } else if (this.objectWithFocus.name.indexOf("input") === -1 && !upOrDown && this.scrollListPos == 1) {
-            if (this.objectWithFocus.name.indexOf("Siguiente") !== -1) {
-                setGlobalFocusOn.bind(this)(buttons[this.scrollListPos][0]);
-            } else {
-                setGlobalFocusOn.bind(this)(buttons[this.scrollListPos][1]);
-            }
-        }
     }
 }
 
@@ -463,6 +373,10 @@ wifiHome.drawBtnSiguienteTipoSeguridad = function drawBtnSiguienteTipoSeguridad(
 }
 
 wifiHome.drawBtnAnteriorContrasena = function drawBtnAnteriorContrasena(_data, focus) {
+    wifiHome.heyDrawAPrettyButton.bind(this)(_data, focus);
+}
+
+wifiHome.drawBtnSincronizarContrasena = function drawBtnSincronizarContrasena(_data, focus) {
     wifiHome.heyDrawAPrettyButton.bind(this)(_data, focus);
 }
 

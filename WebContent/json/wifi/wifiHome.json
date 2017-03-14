@@ -166,6 +166,33 @@
             }
         },
 
+        "btnSincronizarContrasena": {
+            "create": "CanvasWidget",
+            "param": {
+                "w"         : 192,
+                "h"         : 40,
+                "zIndex"    : 5,
+                "speed"     : 100,
+                "bounds"    : {"x":643, "y":538},
+                "defaultState": "right",
+                "states": {
+                    "center": {  
+                        "speed": 200,
+                        "x": 899, "y": 538, "a": 255
+                    },
+                    "left": {  
+                        "speed": 200,
+                        "x": -381, "y": 538, "a": 255
+                    },
+                    "right": {  
+                        "speed": 200,
+                        "x": 2179, "y": 538, "a": 255
+                    } 
+                },
+                "draw"      : "drawBtnSincronizarContrasena"
+            }
+        },
+
         "inputNombreRed": {  
         "create": "InputWidget",  
         "param": {  
