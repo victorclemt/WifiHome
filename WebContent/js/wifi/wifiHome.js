@@ -95,7 +95,7 @@ wifiHome.prototype.onEnter = function onEnter(_data)
                 widgets.btnAnteriorTipoSeguridad,
                 widgets.btnSiguienteTipoSeguridad
             ],
-            contrasenaScreen: [
+            passwordScreen: [
                 widgets.inputContrasena,
                 widgets.btnAnteriorContrasena
             ]
@@ -139,6 +139,9 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
     switch (this.screenName) {
         case "SSIDScreen":
             this.onKeyPressSSID(_key);
+            break;
+        case "securityScreen":
+            this.onKeyPressSecurity(_key);
             break;
     }
 
@@ -238,19 +241,82 @@ wifiHome.prototype.onKeyPressSSID = function onKeyPressSSID(_key) {
             if (this.objectWithFocus == btnSiguiente){
                 this.client.lock();
                 this.screenName = "securityScreen";
-                // inputBox.stateChange("left");
-                // btnSiguiente.stateChange("left");
                 widgets.steps.scrollNext();
-                //move to the left the widgets in curren screen
+                //move to the left the widgets in current screen
                 this.widgetsInWifi.SSIDScreen.map(function(widget){
                     return widget.stateChange("left");
                 });
+                //move to the center the widgets in the next screen
                 this.widgetsInWifi.securityScreen.map(function(widget){
                     return widget.stateChange("center");
                 });
+                //Giving focus to input
+                setGlobalFocusOn.bind(this)(widgets.inputTipoSeguridad);
                 this.client.unlock();
             }
         return true;
+    }
+}
+
+wifiHome.prototype.onKeyPressSecurity = function onKeyPressSecurity(_key) {
+    var widgets = this.widgets;
+    var inputBox = widgets.inputTipoSeguridad;
+    var btnSiguiente = widgets.btnSiguienteTipoSeguridad;
+    var btnAnterior = widgets.btnAnteriorTipoSeguridad;
+
+    if (this.objectWithFocus == inputBox) {
+        if (inputBox.keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
+    }
+
+    switch(_key) {
+        case 'KEY_UP':
+        case 'KEY_DOWN':
+            if(this.objectWithFocus == inputBox) {
+                setGlobalFocusOn.bind(this)(btnSiguiente);
+            } else if(this.objectWithFocus == btnSiguiente || this.objectWithFocus == btnAnterior) {
+                setGlobalFocusOn.bind(this)(inputBox);
+            }
+            break;
+        case 'KEY_LEFT':
+        case 'KEY_RIGHT':
+            if(this.objectWithFocus == btnSiguiente) {
+                setGlobalFocusOn.bind(this)(btnAnterior);
+            } else if(this.objectWithFocus == btnAnterior) {
+                setGlobalFocusOn.bind(this)(btnSiguiente);
+            }
+            break;
+        case 'KEY_IRENTER':
+            if(this.objectWithFocus == btnSiguiente) {
+                this.client.lock();
+                this.screenName = "passwordScreen";
+                widgets.steps.scrollNext();
+                //move to the left the widgets in current screen
+                this.widgetsInWifi.securityScreen.map(function(widget){
+                    return widget.stateChange("left");
+                });
+                //move to the center the widgets in the next screen
+                this.widgetsInWifi.passwordScreen.map(function(widget){
+                    return widget.stateChange("center");
+                });
+                //Giving focus to input
+                setGlobalFocusOn.bind(this)(widgets.inputContrasena);
+                this.client.unlock();
+            } else if (this.objectWithFocus == btnAnterior) {
+                this.client.lock();
+                this.screenName = "SSIDScreen";
+                widgets.steps.scrollPrev();
+                //move to the right the widgets in the current screen
+                this.widgetsInWifi.securityScreen.map(function(widget){
+                    return widget.stateChange("right");
+                });
+                //move to the center the widgets in the previous screen
+                this.widgetsInWifi.SSIDScreen.map(function(widget){
+                    return widget.stateChange("center");
+                });
+                //Giving focus to input
+                setGlobalFocusOn.bind(this)(widgets.inputNombreRed);
+                this.client.unlock();
+            }
     }
 }
 
