@@ -143,6 +143,9 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
         case "securityScreen":
             this.onKeyPressSecurity(_key);
             break;
+        case "passwordScreen":
+            this.onKeyPressPassword(_key);
+            break;
     }
 
     // if (this.objectWithFocus.name.indexOf("input") !== -1) {
@@ -317,6 +320,47 @@ wifiHome.prototype.onKeyPressSecurity = function onKeyPressSecurity(_key) {
                 setGlobalFocusOn.bind(this)(widgets.inputNombreRed);
                 this.client.unlock();
             }
+    }
+    return true;
+}
+
+wifiHome.prototype.onKeyPressPassword = function onKeyPressPassword(_key) {
+    var widgets = this.widgets;
+    var inputBox = widgets.inputContrasena;
+    var btnAnterior = widgets.btnAnteriorContrasena;
+
+    if (this.objectWithFocus == inputBox) {
+        if (inputBox.keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
+    }
+
+    switch(_key) {
+        case 'KEY_UP':
+        case 'KEY_DOWN':
+            if(this.objectWithFocus == inputBox) {
+                setGlobalFocusOn.bind(this)(btnAnterior);
+            } else if(this.objectWithFocus == btnAnterior) {
+                setGlobalFocusOn.bind(this)(inputBox);
+            }
+            break;
+
+        case "KEY_IRENTER":
+            if (this.objectWithFocus == btnAnterior){
+                this.client.lock();
+                this.screenName = "securityScreen";
+                widgets.steps.scrollPrev();
+                //move to the right the widgets in current screen
+                this.widgetsInWifi.passwordScreen.map(function(widget){
+                    return widget.stateChange("right");
+                });
+                //move to the center the widgets in the previous screen
+                this.widgetsInWifi.securityScreen.map(function(widget){
+                    return widget.stateChange("center");
+                });
+                //Giving focus to input
+                setGlobalFocusOn.bind(this)(widgets.inputTipoSeguridad);
+                this.client.unlock();
+            }
+        return true;
     }
 }
 
