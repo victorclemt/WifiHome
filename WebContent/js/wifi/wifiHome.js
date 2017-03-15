@@ -35,6 +35,11 @@ function wifiHome(_json, _options)
                                 textoSalir:"Presiona Menú/Atrás en tu control remoto para salir", 
                               }
                             ];
+    this.syncScreenText = {
+                    texto1:"SINCRONIZANDO EQUIPOS...", 
+                    texto2:"Este proceso puede tardar hasta 2 minutos.",
+                    texto3:"Presiona Menú/Atrás en tu control para salir"
+                }
 
 
     // this.confirm =  [{text1:"Siguiente"}];
@@ -311,10 +316,7 @@ wifiHome.prototype.onKeyPressPassword = function onKeyPressPassword(_key) {
             } else if(this.objectWithFocus == btnSincronizar) {
                 this.client.lock();
                 wifiHome.screenName = "syncScreen";
-                widgets.steps.appendData({
-                    texto1:"SINCRONIZANDO EQUIPOS...", 
-                    texto2:"Este proceso puede tardar hasta 2 minutos."
-                });
+                widgets.steps.appendData(this.syncScreenText);
 
                 widgets.steps.scrollNext();
                 //move to the left the widgets in current screen
@@ -381,17 +383,17 @@ wifiHome.drawMainSteps = function drawMainSteps(_data) {
 
         Canvas.drawText(ctx, _data.textoSalir, new Rect(451,652,600,300),custo_f);
     } else if (wifiHome.screenName === "syncScreen") {
-        tp_draw.getSingleton().drawImage("img/wifi/ICONO-SincronizarNJA.png", ctx, 608, 290, 100, 55);
+        tp_draw.getSingleton().drawImage("img/wifi/ICONO-SincronizarNJA.png", ctx, 578, 290, 100, 55);
 
         var custo_f = JSON.stringify(this.themaData.standardFont);
             custo_f = JSON.parse(custo_f);
 
-        Canvas.drawText(ctx, _data.texto1, new Rect(539,394,450,700 ),custo_f);
-        Canvas.drawText(ctx, _data.texto2, new Rect(494,440,450,700),custo_f);
+        Canvas.drawText(ctx, _data.texto1, new Rect(509,394,450,700), custo_f);
+        Canvas.drawText(ctx, _data.texto2, new Rect(464,440,450,700), custo_f);
+        custo_f.fill = "rgba(170,170,180,1)";
+        Canvas.drawText(ctx, _data.texto3, new Rect(451,652,600,300), custo_f);
     }
     
-
-
     ctx.drawObject(ctx.endObject());
   // };
 
