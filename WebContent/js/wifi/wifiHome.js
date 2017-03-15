@@ -44,9 +44,10 @@ function wifiHome(_json, _options)
     // variable to remember the position of the scrolllist
     this.scrollListPos = 0;
 
-    this.screenName = "SSIDScreen";
+    
 }
 
+wifiHome.screenName = "SSIDScreen";
 
 wifiHome.inherits(FormWidget);
 
@@ -127,7 +128,7 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
 
     var widgets = this.widgets;
 
-    switch (this.screenName) {
+    switch (wifiHome.screenName) {
         case "SSIDScreen":
             this.onKeyPressSSID(_key);
             break;
@@ -137,7 +138,9 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
         case "passwordScreen":
             this.onKeyPressPassword(_key);
             break;
+    }
 
+    switch(_key) {
         case "KEY_BACK":
         case "KEY_IRBACK":
         case "KEY_MENU":
@@ -154,6 +157,7 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
             }
         break;
     }
+
     return true;
 }
 
@@ -178,7 +182,7 @@ wifiHome.prototype.onKeyPressSSID = function onKeyPressSSID(_key) {
         case "KEY_IRENTER":
             if (this.objectWithFocus == btnSiguiente){
                 this.client.lock();
-                this.screenName = "securityScreen";
+                wifiHome.screenName = "securityScreen";
                 widgets.steps.scrollNext();
                 //move to the left the widgets in current screen
                 this.widgetsInWifi.SSIDScreen.map(function(widget){
@@ -226,7 +230,7 @@ wifiHome.prototype.onKeyPressSecurity = function onKeyPressSecurity(_key) {
         case 'KEY_IRENTER':
             if(this.objectWithFocus == btnSiguiente) {
                 this.client.lock();
-                this.screenName = "passwordScreen";
+                wifiHome.screenName = "passwordScreen";
                 widgets.steps.scrollNext();
                 //move to the left the widgets in current screen
                 this.widgetsInWifi.securityScreen.map(function(widget){
@@ -241,7 +245,7 @@ wifiHome.prototype.onKeyPressSecurity = function onKeyPressSecurity(_key) {
                 this.client.unlock();
             } else if (this.objectWithFocus == btnAnterior) {
                 this.client.lock();
-                this.screenName = "SSIDScreen";
+                wifiHome.screenName = "SSIDScreen";
                 widgets.steps.scrollPrev();
                 //move to the right the widgets in the current screen
                 this.widgetsInWifi.securityScreen.map(function(widget){
@@ -291,7 +295,7 @@ wifiHome.prototype.onKeyPressPassword = function onKeyPressPassword(_key) {
         case "KEY_IRENTER":
             if (this.objectWithFocus == btnAnterior){
                 this.client.lock();
-                this.screenName = "securityScreen";
+                wifiHome.screenName = "securityScreen";
                 widgets.steps.scrollPrev();
                 //move to the right the widgets in current screen
                 this.widgetsInWifi.passwordScreen.map(function(widget){
@@ -305,13 +309,30 @@ wifiHome.prototype.onKeyPressPassword = function onKeyPressPassword(_key) {
                 setGlobalFocusOn.bind(this)(widgets.inputTipoSeguridad);
                 this.client.unlock();
             } else if(this.objectWithFocus == btnSincronizar) {
-                
+                this.client.lock();
+                wifiHome.screenName = "syncScreen";
+                widgets.steps.appendData({
+                    texto1:"SINCRONIZANDO EQUIPOS...", 
+                    texto2:"Este proceso puede tardar hasta 2 minutos."
+                });
+
+                widgets.steps.scrollNext();
+                //move to the left the widgets in current screen
+                this.widgetsInWifi.passwordScreen.map(function(widget){
+                    return widget.stateChange("left");
+                });
+                //move to the center the widgets in the next screen
+                this.client.unlock();
             }
+            break;
+        // case "KEY_TV_YELLOW":
+        //     inputBox.param.hidden = false;
+        //     break;
         return true;
     }
 }
 
-var setGlobalFocusOn = function setGlobalFocusOn(objectToFocus) {
+var setGlobalFocusOn = function setGlobalFocusOn(objectToFocus) {   
     if (this.objectWithFocus !== undefined) this.objectWithFocus.setFocus(false);
     this.objectWithFocus = objectToFocus;
     this.objectWithFocus.setFocus(true);
@@ -337,22 +358,38 @@ wifiHome.drawMainSteps = function drawMainSteps(_data) {
     var ctx = this.getContext("2d");
     ctx.beginObject();
     ctx.clear();
+
+    if(wifiHome.screenName !== "syncScreen") {
+        tp_draw.getSingleton().drawImage("img/wifi/TITULO-Wizard.png", ctx, 264, 230);
+
+        if(wifiHome.screenName === "passwordScreen") {
+            tp_draw.getSingleton().drawImage("img/wifi/ICONO-VerOFF.png", ctx, 963, 326);
+        }
+        
+
+        var custo_f = JSON.stringify(this.themaData.standardFont);
+            custo_f = JSON.parse(custo_f);
+        
+
+        Canvas.drawText(ctx, _data.texto1 , new Rect(643,218,450,700 ),custo_f);
+
+        custo_f.fill = "rgba(170,170,180,1)";
+
+        Canvas.drawText(ctx, _data.texto2, new Rect(643,300,450,700),custo_f);
+       
+        Canvas.drawText(ctx, _data.texto3, new Rect(643,420,500,700),custo_f);
+
+        Canvas.drawText(ctx, _data.textoSalir, new Rect(451,652,600,300),custo_f);
+    } else if (wifiHome.screenName === "syncScreen") {
+        tp_draw.getSingleton().drawImage("img/wifi/ICONO-SincronizarNJA.png", ctx, 608, 290, 100, 55);
+
+        var custo_f = JSON.stringify(this.themaData.standardFont);
+            custo_f = JSON.parse(custo_f);
+
+        Canvas.drawText(ctx, _data.texto1, new Rect(539,394,450,700 ),custo_f);
+        Canvas.drawText(ctx, _data.texto2, new Rect(494,440,450,700),custo_f);
+    }
     
-    tp_draw.getSingleton().drawImage("img/wifi/TITULO-Wizard.png", ctx, 264, 230);
-
-    var custo_f = JSON.stringify(this.themaData.standardFont);
-        custo_f = JSON.parse(custo_f);
-    
-
-    Canvas.drawText(ctx, _data.texto1 , new Rect(643,218,450,700 ),custo_f);
-
-    custo_f.fill = "rgba(170,170,180,1)";
-
-    Canvas.drawText(ctx, _data.texto2, new Rect(643,300,450,700),custo_f);
-   
-    Canvas.drawText(ctx, _data.texto3, new Rect(643,420,500,700),custo_f);
-
-    Canvas.drawText(ctx, _data.textoSalir, new Rect(451,652,600,300),custo_f);
 
 
     ctx.drawObject(ctx.endObject());
