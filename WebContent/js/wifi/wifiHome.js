@@ -33,13 +33,19 @@ function wifiHome(_json, _options)
                                 texto2:"CONTRASEÑA",
                                 texto3:"Mínimo 10 caracteres. Recuerda incluir al menos una mayúscula y un número.", 
                                 textoSalir:"Presiona Menú/Atrás en tu control remoto para salir", 
-                              }
-                            ];
-    this.syncScreenText = {
+                              },
+                              {
                     texto1:"SINCRONIZANDO EQUIPOS...", 
                     texto2:"Este proceso puede tardar hasta 2 minutos.",
                     texto3:"Presiona Menú/Atrás en tu control para salir"
                 }
+                            ];
+
+    // this.syncScreenText = {
+    //                 texto1:"SINCRONIZANDO EQUIPOS...", 
+    //                 texto2:"Este proceso puede tardar hasta 2 minutos.",
+    //                 texto3:"Presiona Menú/Atrás en tu control para salir"
+    //             }
 
 
     // this.confirm =  [{text1:"Siguiente"}];
@@ -316,7 +322,8 @@ wifiHome.prototype.onKeyPressPassword = function onKeyPressPassword(_key) {
             } else if(this.objectWithFocus == btnSincronizar) {
                 this.client.lock();
                 wifiHome.screenName = "syncScreen";
-                widgets.steps.appendData(this.syncScreenText);
+                // widgets.steps.appendData(this.syncScreenText);
+                widgets.steps.updateData(this.wizardFirstTime, 2);
 
                 widgets.steps.scrollNext();
                 //move to the left the widgets in current screen
@@ -393,7 +400,7 @@ wifiHome.drawMainSteps = function drawMainSteps(_data) {
         custo_f.fill = "rgba(170,170,180,1)";
         Canvas.drawText(ctx, _data.texto3, new Rect(451,652,600,300), custo_f);
     }
-    
+
     ctx.drawObject(ctx.endObject());
   // };
 
