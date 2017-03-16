@@ -128,7 +128,15 @@ wifiHome.prototype.onExit = function onExit()
 {   
     this.home.hideBg();
     this.home.hideHeader();
+    var widgets = this.widgets;
 
+    if (this.firstTimer) {
+        this.client.lock();
+        wifiHome.screenName = "SSIDScreen";
+        widgets.steps.stateChange("exit");
+        widgets.steps.scrollTo(0);
+        this.client.unlock();
+    }
 
     NGM.trace("Exit WIFI CONFIGURATION");
 }
@@ -148,6 +156,8 @@ wifiHome.prototype.onKeyPress = function onKeyPress(_key)
             break;
         case "passwordScreen":
             this.onKeyPressPassword(_key);
+            break;
+        case "syncScreen":
             break;
     }
 
