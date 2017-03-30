@@ -187,10 +187,6 @@ wifiHome.prototype.onKeyPressSSID = function onKeyPressSSID(_key) {
     var inputBox = widgets.inputNombreRed;
     var btnSiguiente = widgets.btnSiguienteSSID;
 
-    if (this.objectWithFocus == inputBox) {
-        if (inputBox.keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
-    }
-
     switch(_key) {
         case 'KEY_UP':
         case 'KEY_DOWN':
@@ -216,6 +212,16 @@ wifiHome.prototype.onKeyPressSSID = function onKeyPressSSID(_key) {
                 //Giving focus to input
                 setGlobalFocusOn.bind(this)(widgets.inputTipoSeguridad);
                 this.client.unlock();
+            } else if(this.objectWithFocus == inputBox) {
+                this.home.openSection("keyboard",{
+                        "home":this.home,
+                        "type":"ks",
+                        "text1":"Ingresa tu SSID: ",
+                        "text2":"La búsqueda no puede estar vacía, inténtalo de nuevo",
+                        "ok":"Aceptar",
+                        "cancel":"Cancelar",
+                        "parent" : this,
+                        "valid":true}, false, ,true);
             }
         return true;
     }
@@ -226,10 +232,6 @@ wifiHome.prototype.onKeyPressSecurity = function onKeyPressSecurity(_key) {
     var inputBox = widgets.inputTipoSeguridad;
     var btnSiguiente = widgets.btnSiguienteTipoSeguridad;
     var btnAnterior = widgets.btnAnteriorTipoSeguridad;
-
-    if (this.objectWithFocus == inputBox) {
-        if (inputBox.keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
-    }
 
     switch(_key) {
         case 'KEY_UP':
@@ -279,6 +281,16 @@ wifiHome.prototype.onKeyPressSecurity = function onKeyPressSecurity(_key) {
                 //Giving focus to input
                 setGlobalFocusOn.bind(this)(widgets.inputNombreRed);
                 this.client.unlock();
+            } else if(this.objectWithFocus == inputBox) {
+                this.home.openSection("keyboard",{
+                        "home":this.home,
+                        "type":"ks",
+                        "text1":"Ingresa tu tipo de seguridad: ",
+                        "text2":"La búsqueda no puede estar vacía, inténtalo de nuevo",
+                        "ok":"Aceptar",
+                        "cancel":"Cancelar",
+                        "parent" : this,
+                        "valid":true}, false, ,true);
             }
     }
     return true;
@@ -289,10 +301,6 @@ wifiHome.prototype.onKeyPressPassword = function onKeyPressPassword(_key) {
     var inputBox = widgets.inputContrasena;
     var btnAnterior = widgets.btnAnteriorContrasena;
     var btnSincronizar = widgets.btnSincronizarContrasena;
-
-    if (this.objectWithFocus == inputBox) {
-        if (inputBox.keyHandler(_key) || _key === 'KEY_BACKSPACE') return true;
-    }
 
     switch(_key) {
         case 'KEY_UP':
@@ -342,6 +350,16 @@ wifiHome.prototype.onKeyPressPassword = function onKeyPressPassword(_key) {
                 });
                 //move to the center the widgets in the next screen
                 this.client.unlock();
+            } else if(this.objectWithFocus == inputBox) {
+                this.home.openSection("keyboard",{
+                        "home":this.home,
+                        "type":"ks",
+                        "text1":"Ingresa tu contraseña: ",
+                        "text2":"La búsqueda no puede estar vacía, inténtalo de nuevo",
+                        "ok":"Aceptar",
+                        "cancel":"Cancelar",
+                        "parent" : this,
+                        "valid":true}, false, ,true);
             }
             break;
         // case "KEY_TV_YELLOW":

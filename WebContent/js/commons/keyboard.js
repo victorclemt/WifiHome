@@ -383,9 +383,19 @@ keyboard.prototype.validateSections = function validateSections(){
 		var panel = w.panelKeyboard;
 		var panel2 = w.panelKeyboard2;
 		var input = w.keyboardInput;
-		
+
+		NGM.trace("hola");
+		NGM.trace("Section: " + this.section);
 		
 		switch (this.section){
+			//Carlos test
+			case "wifiHome":
+				var s = input.getData();
+				this.parent.objectWithFocus.setData(s);
+				NGM.trace(this.parent.objectWithFocus.name);
+				this.home.closeSection(this);
+				break;
+
 			//aquí hay que poner las secciones que usan el teclado y que harán cuando dé click		
 			 case "login":
 			 	var s = input.getData();
