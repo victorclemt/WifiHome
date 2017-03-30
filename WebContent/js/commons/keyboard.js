@@ -56,7 +56,6 @@ keyboard.prototype.onEnter = function onEnter(_data){
 	if(this.section == "setup" && this.parent.mail != "" && this.parent.step == 6){
 		this.parent.mail = "";
 	}
-
 	
 	this.home = _data.home;
 	
@@ -193,7 +192,14 @@ keyboard.prototype.showPanel = function showPanel(){
 		break;
 	
 	}	
-	this.widgets.keyboardInput.canvas.resetTextColor = true;			
+	this.widgets.keyboardInput.canvas.resetTextColor = true;
+
+	//Carlos did this
+	if(this.section == "wifiHome"){
+		NGM.trace(this.parent.objectWithFocus.getData());
+		this.widgets.keyboardInput.setData(this.parent.objectWithFocus.getData());
+	}
+	//Carlos stopped doing it...
 }
 
 keyboard.prototype.setTextWhitecolor = function setTextWhitecolor(status){
@@ -388,13 +394,13 @@ keyboard.prototype.validateSections = function validateSections(){
 		NGM.trace("Section: " + this.section);
 		
 		switch (this.section){
-			//Carlos test
+			//Carlos did this
 			case "wifiHome":
 				var s = input.getData();
 				this.parent.objectWithFocus.setData(s);
-				NGM.trace(this.parent.objectWithFocus.name);
 				this.home.closeSection(this);
 				break;
+			//Carlos stopped doing it...
 
 			//aquí hay que poner las secciones que usan el teclado y que harán cuando dé click		
 			 case "login":
