@@ -350,6 +350,17 @@ wifiHome.prototype.onKeyPressPassword = function onKeyPressPassword(_key) {
                 });
                 //move to the center the widgets in the next screen
                 this.client.unlock();
+                
+                
+                // we start the http request to inform the ASC
+                url = "http://httpbin.org/ip"; // regresa la ip
+                //url = "http://httpbin.org/user-agent"; // regresar el agente que usa el user
+                
+                NGM.trace("HTTPREQUEST");
+                tp_httpRequest.getSingleton().send(url, this.responseTR069.bind(this));
+
+
+
             } else if(this.objectWithFocus == inputBox) {
                 this.home.openSection("keyboard",{
                         "home":this.home,
@@ -366,6 +377,18 @@ wifiHome.prototype.onKeyPressPassword = function onKeyPressPassword(_key) {
         //     inputBox.param.hidden = false;
         //     break;
         return true;
+    }
+}
+
+
+wifiHome.prototype.responseTR069 = function responseTR069(_response){
+    
+    NGM.trace("Si se recibe una respuesta and we dump it ");
+    NGM.dump(_response,3);
+    if(_response.status == 200){
+        
+    }else{
+        
     }
 }
 
